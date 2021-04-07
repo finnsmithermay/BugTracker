@@ -81,6 +81,9 @@ router.get('/:id', auth, async (req, res)=>{
 });
 
 
+
+
+
 //@route   DELETE api/posts/:id
 //@des     Delete a post
 //@access  Private
@@ -121,10 +124,20 @@ router.post('/members/:id', [auth, [
     check('user', 'Text is required').not().isEmpty()
 
 ]],async (req, res) => {
-    const errors = validationResult(req);
-    if(!errors.isEmpty()){
-        return res.status(400).json({errors: errors.array()});
-    }
+//  console.log("---------------------")
+//  console.log(req.body.profile.status) 
+//  console.log(req.body.profile.user._id) 
+//  console.log(req.body.profile.user.avatar) 
+//  console.log(req.body.profile.user.name) 
+//  console.log(req.body.profile.skills)
+
+//  console.log("---------------------")
+
+
+    // const errors = validationResult(req);
+    // if(!errors.isEmpty()){
+    //     return res.status(400).json({errors: errors.array()});
+    // }
 
 
     try {
@@ -133,8 +146,12 @@ router.post('/members/:id', [auth, [
 
 
       const newMember = {
+          name: req.body.profile.user.name,
+          id: req.body.profile.user._id,
+          avatar: req.body.profile.user.avatar,
+          status: req.body.profile.status
           
-          user: req.body.user
+          
       };
 
       project.members.unshift(newMember);
@@ -149,6 +166,246 @@ router.post('/members/:id', [auth, [
     }
     
 });
+
+
+//@route   DELETE api/posts/comment/:id/:comment_id
+//@des     Delete comment
+//@acce     private
+
+router.delete('/members/:id/:member_id', auth, async(req, res)=>{
+    try {
+        //get post by id
+        const project = await Project.findById(req.params.id);
+    
+        //pull out comment from post
+        const member = project.members.find(member => member.id === req.params.member_id);
+    
+        //make sure comment exists
+        if(!member){
+            return res.status(404).json({msg: 'member does not exist'});
+        }
+        
+        // if(comment.user.toString() !== req.user.id){
+        //     return res.status(401).json({msg: 'User not authorized'});
+        // }
+    
+        const removeIndex = project.members.map(member => member.id.toString()).indexOf(member.id);
+    
+        project.members.splice(removeIndex, 1);
+        await project.save();
+        
+        res.json(project.members);
+    
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+    
+    });
+
+
+    //@route   Post api/posts/comment/:id
+//@des     comment on a post
+//@access  Private
+router.post('/tickets/:id', [auth, [
+    check('text', 'Text is required').not().isEmpty()
+
+]],async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()});
+    }
+   
+
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        const project = await Project.findById(req.params.id);
+
+
+      const newTicket = {
+          text: req.body.text,
+          name: user.name,
+          date: req.body.date,
+          user: req.user.id,
+          status: req.body.status,
+          priority: req.body.priority,
+
+      };
+
+      project.tickets.unshift(newTicket);
+
+       await project.save();
+      //send as reponse
+      res.json(project.tickets);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+
+    //get the users wtthout returning the users password
+    
+});
+
+router.delete('/tickets/:id/:ticket_id', auth, async(req, res)=>{
+    try {
+
+        //get post by id
+        const project = await Project.findById(req.params.id);
+    
+        //pull out comment from post
+        const ticket = project.tickets.find(ticket => ticket.id === req.params.ticket_id);
+    
+        //make sure comment exists
+        if(!ticket){
+            return res.status(404).json({msg: 'Ticket does not exist'});
+        }
+        //make sure user deleting the comment is the user that made it
+        // if(comment.user.toString() !== req.user.id){
+        //     return res.status(401).json({msg: 'User not authorized'});
+        // }
+        const removeIndex = project.tickets.map(ticket => ticket.user.toString()).indexOf(req.user.id);
+    
+
+        project.tickets.splice(removeIndex, 1);
+        await project.save();
+        
+        res.json(project.tickets);
+    
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error Delete ticket');
+    }
+    
+    });
+
+
+    router.get('/tickets/:id/:ticket_id', auth, async (req, res)=>{
+        try {
+    
+          
+            console.log("here")
+            const project = await Project.findById(req.params.id);
+
+            const ticket = project.tickets.find(ticket => ticket.id === req.params.ticket_id);
+            
+        if(!ticket){
+            return res.status(404).json({msg: 'ticket not found'});
+        }
+    
+            res.json(ticket);
+        } catch (err) {
+            console.error(err.message);
+            if(err.kind === 'ObjectId'){
+                return res.status(404).json({msg: 'project not found'});
+            }
+            res.status(500).send('Server Error');
+        }
+    });
+    
+
+
+
+    router.put('/tickets/:id/:ticket_id', auth, async(req, res)=>{
+        try {
+
+
+            // destructure the request
+            const {
+                text,
+                name,
+                date,
+                status,
+                priority
+              
+            } = req.body;
+
+
+
+            const tick = {text,name,date,status};
+            if (text) tick.text = text;
+            if (name) tick.name = name;
+            if (date) tick.date = date;
+            if (status) tick.status = status;
+            if(priority) tick.priority = priority
+
+        
+            //get post by id
+            const project = await Project.findById(req.params.id);
+        
+            //pull out comment from post
+            const ticket = project.tickets.find(ticket => ticket.id === req.params.ticket_id);
+            const updateIndex = project.tickets.map(ticket => ticket.user.toString()).indexOf(req.user.id);
+
+            //make sure comment exists
+                
+            if(req.body.text) project.tickets[updateIndex].text = req.body.text
+            if(req.body.name) project.tickets[updateIndex].name = req.body.name
+            if(req.body.status) project.tickets[updateIndex].status = req.body.status
+
+
+
+                  await project.save();
+
+                  res.json(project.tickets);
+
+                 
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).send('Server Error edit ticket');
+        }
+        
+        });
+    
+//add comment to ticket
+//@route   Post api/posts/comment/:id
+//@des     comment on a post
+//@access  Private
+router.post('/tickets/comment/:id/:ticket_id', [auth, [
+    check('text', 'Text is required').not().isEmpty()
+]],async (req, res) => {
+
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()});
+    }
+
+    try {
+        console.log("here 1")
+
+        const user = await User.findById(req.user.id).select('-password');
+        const project = await Project.findById(req.params.id);
+        const ticket = project.tickets.find(ticket => ticket.id === req.params.ticket_id);
+        console.log("here 2")
+
+
+      const newComment = {
+          text: req.body.text,
+          name: user.name,
+          avatar: user.avatar,
+          user: req.user.id
+      };
+
+      ticket.comments.unshift(newComment);
+
+       await project.save();
+      //send as reponse
+      res.json(ticket.comments);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error, ticket comment');
+    }
+
+    //get the users wtthout returning the users password
+    
+});
+
+//get comments from ticket
+
+
+
+//delete comment from ticket
 
 
 module.exports = router;

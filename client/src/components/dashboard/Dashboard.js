@@ -32,55 +32,14 @@ const Dashboard = ({deleteProject,auth,getCurrentProfile,deleteAccount, getProje
           {/*<Experience experience={profile.experience}/>}
           {<Education education={profile.education}/>*/}
 
-      
+        <div style={{overflowY : 'auto',height: '41rem'}}>       
+
         {projects.map((project) => (
-         //project Item part 
-         //<div className="posts">
-            <div className="project bg-white p-1 my-1">
-               <div>
-            <Link to={`/profile/${project.user}`}>
-              <img
-                className="round-img"
-                src={avatar}
-                alt=""
-              />
-              <h4>Project Manager:     {project.name}</h4>
-            </Link>
-
-            <p className="post-date">
-                Created on <Moment format='YYYY/MM/DD'>{project.startDate}</Moment>
-            </p>
-
-            <p className="post-date">
-                Deadline <Moment format='YYYY/MM/DD'>{project.endDate}</Moment>
-            </p>
-
-
-
-          </div>
-            <h4>{project.projectName}</h4>  
-            {/* <span className='comment-count'>{project.members.length}</span> */}
-
-            <h4>{project.members.length} members </h4>  
-            <h4>{project.tickets.length} tickets</h4>  
-
-            <div className="my-2">
-            <Link to={`/project/${project._id}`} className="btn btn-primary">
-                    View Project
-            </Link>
-            </div>
-            
-            {user._id === project.user &&(
-              <div className="my-2">
-            <button className="btn btn-danger" onClick={e => deleteProject(project._id)}>
-              Delete Project
-            </button>
-
-          </div>
-          )}
-            </div>
+       
+       <h1></h1>
             
      ))}
+     </div>
 <div className="my-2">
             <button className="btn btn-danger" onClick={() => deleteAccount()}>
               <i className="fas fa-user-minus"></i>

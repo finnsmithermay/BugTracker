@@ -6,34 +6,30 @@ import { addMember } from '../../actions/project';
 import {connect} from 'react-redux'
 
 
-const ProfileProjectItem = ({
-    profile: {
+const memberProjectItem = ({
+    member: {
           
-        user: {name, avatar, _id},
-        user,
+        name,
         status,
-        company,
-        location,
-        skills
+        skills,
+        avatar,
+        id
       },addMember,
-      profile,
-      project:{project}
+      project:{project, _id}
 
       
     }) => {
     return (
         <div className="profile bg-light">
+            <img src={avatar} alt ='' className="round-img"/>
             <div>
                 <h2>{name}</h2>
-                <p>Role: {status}</p>
-                <Link to={`/profile/${_id}`} className="btn btn-primary">
-                    View Profile
-                </Link>
-                
-                <button className="btn btn-primary" onClick={() => addMember(project._id,{profile})
+                <p>{status}</p>
+              
+                <button className="btn btn-primary" onClick={() => addMember(project._id,{name})
             
             }>
-              Add to {project.projectName}
+              Remove member
             </button>
             </div>
           
@@ -45,7 +41,7 @@ const ProfileProjectItem = ({
 
         
 
-ProfileProjectItem.propTypes = {
+memberProjectItem.propTypes = {
 profile:PropTypes.object.isRequired,
 addMember: PropTypes.func.isRequired,
 project:PropTypes.object.isRequired,
@@ -62,4 +58,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, {addMember}) (ProfileProjectItem)
+export default connect(mapStateToProps, {addMember}) (memberProjectItem)

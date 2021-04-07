@@ -19,8 +19,23 @@ const ProjectSchema = new Schema({
   members: [
     {
       user: {
-        type: Schema.Types.ObjectId
+        type: Schema.Types.ObjectId,
+        
+
       },
+      name: {
+        type: String,
+        // required: true
+      },
+      status: {
+        type: String,
+      }, 
+      skills: {
+        type: [String],
+      },
+      id: {
+        type: String,
+      }, 
     
     }
   ],
@@ -66,7 +81,35 @@ const ProjectSchema = new Schema({
       date: {
         type: Date,
         default: Date.now
-      }
+      },
+      status:{
+        type: String
+      },
+      priority:{
+        type: String
+      },
+      comments: [
+        {
+          user: {
+            type: Schema.Types.ObjectId
+          },
+          text: {
+            type: String,
+            required: true
+          },
+          name: {
+            type: String
+          },
+          avatar: {
+            type: String
+          },
+          date: {
+            type: Date,
+            default: Date.now
+          }
+        }
+      ],
+
     }
   ],
   date: {

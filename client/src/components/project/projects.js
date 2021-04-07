@@ -1,0 +1,221 @@
+import React, {Fragment, useEffect} from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux';
+import {deleteAccount, getCurrentProfile} from '../../actions/profile';
+import Spinner from '../layout/Spinner';
+import { Link } from 'react-router-dom';
+import { getProjects } from '../../actions/project';
+import { deleteProject } from '../../actions/project';
+import Moment from 'react-moment';
+
+
+
+
+const Projects = ({deleteProject,auth,getCurrentProfile,deleteAccount, getProjects,auth:{user},profile:{profile, loading}, project:{projects,name, avatar } }) => {
+    useEffect(() => {
+        getCurrentProfile();
+        getProjects();
+    },[getProjects, getCurrentProfile]);
+
+
+
+
+    return loading && profile === null ? <Spinner/> : 
+    <Fragment>
+        <h1 className='large text-primary'>Projects</h1>
+    
+        {profile != null ? <Fragment>
+     
+
+        <div style={{overflowY : 'auto',height: '41rem'}}>       
+
+
+        {projects.map((project) => ( 
+
+
+project.user ===  user._id ?  
+<div className="project bg-white p-1 my-1">
+ <div>
+<Link to={`/profile/${project.user}`}>
+<img
+  className="round-img"
+  src={avatar}
+  alt=""
+/>test user 1
+<h4>Project Manager:     {project.name}</h4>
+</Link>
+
+<p className="post-date">
+  Created on <Moment format='YYYY/MM/DD'>{project.startDate}</Moment>
+</p>
+
+<p className="post-date">
+  Deadline <Moment format='YYYY/MM/DD'>{project.endDate}</Moment>
+</p>
+</div>
+<h4>{project.projectName}</h4>  
+{/* <span className='comment-count'>{project.members.length}</span> */}
+
+<h4>{project.members.length} members </h4>  
+<h4>{project.tickets.length} tickets</h4>  
+
+<div className="my-2">
+<Link to={`/project/${project._id}`} className="btn btn-primary">
+      View Project
+</Link>
+</div>
+
+{user._id === project.user &&(
+<div className="my-2">
+<button className="btn btn-danger" onClick={e => deleteProject(project._id)}>
+Delete Project
+</button>
+
+</div>
+)}
+</div>
+          
+:
+
+            project.members.map(member => 
+             member.id == user._id || project.user ===  user._id ? 
+            //start projet here
+            
+
+            <div className="project bg-white p-1 my-1">
+               <div>
+            <Link to={`/profile/${project.user}`}>
+              <img
+                className="round-img"
+                src={avatar}
+                alt=""
+              />test user 1
+              <h4>Project Manager:     {project.name}</h4>
+            </Link>
+
+            <p className="post-date">
+                Created on <Moment format='YYYY/MM/DD'>{project.startDate}</Moment>
+            </p>
+
+            <p className="post-date">
+                Deadline <Moment format='YYYY/MM/DD'>{project.endDate}</Moment>
+            </p>
+
+
+
+          </div>
+            <h4>{project.projectName}</h4>  
+            {/* <span className='comment-count'>{project.members.length}</span> */}
+
+            <h4>{project.members.length} members </h4>  
+            <h4>{project.tickets.length} tickets</h4>  
+
+            <div className="my-2">
+            <Link to={`/project/${project._id}`} className="btn btn-primary">
+                    View Project
+            </Link>
+            </div>
+            
+            {user._id === project.user &&(
+              <div className="my-2">
+            <button className="btn btn-danger" onClick={e => deleteProject(project._id)}>
+              Delete Project
+            </button>
+
+          </div>
+          )}
+            </div>
+
+
+            //end projet here
+            
+            : null
+
+            )
+          
+         ))}        
+                  
+          
+
+
+       
+       
+{/*        
+         {projects.map((project) => (  
+             project.user ===  user._id ?  
+            <div className="project bg-white p-1 my-1">
+             <div>
+          <Link to={`/profile/${project.user}`}>
+            <img
+              className="round-img"
+              src={avatar}
+              alt=""
+            />test user 1
+            <h4>Project Manager:     {project.name}</h4>
+          </Link>
+
+          <p className="post-date">
+              Created on <Moment format='YYYY/MM/DD'>{project.startDate}</Moment>
+          </p>
+
+          <p className="post-date">
+              Deadline <Moment format='YYYY/MM/DD'>{project.endDate}</Moment>
+          </p>
+         </div>
+          <h4>{project.projectName}</h4>  
+          {/* <span className='comment-count'>{project.members.length}</span> */}
+{/* 
+          <h4>{project.members.length} members </h4>  
+          <h4>{project.tickets.length} tickets</h4>  
+
+          <div className="my-2">
+          <Link to={`/project/${project._id}`} className="btn btn-primary">
+                  View Project
+          </Link>
+          </div>
+          
+          {user._id === project.user &&(
+            <div className="my-2">
+          <button className="btn btn-danger" onClick={e => deleteProject(project._id)}>
+            Delete Project
+          </button> */}
+
+        {/* </div>
+        )}
+          </div>
+
+             
+             : null
+         
+         
+         
+         
+         ))}  */} 
+          </div>
+
+
+
+        </Fragment> : 
+        
+        <Fragment>
+       
+        </Fragment>}
+
+    </Fragment>;
+}
+
+Projects.propTypes = {
+getCurrentProfile: PropTypes.func.isRequired,
+auth: PropTypes.object.isRequired,
+profile: PropTypes.object.isRequired,
+deleteProject: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    profile: state.profile,
+    project: state.project
+
+});
+
+export default connect(mapStateToProps, {getCurrentProfile, deleteAccount,getProjects,deleteProject}) (Projects);

@@ -37,3 +37,16 @@ export const DELETE_PROJECT = 'DELETE_PROJECT';
 
 export const ADD_MEMBER = 'ADD_MEMBER';
 export const REMOVE_MEMBER = 'REMOVE_MEMBER';
+export const GET_MEMBERS = 'GET_MEMBERS';
+export const CLEAR_MEMBERS = 'CLEAR_MEMBERS';
+export const GET_TICKETS = 'GET_TICKETS';
+export const ADD_TICKET = 'ADD_TICKET';
+export const REMOVE_TICKET = 'REMOVE_TICKET';
+
+export const EDIT_TICKET = 'EDIT_TICKET';
+
+export const GET_TICKET = 'GET_TICKET';
+
+export const ADD_TICKET_COMMENT = 'ADD_TICKET_COMMENT';
+
+

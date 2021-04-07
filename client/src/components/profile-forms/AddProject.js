@@ -4,15 +4,13 @@ import {connect} from 'react-redux';
 import {addProject} from '../../actions/project'; 
 import {withRouter} from 'react-router-dom';
 
-const AddProject = ({addProject, history}) => {
+const AddProject = ({addProject, history, }) => {
 
     const [formData, setFormData] = useState({
         projectName:'',
         text: '',
         startDate:'',
         endDate:''
-
-      
 
     });
 
@@ -26,7 +24,7 @@ const AddProject = ({addProject, history}) => {
        Create project
       </h1>
       <p class="lead">
-        <i class="fas fa-code-branch"></i> Add any school or bootcamp you have attended
+        <i class="fas fa-code-branch"></i> Create a new project
       </p>
       <small>* = required field</small>
 

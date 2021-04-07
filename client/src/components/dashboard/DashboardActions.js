@@ -10,10 +10,12 @@ export const DashboardActions = () => {
           ><i className="fab fa-black-tie text-primary"></i> Add Experience</Link>
         <Link to="add-education" className="btn btn-light"
           ><i className="fas fa-graduation-cap text-primary"></i> Add Education</Link>
-          <Link to="/edit-profile" className="btn btn-light"
+          <Link to="profiles" className="btn btn-light"
           ><i className="fas fa-user-circle text-primary"></i> View Profile</Link>
           <Link to="add-project" className="btn btn-light"
           ><i className="fab fa-black-tie text-primary"></i> Create New Project</Link>
+            <Link to="projects" className="btn btn-light"
+          ><i className="fab fa-black-tie text-primary"></i> Projects</Link>
       </div>
 
     )

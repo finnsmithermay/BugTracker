@@ -23,18 +23,13 @@ const ProfileProjectItem = ({
     }) => {
     return (
         <div className="profile bg-light">
+            <img src={avatar} alt ='' className="round-img"/>
             <div>
                 <h2>{name}</h2>
-                <p>Role: {status}</p>
-                <Link to={`/profile/${_id}`} className="btn btn-primary">
-                    View Profile
-                </Link>
+                <p>{status}</p>
                 
-                <button className="btn btn-primary" onClick={() => addMember(project._id,{profile})
-            
-            }>
-              Add to {project.projectName}
-            </button>
+                
+              
             </div>
           
         </div>

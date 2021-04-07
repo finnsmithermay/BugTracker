@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-  --primary-color: #17a2b8;
+  --primary-color: #eb7514;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -36,8 +36,8 @@ img {
 
 /* Utilities */
 .container {
-  max-width: 1100px;
-  margin: auto;
+  max-width: 100%;
+  /* margin: auto; */
   overflow: hidden;
   padding: 0 2rem;
   margin-top: 6rem;
@@ -98,6 +98,9 @@ img {
 }
 .py-3 {
   padding: 3rem 0;
+}
+.py-4 {
+  padding: 10rem 0;
 }
 
 /* Margin */
@@ -351,13 +354,34 @@ button {
 
 /* Profiles Page */
 .profile {
-  display: grid;
-  grid-template-columns: 2fr 4fr 2fr;
-  align-items: center;
-  grid-gap: 2rem;
+  /* margin-left: 20rem; */
+  width: 100%;
+
+  max-width: 100%;
   padding: 1rem;
   line-height: 1.8;
   margin-bottom: 1rem;
+}
+
+.tickets {
+  /* margin-left: 20rem; */
+  width: 50rem;
+  max-width: 100%;
+  padding: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.projectWrapper {
+  width: 29rem;
+  max-width: 100%;
+  margin-left: 200px;
+}
+
+.projectWrapperTickets {
+  width: 55rem;
+  max-width: 100%;
+  margin-left: 200px;
 }
 
 /* Profile Page */
@@ -467,10 +491,13 @@ button {
 }
 
 .project {
-  display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 1rem;
   align-items: center;
+}
+
+.projectHoz {
+  display: inline-flex;
 }
 
 .post > div:first-child {
@@ -493,6 +520,29 @@ button {
   color: rgb(0, 0, 0);
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 100; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.rowC {
+  display: flex;
+  flex-direction: row;
+}
+
+.projectPage {
+  display: inline;
 }
 
 /* Mobile Styles */
@@ -538,10 +588,15 @@ button {
   }
 
   /* Profiles Page */
-  .profile {
+  /* .profile {
     grid-template-columns: 1fr;
     text-align: center;
-  }
+  } */
+
+  /* .profileProject {
+    grid-template-columns: 1fr;
+    text-align: center;
+  } */
 
   .profile ul {
     display: none;
@@ -580,5 +635,16 @@ button {
   .post a,
   .post button {
     padding: 0.3rem 0.4rem;
+  }
+
+  .scroll {
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+  .rows .row {
+    display: inline-block;
+  }
+  .center {
+    align-items: center;
   }
 }
