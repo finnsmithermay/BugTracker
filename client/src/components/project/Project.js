@@ -42,13 +42,13 @@ var [seachFeild, setSeachFeild] = useState('');
         getTickets();
   
 
-    }, []);
+    }, [getProject]);
 const filteredMembers = ''
     
 
-    return  members === null || user === null ||  project.projectName === null? <Spinner/> : <Fragment>
-       {/* <p>{project.name}</p> */}
-       <h1 className="large text-primary">{project.projectName}</h1>
+    return  members === null || user === null || project === null? <Spinner/> : <Fragment>
+
+       {project.projectName === null? <Spinner/> : <h1 className="large text-primary">{project.projectName}</h1>}
       
       
 
@@ -168,6 +168,7 @@ const filteredMembers = ''
                   
              <div className="tickets bg-light">
                       <h2>Created by {ticket.name}</h2>
+                      <h2>Name {ticket.ticketName}</h2>
                       <h1>Decription:{ticket.text}</h1>
                       <h2>Status: {ticket.status}</h2>
                       <h2>Priority: {ticket.priority}</h2>

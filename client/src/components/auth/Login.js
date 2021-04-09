@@ -31,7 +31,10 @@ export const Login = ({login, isAuthenticated}) => {
 
     return (
         <Fragment>
-        <h1 className="large text-primary">Sign In</h1>
+          <div className="outer">
+
+          <div className="inner">
+        <h1 className="largeSignIn text-primary">Sign In</h1>
         <p className="lead"><i className="fas fa-user"></i> Sign in to your account</p>
         <form className="form" onSubmit={e => onSubmit(e)}>
          
@@ -61,6 +64,9 @@ export const Login = ({login, isAuthenticated}) => {
         <p className="my-1">
           Dont  have an account? <Link to="/register">Sign up</Link>
         </p>
+        </div>
+        </div>
+
         </Fragment>
     );
 };

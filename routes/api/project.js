@@ -224,6 +224,7 @@ router.post('/tickets/:id', [auth, [
 
       const newTicket = {
           text: req.body.text,
+          ticketName: req.body.name,
           name: user.name,
           date: req.body.date,
           user: req.user.id,

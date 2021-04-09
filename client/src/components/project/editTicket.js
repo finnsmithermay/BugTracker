@@ -6,13 +6,9 @@ import { getProject } from '../../actions/project'
 import {removeMember, getMembers,getTickets, editTicket, getTicket} from '../../actions/project';
 import {getProfiles,getProjects} from '../../actions/profile';
 import Ticket from './Ticket';
+import Spinner from '../layout/Spinner'
 
-const EditTicket = ({profile: { profile, loading},editTicket, history,getTicket, project:{project},ticket, ticket_id, match}) => {
-
-//   useEffect(() => {
-//     getTicket(project._id, match.params.id);
-
-// }, [getTicket]);
+const EditTicket = ({profile: { profile, loading},editTicket, history,getTicket, project:{project, ticket}, ticket_id, match}) => {
 
   const [formData, setFormData] = useState({
     name:'',
@@ -23,17 +19,37 @@ const EditTicket = ({profile: { profile, loading},editTicket, history,getTicket,
 });
 
 
+   useEffect(() => {
+     getTicket(project._id, match.params.id);
+
+
 setFormData({
   name: loading || !ticket.name ? '': ticket.name,
+  text: loading || !ticket.text ? '': ticket.text,
+  priority: loading || !ticket.priority ? '': ticket.priority,
+  status: loading || !ticket.status ? '': ticket.status,
 
 })
+
+
+ }, [loading, getTicket]);
+
+
+
+
+
 
 const {name, text,status,priority} = formData;
 const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
     return (
+      // console.log(ticket._id),
+      // console.log("=============66=============="),
+        // ticket === null ? <Spinner/> : 
         <Fragment>
-            <h1 className="large text-primary">
+          <h1>hi</h1>
+
+             <h1 className="large text-primary">
        Edit ticket
        
       </h1>
@@ -44,11 +60,10 @@ const onChange = e => setFormData({...formData, [e.target.name]: e.target.value}
 
 <form class="form" onSubmit={e => {
     e.preventDefault();
-    editTicket(project._id,ticket_id,formData, history)
+    editTicket(project._id,ticket._id,formData, history)
 }}>
 
 
-  <div>{ticket._id}</div>
   
   <div class="form-group">
     <input type="text" placeholder="Ticket name Name" name="name" 
@@ -57,7 +72,7 @@ const onChange = e => setFormData({...formData, [e.target.name]: e.target.value}
   </div>
 
 
-  <div className='form-group'>
+   <div className='form-group'>
 					<select name='status' value={status} onChange={e => onChange(e)}>
 						<option value='0'>* Select Ticket Status</option>
 						<option value='Not Started'>Not started</option>
@@ -91,8 +106,12 @@ const onChange = e => setFormData({...formData, [e.target.name]: e.target.value}
 
 
   <input type="submit" class="btn btn-primary my-1" />
-  <a class="btn btn-light my-1" href="/dashboard">Go Back</a>
-</form>
+  <a class="btn btn-light my-1" href={`/ticket/${ticket._id}`}>Back to ticket (Not working)</a>
+  
+  <a class="btn btn-light my-1" href={`/project/${project._id}`}>Back to project</a>
+  {/* <Link to={`/project/${project._id}`} className="btn btn-light"
+    ><i className="fab fa-black-tie text-primary"></i> Back to Project</Link> */}
+</form>  
 
      
         </Fragment>

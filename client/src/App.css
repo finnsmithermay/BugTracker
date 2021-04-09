@@ -44,6 +44,22 @@ img {
   margin-bottom: 3rem;
 }
 
+.outer {
+  text-align: center;
+}
+
+.inner {
+  width: 25rem;
+  display: inline-block;
+}
+
+.loginPage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+}
+
 /* Text Styles*/
 .x-large {
   font-size: 4rem;
@@ -57,6 +73,13 @@ img {
   margin-bottom: 1rem;
 }
 
+.largeSignIn {
+  font-size: 5rem;
+  line-height: 1.2;
+  margin-bottom: 6rem;
+  margin-top: 3rem;
+}
+
 .lead {
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -68,6 +91,11 @@ img {
 
 .text-primary {
   color: var(--primary-color);
+}
+
+.text-primaryDash {
+  color: var(--primary-color);
+  font-size: 2rem;
 }
 
 .text-dark {
@@ -138,6 +166,27 @@ img {
   border: none;
   cursor: pointer;
   margin-right: 0.5rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+
+.graph {
+  margin-top: 4rem;
+  height: 55%;
+  width: 55%;
+}
+
+.btnDash {
+  width: 16rem;
+  display: inline-block;
+  background: var(--light-color);
+  color: #333;
+  padding: 0.7rem 1.3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin-right: 4rem;
   transition: opacity 0.2s ease-in;
   outline: none;
 }

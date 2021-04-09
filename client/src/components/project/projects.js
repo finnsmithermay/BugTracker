@@ -4,14 +4,14 @@ import {connect} from 'react-redux';
 import {deleteAccount, getCurrentProfile} from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import { Link } from 'react-router-dom';
-import { getProjects } from '../../actions/project';
+import { getProjects, getProject } from '../../actions/project';
 import { deleteProject } from '../../actions/project';
 import Moment from 'react-moment';
 
 
 
 
-const Projects = ({deleteProject,auth,getCurrentProfile,deleteAccount, getProjects,auth:{user},profile:{profile, loading}, project:{projects,name, avatar } }) => {
+const Projects = ({deleteProject,getProject,auth,getCurrentProfile,deleteAccount, getProjects,auth:{user},profile:{profile, loading}, project:{projects,name, avatar } }) => {
     useEffect(() => {
         getCurrentProfile();
         getProjects();
@@ -61,7 +61,7 @@ project.user ===  user._id ?
 
 <div className="my-2">
 <Link to={`/project/${project._id}`} className="btn btn-primary">
-      View Project
+View Project
 </Link>
 </div>
 
@@ -112,8 +112,8 @@ Delete Project
 
             <div className="my-2">
             <Link to={`/project/${project._id}`} className="btn btn-primary">
-                    View Project
-            </Link>
+View Project
+</Link>
             </div>
             
             {user._id === project.user &&(
@@ -209,6 +209,7 @@ getCurrentProfile: PropTypes.func.isRequired,
 auth: PropTypes.object.isRequired,
 profile: PropTypes.object.isRequired,
 deleteProject: PropTypes.func.isRequired,
+getProject:PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -218,4 +219,4 @@ const mapStateToProps = state => ({
 
 });
 
-export default connect(mapStateToProps, {getCurrentProfile, deleteAccount,getProjects,deleteProject}) (Projects);
+export default connect(mapStateToProps, {getCurrentProfile, getProject,deleteAccount,getProjects,deleteProject}) (Projects);

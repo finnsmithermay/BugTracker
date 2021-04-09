@@ -75,6 +75,10 @@ const ProjectSchema = new Schema({
       text: {
         type: String,
       },
+      ticketName:{
+        type: String,
+        default: "add a name"
+      },
       name: {
         type: String
       },

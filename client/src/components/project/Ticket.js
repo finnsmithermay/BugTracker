@@ -41,9 +41,9 @@ const updateIndex = project.tickets.map(ticket => ticket._id.toString()).indexOf
 
 
        <div className="projectWrapperTickets" >
-            <p className="lead">
-                <i className="fas fa-user" /> Tickets
-            </p>
+       <div class="lead">
+          <h1>{ticket.ticketName}</h1>
+        </div>
             <div className="my-2">
 
          
@@ -58,12 +58,13 @@ const updateIndex = project.tickets.map(ticket => ticket._id.toString()).indexOf
                       <h2>Status: {ticket.status}</h2>
                       <h2>Priority: {ticket.priority}</h2>
                 
-                      <Link to={`/edit-ticket/${project.tickets[updateIndex]._id}`} className="btn btn-light"
+                      
+                      <Link to={`/edit-ticket/${ticket._id}`} className="btn btn-light"
     ><i className="fab fa-black-tie text-primary"></i> edit ticket</Link>
-    
    
               </div>
-
+              <Link to={`/project/${project._id}`} className="btn btn-light"
+    ><i className="fab fa-black-tie text-primary"></i> Back to Project</Link>
             
           
 
