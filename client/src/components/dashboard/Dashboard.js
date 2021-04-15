@@ -14,6 +14,7 @@ import { deleteProject } from '../../actions/project';
 import Moment from 'react-moment';
 import{Line} from 'react-chartjs-2'
 import{Doughnut} from 'react-chartjs-2'
+import{Bar} from 'react-chartjs-2'
 
 
 const Dashboard = ({deleteProject,auth,getCurrentProfile,deleteAccount, getProjects,auth:{user},profile:{profile, loading}, project:{projects,name, avatar } }) => {
@@ -23,26 +24,46 @@ const Dashboard = ({deleteProject,auth,getCurrentProfile,deleteAccount, getProje
 
         getCurrentProfile();
         
-        getVals();
+      
         chart();
+        barChart();
     },[getCurrentProfile]);
 
     const [chartData, setChartData] = useState({})
 
+    const [barChartData, setBarChartData] = useState({})
 
     var low = 0; var medium = 0; var high = 0; var urgent = 0;
     var total = 0;
-    console.log("=====================")
+    var projectNames = []
+    var barData = []
 
-    console.log(projects.length)
-    console.log("=====================")
+    // console.log("=====================")
+
+    // console.log(projects.length)
+    // console.log("=====================")
 
     const getVals = () =>{
     
     projects.length === 0 ? getProjects() :
 
-    projects.map((project) => (
+    projects.map((project) =>  project.user ===  user._id ?(
+      barData.push(project.tickets.length),
+   
+
+
+      projectNames.push(project.projectName),
+
+
+
+
+
+
+
+
       project.tickets.map((ticket) => (
+
+        
          console.log(ticket.priority),
          total = total + 1,
 
@@ -53,15 +74,37 @@ const Dashboard = ({deleteProject,auth,getCurrentProfile,deleteAccount, getProje
 
          
     
-        )),
-        console.log(total)
+        ))
+
+
+        //else if the current user is a member add the project to the graphs
+    ) : project.members.map(member => 
+          member.id == user._id  ? 
+     
 
           
-    ))
-      }
+          project.user !==  member.id ? 
+          projectNames.push(project.projectName) && barData.push(project.tickets.length)
+
+
+          : null
+                
+
+
+
+
+
+
+     : null
+
+     ))
+     
+
+  
+  
+  }
 
     const chart = () => {
-      getVals(),
       setChartData({
         labels: ['low', 'medium', 'high','urgent'],
         
@@ -79,6 +122,24 @@ const Dashboard = ({deleteProject,auth,getCurrentProfile,deleteAccount, getProje
     }
 
 
+    const barChart = () => {
+    
+      setBarChartData({
+        labels: projectNames,
+        
+        datasets:[
+          {
+            label:'label',
+            data:barData,
+            backgroundColor:["#0a6ef0","#0af021","#fc8c03","#fc0303"],
+            borderWidth:4
+            
+          }
+        ]
+      })
+
+    }
+
 
     return loading && profile === null ? <Spinner/> : 
     <Fragment>
@@ -92,17 +153,21 @@ const Dashboard = ({deleteProject,auth,getCurrentProfile,deleteAccount, getProje
 
 
 
-
-        <h1 className='large text-primary'>Dashboard</h1>
+    <div className="dashHeading">
+        <h1 className='largeDash text-primary'>Dashboard</h1>
       <p className='lead'>
         <i className='fas fa-user' /> Welcome {user && user.name}
       </p>
+      </div>
+
         {profile != null ? <Fragment>
           <DashboardActions/>
           {/*<Experience experience={profile.experience}/>}
           {<Education education={profile.education}/>*/}
 
 
+
+        <div className="graphs">
 
           <div className="graph">
             {getVals()}
@@ -113,7 +178,7 @@ const Dashboard = ({deleteProject,auth,getCurrentProfile,deleteAccount, getProje
             :
             <Doughnut data={chartData} options={{
               responsive: true,
-              title: {text: 'title', display:true},
+              title: {text: 'Proportion Of Tickets', display:true},
               scales:{
                 yAxes:[
   
@@ -121,18 +186,26 @@ const Dashboard = ({deleteProject,auth,getCurrentProfile,deleteAccount, getProje
               }
             }}/> 
             }
-          
-          </div>
+            </div>
 
+            <div className="barGraph">
+            <Bar data={barChartData} options={{
+              
+              title: {text: 'Tickets Per Project', display:true},
+              
+              scales: {
+                xAxes: [{
+                    barPercentage: 0.6
+                }]
+            }
+            }}/> 
+            </div>
+          
+            </div>
           
         
 
-
-        {projects.map((project) => (
-       
-       <h1></h1>
-            
-     ))}
+            <div className="deleteProfile">
 <div className="my-2">
             <button className="btn btn-danger" onClick={() => deleteAccount()}>
               <i className="fas fa-user-minus"></i>
@@ -140,6 +213,8 @@ const Dashboard = ({deleteProject,auth,getCurrentProfile,deleteAccount, getProje
             </button>
 
           </div>
+          </div>
+
 
 
 

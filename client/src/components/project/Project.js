@@ -48,27 +48,30 @@ const filteredMembers = ''
 
     return  members === null || user === null || project === null? <Spinner/> : <Fragment>
 
-       {project.projectName === null? <Spinner/> : <h1 className="large text-primary">{project.projectName}</h1>}
+       {project.projectName === null? <Spinner/> : <h1 className="large text-primary"></h1>}
       
       
 
-{/* 
+       <div className="outer">
+       <h1 className="large text-primary">{project.projectName}</h1>
 
-         <div className="center">
-        <div className="my-2">
-            <button className="btn btn-primary" onClick={() => setShowMembers(true)}>
+       <div className="dash-buttons">
+            <button className="btnDash" onClick={() => setShowMembers(true)}>
 
-              <i className="fas fa-user-minus"></i>
-               Members
+               Tickets and Members
             </button>
 
-            <button className="btn btn-primary" onClick={() => setShowMembers(false)}>
-              <i className="fas fa-user-minus"></i>
-              Tickets
+            <button className="btnDash" onClick={() => setShowMembers(false)}>
+              Description
             </button>
-          </div>
-          </div>  */}
+         </div>
 
+         </div>
+
+            {
+            showMembers? 
+          
+           
             <div className="rowC">
 
 
@@ -76,6 +79,14 @@ const filteredMembers = ''
 
           
            <div className="projectWrapper">
+
+
+          <div>
+            {/* project description */}
+         
+
+          </div>
+
 
         <p className="lead">
                 <i className="fas fa-user" /> View and edit project members
@@ -169,7 +180,6 @@ const filteredMembers = ''
              <div className="tickets bg-light">
                       <h2>Created by {ticket.name}</h2>
                       <h2>Name {ticket.ticketName}</h2>
-                      <h1>Decription:{ticket.text}</h1>
                       <h2>Status: {ticket.status}</h2>
                       <h2>Priority: {ticket.priority}</h2>
 
@@ -193,6 +203,16 @@ const filteredMembers = ''
             </div>
             </div>
 
+          
+          //show poject decription 
+            : <div className="projectDescription">
+              
+            <h1>{project.projectName} decription</h1>
+            <h2 className="projectDescriptionText">{project.text}</h2>
+
+              </div>}
+
+            
      
 
         

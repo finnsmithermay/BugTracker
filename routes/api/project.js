@@ -108,12 +108,10 @@ router.delete('/:id', auth, async (req, res)=>{
         await post.remove();
         res.json({msg: 'project removed'});
 
-        res.json(post);
+        // res.json(post);
     } catch (err) {
         console.error(err.message);
-        if(err.kind === 'ObjectId'){
-            return res.status(404).json({msg: 'project not found'});
-        }
+      
         res.status(500).send('Server Error here');
     }
 });

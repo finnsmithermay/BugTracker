@@ -46,6 +46,7 @@ img {
 
 .outer {
   text-align: center;
+  margin-bottom: 3%;
 }
 
 .inner {
@@ -172,8 +173,24 @@ img {
 
 .graph {
   margin-top: 4rem;
-  height: 55%;
-  width: 55%;
+  height: 60%;
+  width: 40%;
+  margin-right: 2.5%;
+  margin-left: 2%;
+}
+.graphs {
+  display: flex;
+  margin-right: 0%;
+  margin-left: 0%;
+  flex-direction: row;
+}
+
+.barGraph {
+  margin-top: 4rem;
+  height: 60%;
+  width: 40%;
+  margin-right: 0%;
+  margin-left: 2.5%;
 }
 
 .btnDash {
@@ -186,9 +203,27 @@ img {
   font-weight: bold;
   border: none;
   cursor: pointer;
-  margin-right: 4rem;
+  margin-right: 1.8rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+}
+
+.btnDash:hover {
+  background-color: #b8b8b8; /* Green */
+  /* color: rgb(197, 188, 188); */
+  color: black;
+}
+.largeDash {
+  font-size: 4rem;
+}
+
+.dashHeading {
+  margin-left: 10%;
+}
+
+.deleteProfile {
+  margin-left: 10%;
+  margin-top: 10%;
 }
 
 .badge {
@@ -427,6 +462,49 @@ button {
   margin-left: 200px;
 }
 
+.projectswrapper {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  grid-auto-rows: 100px;
+  grid-template-areas:
+    "a a a a b b b b"
+    "a a a a b b b b"
+    "c c c c d d d d"
+    "c c c c d d d d";
+  align-items: start;
+}
+.item1 {
+  grid-area: a;
+}
+.item2 {
+  grid-area: b;
+}
+.item3 {
+  grid-area: c;
+}
+.item4 {
+  grid-area: d;
+}
+
+.projectDescription {
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-bottom: 10%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  text-align: center;
+  background-color: rgb(201, 201, 201);
+  min-height: 40rem;
+}
+
+.projectDescriptionText {
+  font-size: 1.5rem;
+}
+
 .projectWrapperTickets {
   width: 55rem;
   max-width: 100%;
@@ -540,9 +618,15 @@ button {
 }
 
 .project {
-  grid-template-columns: auto auto auto auto;
-  grid-gap: 1rem;
+  /* grid-template-columns: auto auto auto auto;
+  grid-gap: 1rem; */
   align-items: center;
+  max-width: 75%;
+  justify-content: center;
+  /* display: inline-flex; */
+  background-color: rgb(206, 205, 205);
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 .projectHoz {
@@ -695,5 +779,10 @@ button {
   }
   .center {
     align-items: center;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    text-align: center;
   }
 }
