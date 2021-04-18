@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-  --primary-color: #eb7514;
+  --primary-color: #f84040;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -206,6 +206,27 @@ img {
   margin-right: 1.8rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+}
+
+.btnDashProjects {
+  width: 16rem;
+  display: inline-block;
+  background: var(--light-color);
+  color: #333;
+  padding: 0.7rem 1.3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+  margin-right: 2rem;
+}
+
+.btnDashProjects:hover {
+  background-color: #b8b8b8; /* Green */
+  /* color: rgb(197, 188, 188); */
+  color: black;
 }
 
 .btnDash:hover {
@@ -462,7 +483,7 @@ button {
   margin-left: 200px;
 }
 
-.projectswrapper {
+.projectsWrapper {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   gap: 10px;
@@ -485,6 +506,14 @@ button {
 }
 .item4 {
   grid-area: d;
+}
+
+.projectsIcons {
+  display: inline-block;
+}
+
+.projectsButtonDisplay {
+  display: inline-block;
 }
 
 .projectDescription {
@@ -520,6 +549,35 @@ button {
     "exp edu"
     "github github";
   grid-gap: 1rem;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-areas: "exp edu btn";
+  grid-gap: 1rem;
+}
+.projectsHeading {
+  text-align: center;
+  background-color: #38a1f3;
+  padding-bottom: 3px;
+  margin-bottom: 3px;
+}
+.project-exp {
+  grid-area: exp;
+  margin-left: 30%;
+  font-size: 1.3rem;
+}
+
+.project-btn {
+  grid-area: btn;
+  margin-left: 30%;
+  font-size: 1.3rem;
+}
+
+.project-edu {
+  grid-area: edu;
+  font-size: 1.3rem;
+  padding-right: 20;
 }
 
 .profile-top {
@@ -624,7 +682,8 @@ button {
   max-width: 75%;
   justify-content: center;
   /* display: inline-flex; */
-  background-color: rgb(206, 205, 205);
+  border-width: 1px;
+  border-color: #343a40;
   margin-left: 25%;
   margin-right: 25%;
 }
@@ -678,6 +737,21 @@ button {
   display: inline;
 }
 
+.medium {
+  font-size: 1.8rem;
+}
+
+.projectsButtonsLayout {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 1rem;
+}
+
+.projectManager {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {
@@ -694,6 +768,14 @@ button {
   }
 
   .large {
+    font-size: 2rem;
+  }
+
+  .Large {
+    font-size: 2rem;
+  }
+
+  .medium {
     font-size: 2rem;
   }
 
