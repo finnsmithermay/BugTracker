@@ -36,12 +36,16 @@ img {
 
 /* Utilities */
 .container {
+  padding-top: 6rem;
+
+  /* margin-left: 10%; */
+  margin-top: 80px;
   max-width: 100%;
-  /* margin: auto; */
   overflow: hidden;
-  padding: 0 2rem;
-  margin-top: 6rem;
-  margin-bottom: 3rem;
+  /* padding: 0 2rem; */
+  padding-bottom: 3rem;
+  padding-left: 15%;
+  background-color: rgb(240, 240, 240);
 }
 
 .outer {
@@ -157,6 +161,10 @@ img {
 .my-3 {
   margin: 3rem 0;
 }
+.my-project {
+  margin-left: 25%;
+  margin-right: 25%;
+}
 
 .btn {
   display: inline-block;
@@ -208,19 +216,67 @@ img {
   outline: none;
 }
 
-.btnDashProjects {
+.menuButtonsLarge {
   width: 16rem;
   display: inline-block;
-  background: var(--light-color);
-  color: #333;
+  margin-top: 20%;
+  color: rgb(255, 255, 255);
   padding: 0.7rem 1.3rem;
   font-size: 1.2rem;
   font-weight: bold;
   border: none;
   cursor: pointer;
+  margin-right: 1.8rem;
   transition: opacity 0.2s ease-in;
   outline: none;
-  margin-right: 2rem;
+  font-size: 2rem;
+}
+
+.menuButtons {
+  width: 16rem;
+  display: inline-block;
+  margin-top: 10%;
+  color: rgb(255, 255, 255);
+  padding: 0.7rem 1.3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin-right: 1.8rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+
+.btnDashProjects {
+  /* width: 10rem;
+  max-width: 15rem;
+  background: var(--light-color);
+  color: #333;
+  padding: 0.7rem;
+  font-size: 1rem; */
+  /* font-weight: bold; */
+  /* border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+  margin-right: 2rem; */
+
+  padding: 3;
+  margin: 0;
+  margin-left: 10px;
+  color: #000000;
+  background-color: #fff;
+  border: 2px solid #fff;
+  height: 2rem;
+  width: 8rem;
+  font-size: 1rem;
+
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  box-sizing: border-box;
 }
 
 .btnDashProjects:hover {
@@ -406,6 +462,12 @@ button {
   background: var(--light-color);
 }
 
+.navbarSide {
+  width: 15%;
+  height: 80%;
+  background-color: #28a745;
+}
+
 /* Navbar */
 .navbar {
   display: flex;
@@ -413,11 +475,9 @@ button {
   align-items: center;
   padding: 0.7rem 2rem;
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px var(--primary-color);
-  opacity: 0.9;
 }
 
 .navbar ul {
@@ -570,7 +630,9 @@ button {
 
 .project-btn {
   grid-area: btn;
-  margin-left: 30%;
+  display: inline-block;
+
+  /* margin-left: 30%; */
   font-size: 1.3rem;
 }
 
@@ -678,14 +740,22 @@ button {
 .project {
   /* grid-template-columns: auto auto auto auto;
   grid-gap: 1rem; */
+
   align-items: center;
   max-width: 75%;
   justify-content: center;
-  /* display: inline-flex; */
-  border-width: 1px;
-  border-color: #343a40;
+  /* display: inline-flex;
+  border-width: 2px;
+  border-color: #343a40; */
   margin-left: 25%;
   margin-right: 25%;
+}
+
+.scroll {
+  overflow-y: auto;
+  max-height: 41rem;
+  margin-right: 25%;
+  margin-left: 25%;
 }
 
 .projectHoz {
@@ -739,6 +809,7 @@ button {
 
 .medium {
   font-size: 1.8rem;
+  font-weight: bold;
 }
 
 .projectsButtonsLayout {
@@ -750,10 +821,26 @@ button {
 .projectManager {
   margin-left: 1rem;
   font-size: 1.5rem;
+  margin-bottom: 1.5rem;
 }
-
+.projectManager:hover {
+  color: #28a745;
+}
 /* Mobile Styles */
 @media (max-width: 700px) {
+  .project {
+    /* grid-template-columns: auto auto auto auto;
+    grid-gap: 1rem; */
+    align-items: center;
+    max-width: 90%;
+    justify-content: center;
+    /* display: inline-flex; */
+    border-width: 1px;
+    border-color: #343a40;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
   .container {
     margin-top: 8rem;
   }
