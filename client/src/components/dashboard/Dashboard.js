@@ -115,78 +115,68 @@ const Dashboard = ({
   return loading && profile === null ? (
     <Spinner />
   ) : (
-    <Fragment>
+    <Fragment className="pageWrapper">
       {/* //chnage to just projects this user it part of */}
 
-      <div className="dashHeading">
-        <h1 className="largeDash text-primary">Dashboard</h1>
-        <p className="lead">
-          <i className="fas fa-user" /> Welcome {user && user.name}
-        </p>
-      </div>
+      <div className="pageWrapperMarginForNav">
+        <div className="dashHeading">
+          <h1 className="largeDash text-primary">Dashboard</h1>
+          <p className="lead">
+            <i className="fas fa-user" /> Welcome {user && user.name}
+          </p>
+        </div>
 
-      {profile != null ? (
-        <Fragment>
-          {/*<Experience experience={profile.experience}/>}
+        {profile != null ? (
+          <Fragment>
+            {/*<Experience experience={profile.experience}/>}
           {<Education education={profile.education}/>*/}
 
-          <div className="graphs">
-            <div className="graph">
-              {getVals()}
-              {total === 0 ? (
-                <h1>Looks Like you havent started any projects yet</h1>
-              ) : (
-                <Doughnut
-                  data={chartData}
+            <div className="graphs">
+              <div className="graph">
+                {getVals()}
+                {total === 0 ? (
+                  <h1>Looks Like you havent started any projects yet</h1>
+                ) : (
+                  <Doughnut
+                    data={chartData}
+                    options={{
+                      responsive: true,
+                      title: { text: "Proportion Of Tickets", display: true },
+                      scales: {
+                        yAxes: [],
+                      },
+                    }}
+                  />
+                )}
+              </div>
+
+              <div className="barGraph">
+                <Bar
+                  data={barChartData}
                   options={{
-                    responsive: true,
-                    title: { text: "Proportion Of Tickets", display: true },
+                    title: { text: "Tickets Per Project", display: true },
+
                     scales: {
-                      yAxes: [],
+                      xAxes: [
+                        {
+                          barPercentage: 0.6,
+                        },
+                      ],
                     },
                   }}
                 />
-              )}
+              </div>
             </div>
-
-            <div className="barGraph">
-              <Bar
-                data={barChartData}
-                options={{
-                  title: { text: "Tickets Per Project", display: true },
-
-                  scales: {
-                    xAxes: [
-                      {
-                        barPercentage: 0.6,
-                      },
-                    ],
-                  },
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="deleteProfile">
-            <div className="my-2">
-              <button
-                className="btn btn-danger"
-                onClick={() => deleteAccount()}
-              >
-                <i className="fas fa-user-minus"></i>
-                Delete My Account
-              </button>
-            </div>
-          </div>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <p>You have not yet setup a profile, please add some info</p>
-          <Link to="/create-profile" className="btn btn-primary my-1">
-            Create Profile
-          </Link>
-        </Fragment>
-      )}
+          </Fragment>
+        ) : (
+          <Fragment>
+            <p>You have not yet setup a profile, please add some info</p>
+            <Link to="/create-profile" className="btn btn-primary my-1">
+              Create Profile
+            </Link>
+          </Fragment>
+        )}
+      </div>
     </Fragment>
   );
 };

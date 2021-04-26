@@ -30,7 +30,7 @@ const Projects = ({
   ) : (
     <Fragment>
       <div className="outer">
-        <h1 className="large text-primary">Projects</h1>
+        {/* <h1 className="large text-primary">Projects</h1> */}
       </div>
       {profile != null ? (
         <Fragment>

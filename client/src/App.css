@@ -5,6 +5,8 @@
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
+  --background-color: #e2e2e2ea;
+  --priority-color: #2cdd58;
 }
 
 * {
@@ -17,7 +19,7 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: var(--background-color);
   color: #333;
 }
 
@@ -36,26 +38,71 @@ img {
 
 /* Utilities */
 .container {
-  padding-top: 6rem;
-
   /* margin-left: 10%; */
-  margin-top: 80px;
-  max-width: 100%;
+  /* padding-left: 25%; */
+
+  margin-top: 2%;
+  /* padding-right: 15%; */
   overflow: hidden;
   /* padding: 0 2rem; */
-  padding-bottom: 3rem;
-  padding-left: 15%;
-  background-color: rgb(240, 240, 240);
+  padding-top: 6rem;
+
+  max-width: 100%;
+  max-height: 100%;
+
+  background-color: var(--background-color);
+}
+.searchBar {
+  padding-bottom: 1rem;
+}
+.searchBarInput {
+  width: 100%;
+  padding: 1rem;
+}
+
+.containerLoginRegister {
+  margin-top: 80px;
+  background-color: rgb(214, 173, 173);
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .outer {
+  height: 100%;
   text-align: center;
   margin-bottom: 3%;
+  /* margin-right: 15%; */
+  border-width: 3rem;
+  margin-top: 5%;
+  /* margin-bottom: 10%; */
+}
+
+.outerProjectTitle {
+  height: 100%;
+  text-align: left;
+  margin-bottom: 3%;
+  margin-left: 10%;
+  /* margin-right: 15%; */
+  border-width: 3rem;
+  /* margin-top: 5%; */
+  /* margin-bottom: 10%; */
+}
+
+.pageWidth {
+  padding: 3rem;
+  max-width: 75%;
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: white;
 }
 
 .inner {
-  width: 25rem;
+  height: 45rem;
+  width: 35rem;
   display: inline-block;
+  background-color: #ffffff;
+  border-width: 3rem;
+  border-radius: 3%;
 }
 
 .loginPage {
@@ -76,6 +123,13 @@ img {
   font-size: 3rem;
   line-height: 1.2;
   margin-bottom: 1rem;
+}
+
+.largePostsTitle {
+  font-size: 4.5rem;
+  align-self: center;
+  color: var(--primary-color);
+  margin-left: 20%;
 }
 
 .largeSignIn {
@@ -149,6 +203,10 @@ img {
 .m-3 {
   margin: 3rem;
 }
+
+.my-5 {
+  margin-bottom: 1rem;
+}
 .my {
   margin: 0.5rem 0;
 }
@@ -158,6 +216,7 @@ img {
 .my-2 {
   margin: 2rem 0;
 }
+
 .my-3 {
   margin: 3rem 0;
 }
@@ -181,8 +240,8 @@ img {
 
 .graph {
   margin-top: 4rem;
-  height: 60%;
-  width: 40%;
+  height: 75%;
+  width: 45%;
   margin-right: 2.5%;
   margin-left: 2%;
 }
@@ -193,10 +252,31 @@ img {
   flex-direction: row;
 }
 
+.pageWrapper {
+  width: 50%;
+}
+
+.pageWrapperMarginForNav {
+  margin-left: 15%;
+}
+
+.dashLoggedInAs {
+  margin-top: 1rem;
+  margin-left: 6rem;
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
+}
+
+.navLogout {
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
+  margin-left: 90%;
+}
+
 .barGraph {
   margin-top: 4rem;
-  height: 60%;
-  width: 40%;
+  height: 75%;
+  width: 45%;
   margin-right: 0%;
   margin-left: 2.5%;
 }
@@ -214,6 +294,46 @@ img {
   margin-right: 1.8rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+}
+
+.addTicket {
+  width: 16rem;
+  display: inline-block;
+  background: var(--light-color);
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin-right: 1.8rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+
+.addTicket:hover {
+  background-color: #b8b8b8; /* Green */
+  /* color: rgb(197, 188, 188); */
+  color: black;
+}
+
+.btnDashTickets {
+  width: 46%;
+  display: inline-block;
+  background: var(--light-color);
+  color: #333;
+  padding: 0.7rem 1.3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+.btnDashTickets:hover {
+  background-color: #b8b8b8; /* Green */
+  /* color: rgb(197, 188, 188); */
+  color: black;
 }
 
 .menuButtonsLarge {
@@ -313,8 +433,11 @@ img {
 }
 
 .alert {
+  align-self: center;
+  margin-left: 40%;
+  justify-content: center;
+  max-width: 40%;
   padding: 0.8rem;
-  margin: 1rem 0;
   opacity: 0.9;
   background: var(--light-color);
   color: #333;
@@ -401,6 +524,8 @@ img {
 /* Forms */
 .form .form-group {
   margin: 1.2rem 0;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .form .form-text {
@@ -530,11 +655,13 @@ button {
 
 .tickets {
   /* margin-left: 20rem; */
-  width: 50rem;
+  width: 100%;
   max-width: 100%;
   padding: 1rem;
   line-height: 1.8;
   margin-bottom: 1rem;
+  /* height: 20%; */
+  display: inline-block;
 }
 
 .projectWrapper {
@@ -595,9 +722,24 @@ button {
 }
 
 .projectWrapperTickets {
-  width: 55rem;
-  max-width: 100%;
-  margin-left: 200px;
+  width: 50%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.ticketButtons {
+  display: block;
+}
+
+.ticketGrid {
+  display: grid;
+  grid-template-areas: "exp edu btn";
+  grid-gap: 1rem;
+}
+
+.ticket-btn {
+  margin-left: 65%;
+  width: 50%;
 }
 
 /* Profile Page */
@@ -618,9 +760,11 @@ button {
 }
 .projectsHeading {
   text-align: center;
-  background-color: #38a1f3;
+  background-color: rgb(255, 255, 255);
   padding-bottom: 3px;
   margin-bottom: 3px;
+  color: rgb(235, 235, 235);
+  border-width: 2px;
 }
 .project-exp {
   grid-area: exp;
@@ -628,9 +772,19 @@ button {
   font-size: 1.3rem;
 }
 
+.tickets-heading {
+  display: inline;
+}
+
+.project-expTickets {
+  grid-area: exp;
+  margin-left: 1rem;
+  font-size: 1.3rem;
+}
+
 .project-btn {
   grid-area: btn;
-  display: inline-block;
+  /* display: inline-block; */
 
   /* margin-left: 30%; */
   font-size: 1.3rem;
@@ -725,9 +879,37 @@ button {
 }
 
 /* Posts Page */
-.post-form .post-form-header {
-  background: var(--primary-color);
+/* .post-form .post-form-header {
+  padding-right: 20%;
+  padding-left: 20%;
+  background-color: #28a745;
+
   padding: 0.5rem;
+} */
+
+.post-form {
+  border-width: 5px;
+  border-color: #333;
+  vertical-align: top;
+  padding-right: 20%;
+  padding-left: 20%;
+  display: block;
+}
+
+.textAreaSize {
+  min-width: 85%;
+  min-height: 5rem;
+  padding-right: 5%;
+  padding-top: 1rem;
+  padding-left: 5%;
+  margin-right: 2%;
+  margin-bottom: 1rem;
+  /* margin-bottom: 3rem; */
+  /* margin-left: 15%; */
+}
+.posts {
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
 .post {
@@ -735,8 +917,23 @@ button {
   grid-template-columns: 1fr 4fr;
   grid-gap: 1rem;
   align-items: center;
+  max-width: 100%;
 }
 
+.inline {
+  margin-top: 1rem;
+  display: block;
+  border-width: 5px;
+  border-color: #333;
+  /* background-color: #28a745; */
+}
+.btnSubmit {
+  vertical-align: top;
+
+  margin-top: 1rem;
+  width: 5rem;
+  height: 3rem;
+}
 .project {
   /* grid-template-columns: auto auto auto auto;
   grid-gap: 1rem; */
@@ -749,6 +946,18 @@ button {
   border-color: #343a40; */
   margin-left: 25%;
   margin-right: 25%;
+}
+
+.projectTcikets {
+  /* grid-template-columns: auto auto auto auto;
+  grid-gap: 1rem; */
+
+  align-items: center;
+  /* max-width: 75%; */
+  justify-content: center;
+  /* display: inline-flex;
+  /* margin-left: 25%;
+  margin-right: 25%; */
 }
 
 .scroll {
@@ -809,7 +1018,9 @@ button {
 
 .medium {
   font-size: 1.8rem;
-  font-weight: bold;
+  /* font-weight: bold; */
+  color: #000000;
+  margin-left: 3rem;
 }
 
 .projectsButtonsLayout {
@@ -821,7 +1032,6 @@ button {
 .projectManager {
   margin-left: 1rem;
   font-size: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 .projectManager:hover {
   color: #28a745;
@@ -841,9 +1051,24 @@ button {
     margin-right: 5%;
   }
 
-  .container {
-    margin-top: 8rem;
+  .graphs {
+    display: flex;
+    margin-right: 0%;
+    margin-left: 0%;
+    flex-direction: column;
   }
+
+  :root {
+    --primary-color: #4080f8;
+    --dark-color: #343a40;
+    --light-color: #f4f4f4;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+  }
+
+  /* .container {
+    margin-top: 8rem;
+  } */
 
   .hide-sm {
     display: none;
@@ -868,6 +1093,10 @@ button {
 
   .lead {
     font-size: 1rem;
+  }
+  .leadM {
+    font-size: 1rem;
+    margin-left: 20%;
   }
 
   /* Navbar */
