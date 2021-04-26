@@ -46,9 +46,6 @@ const EditTicket = ({
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   return (
-    // console.log(ticket._id),
-    // console.log("=============66=============="),
-    // ticket === null ? <Spinner/> :
     <Fragment>
       <div className="pageWrapperMarginForNav">
         <div className="pageWidth">

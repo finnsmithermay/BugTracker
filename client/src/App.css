@@ -245,6 +245,22 @@ img {
   margin-right: 2.5%;
   margin-left: 2%;
 }
+
+.graphsDesc {
+  width: 80%;
+  height: 50rem;
+  margin-right: 0%;
+  margin-left: 0%;
+  flex-direction: column;
+  background-color: var(--success-color);
+}
+
+.pie {
+  height: 25%;
+  width: 25%;
+  background-color: yellow;
+}
+
 .graphs {
   display: flex;
   margin-right: 0%;
@@ -703,6 +719,15 @@ button {
   display: inline-block;
 }
 
+.projectDescriptionLeft {
+  justify-content: left;
+  margin-left: 0px;
+}
+
+.projectDescriptionRight {
+  justify-content: right;
+}
+
 .projectDescription {
   margin-right: 10%;
   margin-left: 10%;
@@ -718,7 +743,10 @@ button {
 }
 
 .projectDescriptionText {
+  background-color: var(--danger-color);
   font-size: 1.5rem;
+  max-width: 30%;
+  margin-left: 80%;
 }
 
 .projectWrapperTickets {
@@ -1052,6 +1080,14 @@ button {
   }
 
   .graphs {
+    display: flex;
+    margin-right: 0%;
+    margin-left: 0%;
+    flex-direction: column;
+  }
+
+  .graphsDesc {
+    height: 50rem;
     display: flex;
     margin-right: 0%;
     margin-left: 0%;

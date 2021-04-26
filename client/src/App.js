@@ -26,6 +26,8 @@ import Project from "./components/project/Project";
 import ProjectMember from "./components/project/projectMembers";
 import AddTicket from "./components/project/AddTicket";
 import EditTicket from "./components/project/editTicket";
+import EditProject from "./components/project/EditProject";
+
 import Projects from "./components/project/projects";
 import Ticket from "./components/project/Ticket";
 
@@ -93,6 +95,12 @@ const App = () => {
               <PrivateRoute exact path="/posts/:id" component={Post} />
 
               <PrivateRoute exact path="/project/:id" component={Project} />
+              <PrivateRoute
+                exact
+                path="/edit-project/:id"
+                component={EditProject}
+              />
+
               <PrivateRoute
                 exact
                 path="/project/members/:id"

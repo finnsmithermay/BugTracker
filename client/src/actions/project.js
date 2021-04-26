@@ -1,356 +1,319 @@
-import axios from 'axios';
-import {setAlert} from './alert';
-import{
-    GET_PROJECTS,
-    GET_PROJECT,
-    REMOVE_PROJECT,
-    PROJECT_ERROR,
-    ADD_PROJECT,
-    DELETE_PROJECT,
-    ADD_MEMBER,
-    REMOVE_MEMBER,
-    CLEAR_MEMBERS,
-    GET_MEMBERS,
-    GET_TICKETS,
-    ADD_TICKET,
-    REMOVE_TICKET,
-    EDIT_TICKET,
-    GET_TICKET,
-    ADD_TICKET_COMMENT
-}from './types';
+import axios from "axios";
+import { setAlert } from "./alert";
+import {
+  GET_PROJECTS,
+  GET_PROJECT,
+  REMOVE_PROJECT,
+  PROJECT_ERROR,
+  ADD_PROJECT,
+  DELETE_PROJECT,
+  ADD_MEMBER,
+  REMOVE_MEMBER,
+  CLEAR_MEMBERS,
+  GET_MEMBERS,
+  GET_TICKETS,
+  ADD_TICKET,
+  REMOVE_TICKET,
+  EDIT_TICKET,
+  GET_TICKET,
+  ADD_TICKET_COMMENT,
+} from "./types";
 
-//get projects 
-export const getProjects = () => async dispatch => {
-    try{
-        const res = await axios.get('/api/project');
+//get projects
+export const getProjects = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/project");
 
-        dispatch({
-            type: GET_PROJECTS,
-            payload: res.data
-        });
-    }catch (err){
-        dispatch({
-            type: PROJECT_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-          });
-        }
-    };
-    //Delete project 
-    export const deleteProject = id => async dispatch => {
+    dispatch({
+      type: GET_PROJECTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+//Delete project
+export const deleteProject = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/project/${id}`);
 
-        
-        try{
-            await axios.delete(`/api/project/${id}`);
-    
-            dispatch({
-                type: DELETE_PROJECT,
-                payload:  id
-            });
-    
-            dispatch(setAlert('Project Removed', 'success'));
-    
-        }catch (err){
-            dispatch({
-                type: PROJECT_ERROR,
-                payload: { msg: err.response.statusText, status: err.response.status }
-              });
-            }
-        };
+    dispatch({
+      type: DELETE_PROJECT,
+      payload: id,
+    });
 
+    dispatch(setAlert("Project Removed", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 
+//get projects by id
+export const getProject = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/project/${id}`);
 
-//get projects by id 
-export const getProject = id => async dispatch => {
-    try{
-        const res = await axios.get(`/api/project/${id}`);
+    dispatch({
+      type: GET_PROJECT,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 
-        dispatch({
-            type: GET_PROJECT,
-            payload: res.data
-        });
-    }catch (err){
-        dispatch({
-            type: PROJECT_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-          });
-        }
-    };
+//get projects by id
+export const getTicket = (id, tickId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/project/tickets/${id}/${tickId}`);
 
-
-    //get projects by id 
-export const getTicket = (id,tickId) => async dispatch => {
-    try{
-        console.log("---------------------------")
-        console.log(id)
-        console.log(tickId)
-
-        const res = await axios.get(`/api/project/tickets/${id}/${tickId}`);
-
-        console.log("here", res.data)
-
-        dispatch({
-            type: GET_TICKET,
-            payload: res.data
-        });
-    }catch (err){
-        dispatch({
-            type: PROJECT_ERROR,
-            payload: { msg: "nope" }
-          });
-        }
-    };
-
+    dispatch({
+      type: GET_TICKET,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: "nope" },
+    });
+  }
+};
 
 //add project
-export const addProject = formData => async dispatch => {
+export const addProject = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await axios.post(`/api/project/`, formData, config);
 
-    const config = {
-        headers: {
-            'Content-Type' : 'application/json'
-        }
-    }
-    try{
-       const res = await axios.post(`/api/project/`, formData, config);
+    dispatch({
+      type: ADD_PROJECT,
+      payload: res.data,
+    });
 
-        dispatch({
-            type: ADD_PROJECT,
-            payload:  res.data
-        });
+    dispatch(setAlert("Project Created", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 
-        // console.log(res.data)
+//add member
+export const addMember = (pId, data) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await axios.post(`/api/project/members/${pId}`, data, config);
 
-        dispatch(setAlert('Project Created', 'success'));
+    dispatch({
+      type: ADD_MEMBER,
+      payload: res.data,
+    });
 
-    }catch (err){
-        dispatch({
-            type: PROJECT_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-          });
-        }
-    };
+    dispatch(setAlert("member added", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 
-            //add member 
-    export const addMember = (pId,data) => async dispatch => {
-        //console.log(name)
+//remove member
+export const removeMember = (pId, memberId) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/project/members/${pId}/${memberId}`);
 
-        const config = {
-                headers: {
-                    'Content-Type' : 'application/json'
-                }
-            };
-            try{
-                
-                console.log(pId)
+    dispatch({
+      type: REMOVE_MEMBER,
+      payload: memberId,
+    });
 
-                const res = await axios.post(`/api/project/members/${pId}`,data, config);
-                console.log("here 2")
+    dispatch(setAlert("member removed", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 
-
-                dispatch({
-                    type: ADD_MEMBER,
-                    payload:  res.data
-                });
-                console.log("here 3")
-
-        
-                dispatch(setAlert('member added', 'success'));
-                console.log("here 4")
-
-            }catch (err){
-                dispatch({
-                    type: PROJECT_ERROR,
-                    payload: { msg: err.response.statusText, status: err.response.status }
-                    });
-                }
-            };
-
-        //remove member 
-    export const removeMember = (pId,memberId) => async dispatch => {
-        //console.log(name)
-        console.log("here 4")
-
-            try{
-                
-
-                const res = await axios.delete(`/api/project/members/${pId}/${memberId}`);
-
-
-                dispatch({
-                    type: REMOVE_MEMBER,
-                    payload:  memberId
-                });
-
-        
-                dispatch(setAlert('member removed', 'success'));
-
-            }catch (err){
-                dispatch({
-                    type: PROJECT_ERROR,
-                    payload: { msg: err.response.statusText, status: err.response.status }
-                    });
-                }
-            };
-
-        
 //get all members
-export const getMembers = () => async dispatch => {
+export const getMembers = () => async (dispatch) => {
+  //Brad says this should revent the flashing of the past users profile?
+  dispatch({ type: CLEAR_MEMBERS });
 
-    //Brad says this should revent the flashing of the past users profile?
-    dispatch({type:CLEAR_MEMBERS});
-  
-    try {
-      const res = await axios.get('/api/project/members');
-      dispatch({
-        type: GET_MEMBERS,
-        payload: res.data,
-      });
-    } catch (error) {
-      dispatch({
-        type: PROJECT_ERROR,
-        payload: {
-          msg: error.response.statusText,
-          status: error.response.status,
-        },
-      });
-    }
+  try {
+    const res = await axios.get("/api/project/members");
+    dispatch({
+      type: GET_MEMBERS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+export const getTickets = () => async (dispatch) => {
+  dispatch({ type: CLEAR_MEMBERS });
+
+  try {
+    const res = await axios.get("/api/project/tickets");
+    dispatch({
+      type: GET_TICKETS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+export const addTicket = (pId, data) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
+  try {
+    const res = await axios.post(`/api/project/tickets/${pId}`, data, config);
 
-  export const getTickets = () => async dispatch => {
+    dispatch({
+      type: ADD_TICKET,
+      payload: res.data,
+    });
 
-    dispatch({type:CLEAR_MEMBERS});
-  
-    try {
-      const res = await axios.get('/api/project/tickets');
-      dispatch({
-        type: GET_TICKETS,
-        payload: res.data,
-      });
-    } catch (error) {
-      dispatch({
-        type: PROJECT_ERROR,
-        payload: {
-          msg: error.response.statusText,
-          status: error.response.status,
-        },
-      });
-    }
+    dispatch(setAlert("ticket added", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+//remove ticket
+export const removeTicket = (pId, ticketId) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/project/tickets/${pId}/${ticketId}`);
+
+    dispatch({
+      type: REMOVE_TICKET,
+      payload: ticketId,
+    });
+
+    dispatch(setAlert("Ticket removed", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const editTicket = (pId, ticketId, data) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
+  try {
+    const res = await axios.put(
+      `/api/project/tickets/${pId}/${ticketId}`,
+      data,
+      config
+    );
 
- 
+    dispatch({
+      type: EDIT_TICKET,
+      payload: res.data,
+    });
 
+    dispatch(setAlert("ticket updated", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 
-  export const addTicket = (pId,data) => async dispatch => {
-    //console.log(name)
+export const editProject = (pId, data) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await axios.put(`/api/project/${pId}`, data, config);
+    dispatch(setAlert("Project updated", "success"));
 
-    const config = {
-            headers: {
-                'Content-Type' : 'application/json'
-            }
-        };
-        try{
-            
+    dispatch({
+      type: EDIT_PROJECT,
+      payload: res.data,
+    });
 
-            const res = await axios.post(`/api/project/tickets/${pId}`,data, config);
+    dispatch(setAlert("Project updated", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      // payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 
+//addComment
+export const addComment = (postId, ticketId, formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await axios.post(
+      `/api/project/tickets/comment/${postId}/${ticketId}`,
+      formData,
+      config
+    );
 
-            dispatch({
-                type: ADD_TICKET,
-                payload:  res.data
-            });
+    dispatch({
+      type: ADD_TICKET_COMMENT,
+      payload: res.data,
+    });
 
-    
-            dispatch(setAlert('ticket added', 'success'));
-
-        }catch (err){
-            dispatch({
-                type: PROJECT_ERROR,
-                payload: { msg: err.response.statusText, status: err.response.status }
-                });
-            }
-        };
-
-    
-        //remove ticket 
-        export const removeTicket = (pId,ticketId) => async dispatch => {
-            //console.log(name)
-            console.log("here 4")
-    
-                try{
-                    
-    
-                    const res = await axios.delete(`/api/project/tickets/${pId}/${ticketId}`);
-    
-    
-                    dispatch({
-                        type: REMOVE_TICKET,
-                        payload:  ticketId
-                    });
-    
-            
-                    dispatch(setAlert('Ticket removed', 'success'));
-    
-                }catch (err){
-                    dispatch({
-                        type: PROJECT_ERROR,
-                        payload: { msg: err.response.statusText, status: err.response.status }
-                        });
-                    }
-                };
-
-
-                export const editTicket = (pId,ticketId,data) => async dispatch => {
-                    //console.log(name)
-                
-                    const config = {
-                            headers: {
-                                'Content-Type' : 'application/json'
-                            }
-                        };
-                        try{
-                            
-                
-                    const res = await axios.put(`/api/project/tickets/${pId}/${ticketId}`, data, config);
-                
-                
-                        dispatch({
-                                type: EDIT_TICKET,
-                                payload:  res.data
-                            });
-                
-                    
-                            dispatch(setAlert('ticket updated', 'success'));
-                
-                        }catch (err){
-                            dispatch({
-                                type: PROJECT_ERROR,
-                                payload: { msg: err.response.statusText, status: err.response.status }
-                                });
-                            }
-                        };
-
-
-//addComment 
-export const addComment = (postId,ticketId,formData) => async dispatch => {
-
-    const config = {
-        headers: {
-            'Content-Type' : 'application/json'
-        }
-    };
-    try{
-       const res = await axios.post(`/api/project/tickets/comment/${postId}/${ticketId}`, formData, config);
-
-        dispatch({
-            type: ADD_TICKET_COMMENT,
-            payload:  res.data
-        });
-
-        dispatch(setAlert('Comment added', 'success'));
-
-    }catch (err){
-        dispatch({
-            type: PROJECT_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-          });
-        }
-    };
+    dispatch(setAlert("Comment added", "success"));
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};

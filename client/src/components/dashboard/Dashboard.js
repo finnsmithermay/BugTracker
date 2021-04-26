@@ -48,12 +48,15 @@ const Dashboard = ({
   var projectNames = [];
   var barData = [];
 
-  // console.log("=====================")
-
-  // console.log(projects.length)
-  // console.log("=====================")
-
   const getVals = () => {
+    low = 0;
+    medium = 0;
+    high = 0;
+    urgent = 0;
+    total = 0;
+    projectNames = [];
+    barData = [];
+
     projects.length === 0
       ? getProjects()
       : projects.map((project) =>
@@ -62,7 +65,6 @@ const Dashboard = ({
               projectNames.push(project.projectName),
               project.tickets.map(
                 (ticket) => (
-                  console.log(ticket.priority),
                   (total = total + 1),
                   ticket.priority == "Low" ? (low = low + 1) : null,
                   ticket.priority == "Medium" ? (medium = medium + 1) : null,
@@ -116,6 +118,8 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment className="pageWrapper">
+      {getVals()}
+
       {/* //chnage to just projects this user it part of */}
 
       <div className="pageWrapperMarginForNav">

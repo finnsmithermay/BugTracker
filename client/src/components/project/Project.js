@@ -10,6 +10,7 @@ import ProfileProjectItem from "../profiles/ProfileProjectItem";
 import memberProjectItem from "../profiles/memberProjectItem";
 import SearchBox from "../../components/SearchBox/searchbox";
 import Moment from "react-moment";
+import { Doughnut } from "react-chartjs-2";
 
 import {
   removeMember,
@@ -68,6 +69,7 @@ const Project = ({
     getProfiles();
     getMembers();
     getTickets();
+    chart();
   }, [getProject]);
   const filteredMembers = "";
 
@@ -78,10 +80,46 @@ const Project = ({
       .includes(search.toString().toLowerCase())
   );
 
+  var low = 0;
+  var medium = 0;
+  var high = 0;
+  var urgent = 0;
+  var total = 0;
+
+  const [chartData, setChartData] = useState({});
+
+  const getVals = () => {
+    project.tickets.map(
+      (ticket) => (
+        (total = total + 1),
+        ticket.priority == "Low" ? (low = low + 1) : null,
+        ticket.priority == "Medium" ? (medium = medium + 1) : null,
+        ticket.priority == "High" ? (high = high + 1) : null,
+        ticket.priority == "Urgent" ? (urgent = urgent + 1) : null
+      )
+    );
+  };
+
+  const chart = () => {
+    setChartData({
+      labels: ["low", "medium", "high", "urgent"],
+
+      datasets: [
+        {
+          label: "label",
+          data: [low, medium, high, urgent],
+          backgroundColor: ["#0a6ef0", "#0af021", "#fc8c03", "#fc0303"],
+          borderWidth: 4,
+        },
+      ],
+    });
+  };
+
   return members === null || user === null || project === null ? (
     <Spinner />
   ) : (
     <Fragment>
+      {getVals()}
       <div className="pageWrapperMarginForNav">
         {project.projectName === null ? (
           <Spinner />
@@ -100,6 +138,8 @@ const Project = ({
             <button className="btnDash" onClick={() => setShowMembers(false)}>
               Description
             </button>
+
+            <Link to={`/edit-project/${project._id}`}>Edit Project</Link>
           </div>
         </div>
 
@@ -237,19 +277,19 @@ const Project = ({
                   </Link>
 
                   {/* </div> */}
-                  <div style={{ overflowY: "auto", height: "41rem" }}>
-                    <div className="searchBar">
-                      <input
-                        className="searchBarInput"
-                        type="text"
-                        placeholder="Serach Tasks"
-                        name="text"
-                        value={searchTickets}
-                        onChange={(e) => setsearchTickets(e.target.value)}
-                        required
-                      />
-                    </div>
+                  <div className="searchBar">
+                    <input
+                      className="searchBarInput"
+                      type="text"
+                      placeholder="Serach Tasks"
+                      name="text"
+                      value={searchTickets}
+                      onChange={(e) => setsearchTickets(e.target.value)}
+                      required
+                    />
+                  </div>
 
+                  <div style={{ overflowY: "auto", height: "41rem" }}>
                     {loading || tickets == null ? (
                       <Spinner />
                     ) : (
@@ -455,9 +495,26 @@ const Project = ({
           </div>
         ) : (
           //show poject decription
-          <div className="projectDescription">
-            <h1>{project.projectName} decription</h1>
-            <h2 className="projectDescriptionText">{project.text}</h2>
+          // className="projectDescription"
+          <div className="graphsDesc">
+            <div>
+              <h1>{project.projectName} decription</h1>
+              <h2 className="projectDescriptionText">{project.text}</h2>
+            </div>
+            <div className="pie">
+              {getVals()}
+
+              <Doughnut
+                data={chartData}
+                options={{
+                  responsive: true,
+                  title: { text: "Proportion Of Tickets", display: true },
+                  scales: {
+                    yAxes: [],
+                  },
+                }}
+              />
+            </div>
           </div>
         )}
       </div>
