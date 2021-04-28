@@ -68,13 +68,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                   onChange={(e) => onChange(e)}
                 >
                   <option value="0">Select Professional Status</option>
-                  <option value="Project Manager">Project Manager</option>
-                  <option value="Manager">Manager</option>
-
-                  <option value="Developer">Developer</option>
-                  <option value="Junior Developer">Junior Developer</option>
-                  <option value="Senior Developer">Senior Developer</option>
-                  <option value="Intern">Intern</option>
+                  <option value="Project Manager">Student</option>
+                  <option value="Manager">Profectioal</option>
                 </select>
               </div>
 

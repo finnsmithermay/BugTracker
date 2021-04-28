@@ -1,12 +1,13 @@
 /* Global Styles */
 :root {
-  --primary-color: #f84040;
+  --primary-color: #e76f51;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
   --background-color: #e2e2e2ea;
   --priority-color: #2cdd58;
+  --navColor: #264653;
 }
 
 * {
@@ -60,6 +61,14 @@ img {
   padding: 1rem;
 }
 
+.lead2 {
+  font-size: 2rem;
+}
+
+.ticketTitle {
+  background-color: #2cdd58;
+}
+
 .containerLoginRegister {
   margin-top: 80px;
   background-color: rgb(214, 173, 173);
@@ -79,9 +88,8 @@ img {
 
 .outerProjectTitle {
   height: 100%;
-  text-align: left;
+  text-align: center;
   margin-bottom: 3%;
-  margin-left: 10%;
   /* margin-right: 15%; */
   border-width: 3rem;
   /* margin-top: 5%; */
@@ -103,6 +111,10 @@ img {
   background-color: #ffffff;
   border-width: 3rem;
   border-radius: 3%;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
 .loginPage {
@@ -243,7 +255,7 @@ img {
   height: 75%;
   width: 45%;
   margin-right: 2.5%;
-  margin-left: 2%;
+  /* background-color: rgb(255, 251, 251); */
 }
 
 .graphsDesc {
@@ -256,9 +268,9 @@ img {
 }
 
 .pie {
-  height: 25%;
-  width: 25%;
-  background-color: yellow;
+  margin-top: 4rem;
+  height: 75%;
+  width: 45%;
 }
 
 .graphs {
@@ -294,7 +306,7 @@ img {
   height: 75%;
   width: 45%;
   margin-right: 0%;
-  margin-left: 2.5%;
+  /* background-color: rgb(255, 251, 251); */
 }
 
 .btnDash {
@@ -352,6 +364,10 @@ img {
   color: black;
 }
 
+.ticketText {
+  padding-top: 2rem;
+}
+
 .menuButtonsLarge {
   width: 16rem;
   display: inline-block;
@@ -368,19 +384,33 @@ img {
   font-size: 2rem;
 }
 
+.noProjects {
+  margin-left: 15%;
+}
+.noProjectsText {
+  font-size: 2rem;
+}
+
 .menuButtons {
   width: 16rem;
   display: inline-block;
   margin-top: 10%;
   color: rgb(255, 255, 255);
-  padding: 0.7rem 1.3rem;
-  font-size: 1.2rem;
+  /* padding: 0.7rem 1.3rem; */
+  padding-left: 1.7rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
   border: none;
   cursor: pointer;
   margin-right: 1.8rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+}
+.menuButtons:hover {
+  /* color: rgb(197, 188, 188); */
+  color: var(--primary-color);
 }
 
 .btnDashProjects {
@@ -680,10 +710,25 @@ button {
   display: inline-block;
 }
 
+.tickets2 {
+  /* margin-left: 20rem; */
+  background-color: #888;
+
+  padding: 2rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  /* height: 20%; */
+  /* display: inline-block; */
+}
+
 .projectWrapper {
+  max-height: 55rem;
   width: 29rem;
   max-width: 100%;
   margin-left: 200px;
+  padding: 2rem;
+  background-color: #ffffff;
+  /* box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8); */
 }
 
 .projectsWrapper {
@@ -729,30 +774,54 @@ button {
 }
 
 .projectDescription {
+  padding: 2rem;
+  text-align: left;
   margin-right: 10%;
   margin-left: 10%;
   margin-bottom: 10%;
   height: 50%;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
-  text-align: center;
-  background-color: rgb(201, 201, 201);
-  min-height: 40rem;
+  background-color: rgb(255, 255, 255);
+
+  /* align-items: center;
+  
+  min-height: 40rem; */
 }
 
 .projectDescriptionText {
-  background-color: var(--danger-color);
+  /* background-color: var(--danger-color);
   font-size: 1.5rem;
   max-width: 30%;
-  margin-left: 80%;
+  margin-left: 80%; */
+}
+
+.divHeading {
+  padding: 1rem;
+  /* background-color: var(--navColor); */
 }
 
 .projectWrapperTickets {
   width: 50%;
+  /* max-height: 55rem; */
+
   margin-left: 5%;
   margin-right: 5%;
+  padding: 2rem;
+  background-color: #ffffff;
+  /* box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8); */
+  margin-bottom: 5rem;
+}
+
+.projectWrapperTicket {
+  width: 50%;
+  max-height: 35rem;
+
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: #ffffff;
+  /* box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8); */
+  margin-bottom: 5rem;
 }
 
 .ticketButtons {
@@ -788,7 +857,7 @@ button {
 }
 .projectsHeading {
   text-align: center;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--navColor);
   padding-bottom: 3px;
   margin-bottom: 3px;
   color: rgb(235, 235, 235);
@@ -924,6 +993,11 @@ button {
   display: block;
 }
 
+.marginTicket {
+  margin-right: 4rem;
+  margin-left: 3rem;
+}
+
 .textAreaSize {
   min-width: 85%;
   min-height: 5rem;
@@ -932,6 +1006,18 @@ button {
   padding-left: 5%;
   margin-right: 2%;
   margin-bottom: 1rem;
+  /* margin-bottom: 3rem; */
+  /* margin-left: 15%; */
+}
+
+.textAreaSizeTicket {
+  max-height: 10rem;
+  min-width: 85%;
+  min-height: 5rem;
+  padding-right: 5%;
+  padding-top: 1rem;
+  padding-left: 5%;
+  margin-right: 2%;
   /* margin-bottom: 3rem; */
   /* margin-left: 15%; */
 }
@@ -973,7 +1059,7 @@ button {
   border-width: 2px;
   border-color: #343a40; */
   margin-left: 25%;
-  margin-right: 25%;
+  margin-right: 15%;
 }
 
 .projectTcikets {
@@ -1044,25 +1130,38 @@ button {
   display: inline;
 }
 
-.medium {
+.mediumtext {
   font-size: 1.8rem;
   /* font-weight: bold; */
   color: #000000;
   margin-left: 3rem;
 }
-
+.medium {
+  font-size: 1.8rem;
+  /* font-weight: bold; */
+  color: #ffffff;
+  margin-left: 3rem;
+}
 .projectsButtonsLayout {
   margin-left: 20%;
   margin-right: 20%;
   margin-bottom: 1rem;
 }
 
-.projectManager {
+.projectManagerDiv {
   margin-left: 1rem;
-  font-size: 1.5rem;
+}
+
+.projectManager {
+  padding-left: 1rem;
+  margin-left: 1rem;
+  font-size: 1.2rem;
+  color: #000000;
 }
 .projectManager:hover {
-  color: #28a745;
+  /* color: var(--primary-color); */
+  color: var(--primary-color);
+  margin-left: 1rem;
 }
 /* Mobile Styles */
 @media (max-width: 700px) {
@@ -1130,6 +1229,11 @@ button {
   .lead {
     font-size: 1rem;
   }
+
+  .lead2 {
+    font-size: 2rem;
+  }
+
   .leadM {
     font-size: 1rem;
     margin-left: 20%;

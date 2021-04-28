@@ -41,9 +41,9 @@ const Ticket = ({
   }, [getTicket]);
   const [show, setShow] = useState(true);
 
-  const updateIndex = project.tickets
-    .map((ticket) => ticket._id.toString())
-    .indexOf(match.params.id);
+  // const updateIndex = project.tickets
+  //   .map((ticket) => ticket._id.toString())
+  //   .indexOf(match.params.id);
 
   return members === null ||
     user === null ||
@@ -60,27 +60,28 @@ const Ticket = ({
         <div className="rowC">
           {/* NOTE SHOW MEMBERS STARTS HERE */}
 
-          <div className="projectWrapperTickets">
-            <div class="lead">
-              <h1>{ticket.ticketName}</h1>
+          <div className="projectWrapperTicket">
+            <div className="ticketTitle">
+              <p className="lead2">{ticket.ticketName}</p>
+            </div>
+
+            <div className="my-2"></div>
+
+            <div className="tickets2">
+              <p className="ticketText">Created by {ticket.name}</p>
+              <p className="ticketText">Status: {ticket.status}</p>
+              <p className="ticketText">Priority: {ticket.priority}</p>
+              <p className="ticketText">Decription:{ticket.text}</p>
             </div>
             <Link to={`/edit-ticket/${ticket._id}`} className="btn btn-light">
-              <i className="fab fa-black-tie text-primary"></i> edit ticket
+              <i className="fab fa-black-tie text-primary"></i> Edit Task
             </Link>
             <Link to={`/project/${project._id}`} className="btn btn-light">
               <i className="fab fa-black-tie text-primary"></i> Back to Project
             </Link>
-            <div className="my-2"></div>
-
-            <div className="tickets bg-light">
-              <h2>Created by {ticket.name}</h2>
-              <h1>Decription:{ticket.text}</h1>
-              <h2>Status: {ticket.status}</h2>
-              <h2>Priority: {ticket.priority}</h2>
-            </div>
           </div>
 
-          <div>
+          <div className="marginTicket">
             <TicketCommentForm projectId={project._id} ticketId={ticket._id} />
             <div className="comments">
               <div style={{ overflowY: "auto", height: "41rem" }}>

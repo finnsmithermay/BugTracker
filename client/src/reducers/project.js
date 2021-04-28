@@ -21,6 +21,7 @@ const initialState = {
   project: null,
   loading: true,
   tickets: [],
+  members: [],
   ticket: null,
   error: {},
 };
@@ -65,14 +66,14 @@ export default function (state = initialState, action) {
     case ADD_MEMBER:
       return {
         ...state,
-        post: { ...state.project, members: payload },
+        project: { ...state.project, members: payload },
         loading: false,
       };
 
     case ADD_TICKET:
       return {
         ...state,
-        ticket: { ...state.project, tickets: payload },
+        project: { ...state.project, tickets: payload },
         loading: false,
       };
 

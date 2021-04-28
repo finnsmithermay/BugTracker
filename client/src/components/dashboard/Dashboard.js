@@ -92,7 +92,7 @@ const Dashboard = ({
         {
           label: "label",
           data: [low, medium, high, urgent],
-          backgroundColor: ["#0a6ef0", "#0af021", "#fc8c03", "#fc0303"],
+          backgroundColor: ["#2cdd58", "#fbff01", "#ff8901", "#f84040"],
           borderWidth: 4,
         },
       ],
@@ -126,21 +126,20 @@ const Dashboard = ({
         <div className="dashHeading">
           <h1 className="largeDash text-primary">Dashboard</h1>
           <p className="lead">
-            <i className="fas fa-user" /> Welcome {user && user.name}
+            <i className="fas fa-user" /> Signed in as {user && user.name}
           </p>
         </div>
 
         {profile != null ? (
           <Fragment>
             {/*<Experience experience={profile.experience}/>}
-          {<Education education={profile.education}/>*/}
+          {<Education education={profile.edu==cation}/>*/}
 
-            <div className="graphs">
-              <div className="graph">
-                {getVals()}
-                {total === 0 ? (
-                  <h1>Looks Like you havent started any projects yet</h1>
-                ) : (
+            {projectNames.length !== 0 ? (
+              <div className="graphs">
+                <div className="graph">
+                  {getVals()}
+
                   <Doughnut
                     data={chartData}
                     options={{
@@ -151,33 +150,43 @@ const Dashboard = ({
                       },
                     }}
                   />
-                )}
-              </div>
+                </div>
 
-              <div className="barGraph">
-                <Bar
-                  data={barChartData}
-                  options={{
-                    title: { text: "Tickets Per Project", display: true },
+                <div className="barGraph">
+                  <Bar
+                    data={barChartData}
+                    options={{
+                      title: { text: "Tickets Per Project", display: true },
 
-                    scales: {
-                      xAxes: [
-                        {
-                          barPercentage: 0.6,
-                        },
-                      ],
-                    },
-                  }}
-                />
+                      scales: {
+                        xAxes: [
+                          {
+                            barPercentage: 0.6,
+                          },
+                        ],
+                      },
+                    }}
+                  />
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="noProjects">
+                {" "}
+                <p className="noProjectsText">
+                  Looks Like you havent started any projects yet, click create
+                  new project to begin.
+                </p>
+              </div>
+            )}
           </Fragment>
         ) : (
           <Fragment>
-            <p>You have not yet setup a profile, please add some info</p>
-            <Link to="/create-profile" className="btn btn-primary my-1">
-              Create Profile
-            </Link>
+            <div className="pageWrapperMarginForNav">
+              <p>You have not yet setup a profile, please add some info</p>
+              <Link to="/create-profile" className="btn btn-primary my-1">
+                Create Profile
+              </Link>
+            </div>
           </Fragment>
         )}
       </div>

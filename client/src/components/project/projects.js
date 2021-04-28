@@ -44,8 +44,11 @@ const Projects = ({
                 </div>
 
                 {/* grid here */}
-                <div className="projectManager">
-                  <Link to={`/profile/${project.user}`}>
+                <div className="projectManagerDiv">
+                  <Link
+                    className="projectManager"
+                    to={`/profile/${project.user}`}
+                  >
                     <h4>Project Manager: {project.name}</h4>
                   </Link>
                 </div>
@@ -54,14 +57,12 @@ const Projects = ({
                   <div className="project-edu">
                     <p className="post-date">
                       {" "}
-                      <i className="fas fa-calendar-alt text-primaryDash"></i>
                       {"   "} Created on{" "}
                       <Moment format="YYYY/MM/DD">{project.startDate}</Moment>
                     </p>
 
                     <p className="post-date">
                       {" "}
-                      <i className="fas fa-calendar-alt text-primaryDash"></i>
                       {"  "} Deadline{" "}
                       <Moment format="YYYY/MM/DD">{project.endDate}</Moment>
                     </p>
@@ -72,12 +73,10 @@ const Projects = ({
                   <div className="project-exp">
                     <div className="projectsIcons">
                       <p>
-                        <i className="fas fa-user-circle text-primaryDash"></i>
                         {"  "}
                         {project.members.length} members
                       </p>
                       <p>
-                        <i className="fas fa-user-circle text-primaryDash"></i>
                         {"  "}
                         {project.tickets.length} tickets
                       </p>
@@ -120,8 +119,11 @@ const Projects = ({
                     </div>
 
                     {/* grid here */}
-                    <div className="projectManager">
-                      <Link to={`/profile/${project.user}`}>
+                    <div className="projectManagerDiv">
+                      <Link
+                        className="projectManager"
+                        to={`/profile/${project.user}`}
+                      >
                         <h4>Project Manager: {project.name}</h4>
                       </Link>
                     </div>
@@ -130,7 +132,6 @@ const Projects = ({
                       <div className="project-edu">
                         <p className="post-date">
                           {" "}
-                          <i className="fas fa-calendar-alt text-primaryDash"></i>
                           {"   "} Created on{" "}
                           <Moment format="YYYY/MM/DD">
                             {project.startDate}
@@ -139,7 +140,6 @@ const Projects = ({
 
                         <p className="post-date">
                           {" "}
-                          <i className="fas fa-calendar-alt text-primaryDash"></i>
                           {"  "} Deadline{" "}
                           <Moment format="YYYY/MM/DD">{project.endDate}</Moment>
                         </p>
@@ -150,12 +150,10 @@ const Projects = ({
                       <div className="project-exp">
                         <div className="projectsIcons">
                           <p>
-                            <i className="fas fa-user-circle text-primaryDash"></i>
                             {"  "}
                             {project.members.length} members
                           </p>
                           <p>
-                            <i className="fas fa-user-circle text-primaryDash"></i>
                             {"  "}
                             {project.tickets.length} tickets
                           </p>

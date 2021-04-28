@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #060b26;
+  background-color: #264653;
   height: 8%;
   width: 100%;
   display: flex;
@@ -20,7 +20,9 @@
 }
 
 .nav-menu {
-  background-color: #060b26;
+  /* background-color: #5bc0eb; */
+
+  background-color: #264653;
   margin-right: 250px;
   width: 15%;
   height: 100%;
@@ -30,6 +32,9 @@
   top: 0;
   left: -100%;
   transition: 850ms;
+  /* box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8); */
+
+  /* border: 1px solid; */
 }
 
 .nav-menu.active {

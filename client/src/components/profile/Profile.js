@@ -24,14 +24,6 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
             <Spinner />
           ) : (
             <Fragment>
-              {auth.isAuthenticated &&
-                auth.loading === false &&
-                auth.user._id === profile.user._id && (
-                  <Link to="/edit-profile" className="btn btn-dark">
-                    Edit Profile
-                  </Link>
-                )}
-
               <div className="profile-grid my-1">
                 <ProfileTop profile={profile} />
                 <ProfileAbout profile={profile} />
@@ -70,6 +62,20 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                 {profile.githubusername && (
                   <ProfileGithub username={profile.githubusername} />
                 )}
+                {auth.isAuthenticated &&
+                  auth.loading === false &&
+                  auth.user._id === profile.user._id && (
+                    <Link to="/edit-profile" className="btn btn-dark">
+                      Edit Profile
+                    </Link>
+                  )}
+
+                <button
+                  className="btn btn-danger"
+                  onClick={() => deleteAccount()}
+                >
+                  Delete My Account
+                </button>
               </div>
             </Fragment>
           )}

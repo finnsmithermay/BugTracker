@@ -12,12 +12,12 @@ const TicketCommentForm = ({ projectId, ticketId, addComment }) => {
 
   const [text, setText] = useState("");
   return (
-    <div className="post-form">
+    <div className="textAreaSize">
       <div className="bg-primary p">
         <h3>Leave a Comment</h3>
       </div>
       <form
-        className="form my-1"
+        className="textAreaSizeTicket"
         onSubmit={(e) => {
           e.preventDefault();
 

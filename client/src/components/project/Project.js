@@ -70,7 +70,7 @@ const Project = ({
     getMembers();
     getTickets();
     chart();
-  }, [getProject]);
+  }, [getProject, getTickets, getMembers]);
   const filteredMembers = "";
 
   filteredList = profiles.filter((item) =>
@@ -136,10 +136,12 @@ const Project = ({
             </button>
 
             <button className="btnDash" onClick={() => setShowMembers(false)}>
-              Description
+              Project Outline
             </button>
 
-            <Link to={`/edit-project/${project._id}`}>Edit Project</Link>
+            <Link to={`/edit-project/${project._id}`} className="btnDash">
+              Edit Project
+            </Link>
           </div>
         </div>
 
@@ -150,9 +152,11 @@ const Project = ({
             <div className="projectWrapper">
               <div>{/* project description */}</div>
 
-              <p className="lead">
-                <i className="fas fa-user" /> View and edit project members
-              </p>
+              <div className="divHeading">
+                <p className="lead">
+                  <i className="fas fa-user" /> View and edit project members
+                </p>
+              </div>
 
               <div className="my-2">
                 <button
@@ -194,12 +198,35 @@ const Project = ({
                         .includes(searchMembers.toString().toLowerCase())
                     )),
                     filteredListMembers.map((member) => (
+                      // <div className="profile bg-light">
+                      //   <div>
+                      //     <Link to={`/profile/${member._id}` }>
+                      //       {member.name}
+                      //     </Link>
+
+                      //     {project.user === auth.user._id && (
+                      //       <button
+                      //         onClick={() =>
+                      //           removeMember(project._id, member.id)
+                      //         }
+                      //         type="button"
+                      //         className="btn btn-danger"
+                      //       >
+                      //         Remove
+                      //       </button>
+                      //     )}
+                      //   </div>
+                      // </div>
+
                       <div className="profile bg-light">
                         <div>
-                          <Link to={`/profile/${member._id}`}>
-                            {member.name}
+                          <h2>{member.name}</h2>
+                          <Link
+                            to={`/profile/${member._id}`}
+                            className="btn btn-primary"
+                          >
+                            View Profile
                           </Link>
-                          <p>{member.status}</p>
 
                           {project.user === auth.user._id && (
                             <button
@@ -209,7 +236,7 @@ const Project = ({
                               type="button"
                               className="btn btn-danger"
                             >
-                              <i className="fas fa-times"></i>
+                              Remove
                             </button>
                           )}
                         </div>
@@ -226,7 +253,7 @@ const Project = ({
                     <input
                       className="searchBarInput"
                       type="text"
-                      placeholder="Serach Member"
+                      placeholder="Search Member"
                       name="text"
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
@@ -289,7 +316,7 @@ const Project = ({
                     />
                   </div>
 
-                  <div style={{ overflowY: "auto", height: "41rem" }}>
+                  <div style={{ overflowY: "auto", height: "33rem" }}>
                     {loading || tickets == null ? (
                       <Spinner />
                     ) : (
@@ -310,7 +337,7 @@ const Project = ({
                           ? (ticket.priority === "Low"
                               ? (color = "#2cdd58")
                               : ticket.priority === "Medium"
-                              ? (color = "yellow")
+                              ? (color = "orange")
                               : ticket.priority === "High"
                               ? (color = "orange")
                               : ticket.priority === "Urgent"
@@ -324,7 +351,9 @@ const Project = ({
                                     backgroundColor: color,
                                   }}
                                 >
-                                  <p className="medium">{ticket.ticketName}</p>
+                                  <p className="mediumtext">
+                                    {ticket.ticketName}
+                                  </p>
                                 </div>
 
                                 {/* grid here */}
@@ -391,7 +420,7 @@ const Project = ({
               {!showCurrentTickets ? (
                 <div>
                   {/* </div> */}
-                  <div style={{ overflowY: "auto", height: "41rem" }}>
+                  <div style={{ overflowY: "auto", height: "35rem" }}>
                     <div className="searchBar">
                       <input
                         className="searchBarInput"
@@ -496,26 +525,26 @@ const Project = ({
         ) : (
           //show poject decription
           // className="projectDescription"
-          <div className="graphsDesc">
+          <div className="projectDescription">
             <div>
-              <h1>{project.projectName} decription</h1>
               <h2 className="projectDescriptionText">{project.text}</h2>
             </div>
-            <div className="pie">
-              {getVals()}
-
-              <Doughnut
-                data={chartData}
-                options={{
-                  responsive: true,
-                  title: { text: "Proportion Of Tickets", display: true },
-                  scales: {
-                    yAxes: [],
-                  },
-                }}
-              />
-            </div>
+            {/* <div className="pie"> */}
+            {getVals()}
+            {/* 
+            <Doughnut
+              width="10rem"
+              data={chartData}
+              options={{
+                responsive: true,
+                title: { text: "Proportion Of Tickets", display: true },
+                scales: {
+                  yAxes: [],
+                },
+              }}
+            /> */}
           </div>
+          // </div>
         )}
       </div>
     </Fragment>

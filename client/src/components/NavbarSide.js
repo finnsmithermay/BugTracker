@@ -67,44 +67,36 @@ export const NavbarSide = ({
           <Link to="#" className="menu-bars"></Link>
         </li>
 
-        <li>
+        {/* <li>
           <Link to="/dashboard" className="menuButtons">
             <span className="hide-sm">Dashboard</span>
           </Link>
-        </li>
-
-        <Link to="add-project" className="menuButtons">
-          Create New Project
-        </Link>
-
+        </li> */}
         <Link to="/projects" className="menuButtons">
           Projects
         </Link>
-
-        <Link to="/edit-profile" className="menuButtons">
-          Edit Profile
+        <Link to="add-project" className="menuButtons">
+          Create New Project
         </Link>
-
-        {!loading &&
-          (isAuthenticated ? (
-            <Link to={`/profile/${user._id}`} className="menuButtons">
-              View Profile
-            </Link>
-          ) : null)}
-
-        <Link to="add-experience" className="menuButtons">
-          Add Experience
-        </Link>
-
-        <button className="menuButtons" onClick={() => deleteAccount()}>
-          Delete My Account
-        </button>
 
         <li>
           <Link to="/posts" className="menuButtons">
             Community Posts
           </Link>
         </li>
+        {!loading &&
+          (isAuthenticated ? (
+            <Link to={`/profile/${user._id}`} className="menuButtons">
+              View Profile
+            </Link>
+          ) : null)}
+        <Link to="/edit-profile" className="menuButtons">
+          Edit Profile
+        </Link>
+
+        <Link to="add-experience" className="menuButtons">
+          Add Experience
+        </Link>
       </ul>
     </nav>
   );
