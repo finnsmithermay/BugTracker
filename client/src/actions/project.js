@@ -277,7 +277,7 @@ export const editProject = (pId, data) => async (dispatch) => {
     dispatch(setAlert("Project updated", "success"));
 
     dispatch({
-      type: EDIT_PROJECT,
+      // type: EDIT_PROJECT,
       payload: res.data,
     });
 
