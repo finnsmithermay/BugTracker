@@ -18,6 +18,7 @@ export const NavbarSide = ({
     isAuthenticated,
     deleteAccount,
     user,
+    _id,
     auth,
     loading,
     getCurrentProfile,
@@ -86,7 +87,7 @@ export const NavbarSide = ({
         </li>
         {!loading &&
           (isAuthenticated ? (
-            <Link to={`/profile/${user._id}`} className="menuButtons">
+            <Link to={`/profile/${_id}`} className="menuButtons">
               View Profile
             </Link>
           ) : null)}

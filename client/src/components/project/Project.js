@@ -153,9 +153,7 @@ const Project = ({
               <div>{/* project description */}</div>
 
               <div className="divHeading">
-                <p className="lead">
-                  <i className="fas fa-user" /> View and edit project members
-                </p>
+                <p className="lead">View and edit project members</p>
               </div>
 
               <div className="my-2">
@@ -274,9 +272,7 @@ const Project = ({
 
             <div className="projectWrapperTickets">
               {/* <div className="dash-buttons my-a"> */}
-              <p className="lead">
-                <i className="fas fa-user" /> Tickets
-              </p>
+              <p className="lead">Tickets</p>
 
               <div className="dash-buttons">
                 <button

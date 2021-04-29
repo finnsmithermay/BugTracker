@@ -63,7 +63,7 @@ img {
 }
 
 .lead2 {
-  font-size: 2rem;
+  font-size: 1.4rem;
 }
 
 .ticketTitle {
@@ -351,7 +351,7 @@ img {
   background: var(--grey-color);
   color: #333;
   padding: 0.7rem 1.3rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   border: none;
   cursor: pointer;
@@ -398,10 +398,10 @@ img {
   margin-top: 10%;
   color: rgb(255, 255, 255);
   /* padding: 0.7rem 1.3rem; */
-  padding-left: 1.7rem;
+  padding-left: 1rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   border: none;
   cursor: pointer;
