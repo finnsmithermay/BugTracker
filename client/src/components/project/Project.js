@@ -178,7 +178,7 @@ const Project = ({
                     <input
                       className="searchBarInput"
                       type="text"
-                      placeholder="Serach Project Members"
+                      placeholder="Search Project Members"
                       name="text"
                       value={searchMembers}
                       onChange={(e) => setSearchMembers(e.target.value)}
@@ -218,7 +218,7 @@ const Project = ({
 
                       <div className="profile bg-light">
                         <div>
-                          <h2>{member.name}</h2>
+                          <p>{member.name}</p>
                           <Link
                             to={`/profile/${member._id}`}
                             className="btn btn-primary"
@@ -304,7 +304,7 @@ const Project = ({
                     <input
                       className="searchBarInput"
                       type="text"
-                      placeholder="Serach Tasks"
+                      placeholder="Search Tasks"
                       name="text"
                       value={searchTickets}
                       onChange={(e) => setsearchTickets(e.target.value)}
@@ -421,7 +421,7 @@ const Project = ({
                       <input
                         className="searchBarInput"
                         type="text"
-                        placeholder="Serach Tasks"
+                        placeholder="Search Tasks"
                         name="text"
                         value={searchTickets}
                         onChange={(e) => setsearchTickets(e.target.value)}
