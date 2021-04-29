@@ -40,18 +40,18 @@ export const NavbarSide = ({
         <Link to="/" className="menuButtonsLarge">
           <i className="fas fa-code"></i> Bug Tracker
         </Link>
-
-        {/* {user.name} */}
-
-        {/* {user.name === null || user === null || !isAuthenticated ? (
+      </ul>
+      {/* <ul>
+        {user.name === null || user === null || !isAuthenticated ? (
           <li></li>
         ) : (
           <li className="dashLoggedInAs">Logged in as {user.name}</li>
-        )} */}
-      </ul>
+        )}
+      </ul> */}
+
       <ul className="navLinks">
         <li>
-          <a onClick={logout} href="#!" className="navLogout">
+          <a onClick={logout} href="/" className="navLogout">
             <i className="fas fa-sign-out-alt" />{" "}
             <span className="hide-sm">Logout</span>
           </a>
@@ -90,13 +90,6 @@ export const NavbarSide = ({
               View Profile
             </Link>
           ) : null)}
-        <Link to="/edit-profile" className="menuButtons">
-          Edit Profile
-        </Link>
-
-        <Link to="add-experience" className="menuButtons">
-          Add Experience
-        </Link>
       </ul>
     </nav>
   );

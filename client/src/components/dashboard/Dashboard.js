@@ -144,7 +144,10 @@ const Dashboard = ({
                     data={chartData}
                     options={{
                       responsive: true,
-                      title: { text: "Proportion Of Tickets", display: true },
+                      title: {
+                        text: "Proportion of active tasks",
+                        display: true,
+                      },
                       scales: {
                         yAxes: [],
                       },
@@ -156,7 +159,7 @@ const Dashboard = ({
                   <Bar
                     data={barChartData}
                     options={{
-                      title: { text: "Tickets Per Project", display: true },
+                      title: { text: "Tickets per project", display: true },
 
                       scales: {
                         xAxes: [

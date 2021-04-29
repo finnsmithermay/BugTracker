@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
 
 const EditProfile = ({
+  auth: { user },
   profile: { profile, loading },
   createProfile,
   getCurrentProfile,
@@ -245,9 +246,9 @@ const EditProfile = ({
             )}
 
             <input type="submit" className="btn btn-primary my-1" />
-            <Link className="btn btn-light my-1" to="/dashboard">
+            <a class="btn btn-light my-1" href={`/profile/${user._id}`}>
               Go Back
-            </Link>
+            </a>
           </form>
         </div>
       </div>
@@ -259,10 +260,12 @@ EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { createProfile, getCurrentProfile })(

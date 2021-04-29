@@ -175,7 +175,7 @@ const Project = ({
               </div>
 
               {show ? (
-                <div style={{ overflowY: "auto", height: "41rem" }}>
+                <div style={{ overflowY: "auto", height: "38rem" }}>
                   <div className="searchBar">
                     <input
                       className="searchBarInput"
@@ -248,7 +248,7 @@ const Project = ({
 
               {/* show all users */}
               {!show ? (
-                <div style={{ overflowY: "auto", height: "41rem" }}>
+                <div style={{ overflowY: "auto", height: "38rem" }}>
                   <div className="searchBar">
                     <input
                       className="searchBarInput"
@@ -280,14 +280,14 @@ const Project = ({
 
               <div className="dash-buttons">
                 <button
-                  className="btnDash"
+                  className="btnDashTickets"
                   onClick={() => setshowCurrentTickets(true)}
                 >
                   Current Tasks
                 </button>
 
                 <button
-                  className="btnDash"
+                  className="btnDashTickets"
                   onClick={() => setshowCurrentTickets(false)}
                 >
                   Finished Tasks

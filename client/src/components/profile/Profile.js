@@ -8,11 +8,24 @@ import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
 import ProfileGithub from "./ProfileGithub";
+import { logout } from "../../actions/auth";
 
-import { getProfileById } from "../../actions/profile";
+import {
+  getProfileById,
+  deleteAccount,
+  getProfiles,
+} from "../../actions/profile";
 
-const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
+const Profile = ({
+  getProfileById,
+  profile: { profile },
+  auth,
+  match,
+  deleteAccount,
+  logout,
+}) => {
   useEffect(() => {
+    getProfiles();
     getProfileById(match.params.id);
   }, [getProfileById, match.params.id]);
 
@@ -58,6 +71,21 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                     <h4>No education credentials</h4>
                   )}
                 </div>
+                {auth.isAuthenticated &&
+                  auth.loading === false &&
+                  auth.user._id === profile.user._id && (
+                    <Link to="/add-experience" className="btn btn-dark">
+                      Add Experience
+                    </Link>
+                  )}
+
+                {auth.isAuthenticated &&
+                  auth.loading === false &&
+                  auth.user._id === profile.user._id && (
+                    <Link to="/add-education" className="btn btn-dark">
+                      Add Education
+                    </Link>
+                  )}
 
                 {profile.githubusername && (
                   <ProfileGithub username={profile.githubusername} />
@@ -69,13 +97,17 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                       Edit Profile
                     </Link>
                   )}
-
-                <button
-                  className="btn btn-danger"
-                  onClick={() => deleteAccount()}
-                >
-                  Delete My Account
-                </button>
+                {auth.isAuthenticated &&
+                  auth.loading === false &&
+                  auth.user._id === profile.user._id && (
+                    <Link
+                      to="/"
+                      className="btn btn-danger"
+                      onClick={(() => deleteAccount, logout)}
+                    >
+                      Delete My Account
+                    </Link>
+                  )}
               </div>
             </Fragment>
           )}
@@ -89,6 +121,8 @@ Profile.propTypes = {
   getProfileById: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -96,4 +130,8 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getProfileById })(Profile);
+export default connect(mapStateToProps, {
+  deleteAccount,
+  logout,
+  getProfileById,
+})(Profile);
