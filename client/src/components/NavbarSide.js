@@ -14,18 +14,14 @@ import { deleteAccount, getCurrentProfile } from "../actions/profile";
 // NavbarSide
 
 export const NavbarSide = ({
-  auth: {
-    isAuthenticated,
-    deleteAccount,
-    user,
-    _id,
-    auth,
-    loading,
-    getCurrentProfile,
-  },
+  profile: { profile, user },
+
+  auth: { isAuthenticated, deleteAccount, auth, loading, getCurrentProfile },
   logout,
 }) => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getCurrentProfile;
+  }, []);
 
   const [sidebar, setSidebar] = useState(true);
 
@@ -47,7 +43,7 @@ export const NavbarSide = ({
           <li></li>
         ) : (
           <li className="dashLoggedInAs">Logged in as {user.name}</li>
-        )}
+        )}/profile/me
       </ul> */}
 
       <ul className="navLinks">
@@ -85,12 +81,12 @@ export const NavbarSide = ({
             Community Posts
           </Link>
         </li>
-        {!loading &&
+        {/* {!loading &&
           (isAuthenticated ? (
-            <Link to={`/profile/${_id}`} className="menuButtons">
+            <Link to={`/profile/${user._id}`} className="menuButtons">
               View Profile
             </Link>
-          ) : null)}
+          ) : null)} */}
       </ul>
     </nav>
   );
@@ -107,12 +103,18 @@ export const NavbarSide = ({
 NavbarSide.propTypes = {
   logout: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
-
+  profile: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  profile: state.profile,
 });
 
-export default connect(mapStateToProps, { deleteAccount, logout })(NavbarSide);
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  deleteAccount,
+  logout,
+})(NavbarSide);

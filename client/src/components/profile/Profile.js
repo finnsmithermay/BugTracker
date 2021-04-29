@@ -25,9 +25,8 @@ const Profile = ({
   logout,
 }) => {
   useEffect(() => {
-    getProfiles();
     getProfileById(match.params.id);
-  }, [getProfileById, match.params.id]);
+  }, []);
 
   return (
     <Fragment>

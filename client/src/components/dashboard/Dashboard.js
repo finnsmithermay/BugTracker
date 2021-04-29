@@ -34,7 +34,7 @@ const Dashboard = ({
 
     chart();
     barChart();
-  }, [getCurrentProfile]);
+  }, [getCurrentProfile, getProjects]);
 
   const [chartData, setChartData] = useState({});
 
