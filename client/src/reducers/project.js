@@ -14,6 +14,7 @@ import {
   REMOVE_TICKET,
   GET_TICKET,
   ADD_TICKET_COMMENT,
+  EDIT_PROJECT,
 } from "../actions/types";
 
 const initialState = {
