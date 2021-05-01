@@ -186,44 +186,39 @@ const Project = ({
                     />
                   </div>
 
-                  {loading ||
-                  members === null ||
-                  project.members.length === 0 ||
-                  project.members !== null ? (
-                    <Spinner />
-                  ) : (
-                    ((filteredListMembers = project.members.filter((item) =>
-                      item.name
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchMembers.toString().toLowerCase())
-                    )),
-                    filteredListMembers.map((member) => (
-                      <div className="profile bg-light">
-                        <div>
-                          <p>{member.name}</p>
-                          <Link
-                            to={`/profile/${member.id}`}
-                            className="btn btn-primary"
-                          >
-                            View Profile test
-                          </Link>
-
-                          {project.user === auth.user._id && (
-                            <button
-                              onClick={() =>
-                                removeMember(project._id, member.id)
-                              }
-                              type="button"
-                              className="btn btn-danger"
+                  {loading || project.members === null
+                    ? ((<Spinner />), getMembers())
+                    : ((filteredListMembers = project.members.filter((item) =>
+                        item.name
+                          .toString()
+                          .toLowerCase()
+                          .includes(searchMembers.toString().toLowerCase())
+                      )),
+                      filteredListMembers.map((member) => (
+                        <div className="profile bg-light">
+                          <div>
+                            <p>{member.name}</p>
+                            <Link
+                              to={`/profile/${member.id}`}
+                              className="btn btn-primary"
                             >
-                              Remove
-                            </button>
-                          )}
+                              View Profile test
+                            </Link>
+
+                            {project.user === auth.user._id && (
+                              <button
+                                onClick={() =>
+                                  removeMember(project._id, member.id)
+                                }
+                                type="button"
+                                className="btn btn-danger"
+                              >
+                                Remove
+                              </button>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    )))
-                  )}
+                      )))}
                 </div>
               ) : null}
 
