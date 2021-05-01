@@ -186,10 +186,12 @@ const Project = ({
                     />
                   </div>
 
-                  {loading || members === null ? (
+                  {loading ||
+                  members === null ||
+                  project.members.length === 0 ||
+                  project.members !== null ? (
                     <Spinner />
                   ) : (
-                    {getMembers()}
                     ((filteredListMembers = project.members.filter((item) =>
                       item.name
                         .toString()
@@ -197,7 +199,6 @@ const Project = ({
                         .includes(searchMembers.toString().toLowerCase())
                     )),
                     filteredListMembers.map((member) => (
-                 
                       <div className="profile bg-light">
                         <div>
                           <p>{member.name}</p>
