@@ -27,9 +27,7 @@ export const NavbarSide = ({
   },
   logout,
 }) => {
-  useEffect(() => {
-    getCurrentProfile();
-  }, []);
+  useEffect(() => {}, []);
 
   const [sidebar, setSidebar] = useState(true);
 
