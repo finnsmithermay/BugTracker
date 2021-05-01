@@ -28,7 +28,7 @@ export const NavbarSide = ({
   logout,
 }) => {
   useEffect(() => {
-    getCurrentProfile;
+    getCurrentProfile();
   }, []);
 
   const [sidebar, setSidebar] = useState(true);
@@ -37,10 +37,6 @@ export const NavbarSide = ({
 
   const top = (
     <div className="navbar">
-      {/* <Link to="#" className="menu-bars">
-        <FaIcons.FaBars onClick={showSidebar} />
-      </Link> */}
-
       <ul>
         <Link to="/" className="menuButtonsLarge">
           <i className="fas fa-code"></i> Bug Tracker
