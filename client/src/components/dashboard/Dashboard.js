@@ -56,7 +56,6 @@ const Dashboard = ({
               projectNames.push(project.projectName),
               project.tickets.map(
                 (ticket) => (
-                  console.log(ticket.priority),
                   (total = total + 1),
                   ticket.priority == "Low" ? (low = low + 1) : null,
                   ticket.priority == "Medium" ? (medium = medium + 1) : null,
