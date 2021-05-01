@@ -3,13 +3,14 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteAccount, getCurrentProfile } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { getProjects, getProject } from "../../actions/project";
 import { deleteProject } from "../../actions/project";
 import Moment from "react-moment";
 import NavbarSide from "../NavbarSide";
 
 const Projects = ({
+  isAuthenticated,
   deleteProject,
   getProject,
   auth,
@@ -205,12 +206,14 @@ Projects.propTypes = {
   profile: PropTypes.object.isRequired,
   deleteProject: PropTypes.func.isRequired,
   getProject: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
   project: state.project,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, {

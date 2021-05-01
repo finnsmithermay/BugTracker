@@ -14,9 +14,17 @@ import { deleteAccount, getCurrentProfile } from "../actions/profile";
 // NavbarSide
 
 export const NavbarSide = ({
-  profile: { profile, user },
+  profile: { profile },
 
-  auth: { isAuthenticated, deleteAccount, auth, loading, getCurrentProfile },
+  auth: {
+    isAuthenticated,
+    deleteAccount,
+    auth,
+    user,
+    _id,
+    loading,
+    getCurrentProfile,
+  },
   logout,
 }) => {
   useEffect(() => {
@@ -81,12 +89,15 @@ export const NavbarSide = ({
             Community Posts
           </Link>
         </li>
-        {/* {!loading &&
-          (isAuthenticated ? (
-            <Link to={`/profile/${user._id}`} className="menuButtons">
-              View Profile
-            </Link>
-          ) : null)} */}
+
+        {user == null || user === null
+          ? null
+          : !loading &&
+            (isAuthenticated ? (
+              <Link to={`/profile/${user._id}`} className="menuButtons">
+                View Profile
+              </Link>
+            ) : null)}
       </ul>
     </nav>
   );

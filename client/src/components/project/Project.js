@@ -220,7 +220,7 @@ const Project = ({
                         <div>
                           <p>{member.name}</p>
                           <Link
-                            to={`/profile/${member._id}`}
+                            to={`/profile/${member.id}`}
                             className="btn btn-primary"
                           >
                             View Profile test

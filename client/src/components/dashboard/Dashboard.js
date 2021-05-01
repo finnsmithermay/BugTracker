@@ -15,7 +15,6 @@ import Moment from "react-moment";
 import { Line } from "react-chartjs-2";
 import { Doughnut } from "react-chartjs-2";
 import { Bar } from "react-chartjs-2";
-import NavbarSide from "../NavbarSide";
 
 const Dashboard = ({
   deleteProject,
@@ -34,7 +33,7 @@ const Dashboard = ({
 
     chart();
     barChart();
-  }, [getCurrentProfile, getProjects]);
+  }, []);
 
   const [chartData, setChartData] = useState({});
 
@@ -49,14 +48,6 @@ const Dashboard = ({
   var barData = [];
 
   const getVals = () => {
-    low = 0;
-    medium = 0;
-    high = 0;
-    urgent = 0;
-    total = 0;
-    projectNames = [];
-    barData = [];
-
     projects.length === 0
       ? getProjects()
       : projects.map((project) =>
@@ -65,6 +56,7 @@ const Dashboard = ({
               projectNames.push(project.projectName),
               project.tickets.map(
                 (ticket) => (
+                  console.log(ticket.priority),
                   (total = total + 1),
                   ticket.priority == "Low" ? (low = low + 1) : null,
                   ticket.priority == "Medium" ? (medium = medium + 1) : null,
@@ -92,7 +84,7 @@ const Dashboard = ({
         {
           label: "label",
           data: [low, medium, high, urgent],
-          backgroundColor: ["#2cdd58", "#fbff01", "#ff8901", "#f84040"],
+          backgroundColor: ["#0a6ef0", "#0af021", "#fc8c03", "#fc0303"],
           borderWidth: 4,
         },
       ],
@@ -118,78 +110,61 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment className="pageWrapper">
-      {getVals()}
-
-      {/* //chnage to just projects this user it part of */}
-
       <div className="pageWrapperMarginForNav">
+        {/* //chnage to just projects this user it part of */}
+
         <div className="dashHeading">
           <h1 className="largeDash text-primary">Dashboard</h1>
           <p className="lead">
-            <i className="fas fa-user" /> Signed in as {user && user.name}
+            <i className="fas fa-user" /> Welcome {user && user.name}
           </p>
         </div>
 
         {profile != null ? (
           <Fragment>
-            {/*<Experience experience={profile.experience}/>}
-          {<Education education={profile.edu==cation}/>*/}
-
-            {projectNames.length !== 0 ? (
-              <div className="graphs">
-                <div className="graph">
-                  {getVals()}
-
+            <div className="graphs">
+              <div className="graph">
+                {getVals()}
+                {total === 0 ? (
+                  <h1>Looks Like you havent started any projects yet</h1>
+                ) : (
                   <Doughnut
                     data={chartData}
                     options={{
                       responsive: true,
-                      title: {
-                        text: "Proportion of active tasks",
-                        display: true,
-                      },
+                      title: { text: "Proportion Of Tickets", display: true },
                       scales: {
                         yAxes: [],
                       },
                     }}
                   />
-                </div>
-
-                <div className="barGraph">
-                  <Bar
-                    data={barChartData}
-                    options={{
-                      title: { text: "Tickets per project", display: true },
-
-                      scales: {
-                        xAxes: [
-                          {
-                            barPercentage: 0.6,
-                          },
-                        ],
-                      },
-                    }}
-                  />
-                </div>
+                )}
               </div>
-            ) : (
-              <div className="noProjects">
-                {" "}
-                <p className="noProjectsText">
-                  Looks Like you havent started any projects yet, click create
-                  new project to begin.
-                </p>
+
+              <div className="barGraph">
+                <Bar
+                  data={barChartData}
+                  options={{
+                    title: { text: "Tickets Per Project", display: true },
+
+                    scales: {
+                      xAxes: [
+                        {
+                          barPercentage: 0.6,
+                        },
+                      ],
+                    },
+                  }}
+                />
               </div>
-            )}
+            </div>
           </Fragment>
         ) : (
           <Fragment>
-            <div className="pageWrapperMarginForNav">
-              <p>You have not yet setup a profile, please add some info</p>
-              <Link to="/create-profile" className="btn btn-primary my-1">
-                Create Profile
-              </Link>
-            </div>
+            <p>You have not yet setup a profile, please add some info</p>
+            <Link to="/create-profile" className="btn btn-primary my-1">
+              Create Profile
+            </Link>
           </Fragment>
         )}
       </div>

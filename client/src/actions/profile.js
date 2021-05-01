@@ -80,6 +80,7 @@ export const getGithubRepos = (username) => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
+    console.log("github error");
     dispatch({
       type: PROFILE_ERROR,
       payload: {
