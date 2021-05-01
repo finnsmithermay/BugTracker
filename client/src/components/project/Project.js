@@ -70,7 +70,7 @@ const Project = ({
     getMembers();
     getTickets();
     chart();
-  }, [getProject, getTickets, getMembers]);
+  }, []);
   const filteredMembers = "";
 
   filteredList = profiles.filter((item) =>
