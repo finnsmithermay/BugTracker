@@ -189,6 +189,7 @@ const Project = ({
                   {loading || members === null ? (
                     <Spinner />
                   ) : (
+                    {getMembers()}
                     ((filteredListMembers = project.members.filter((item) =>
                       item.name
                         .toString()
@@ -196,26 +197,7 @@ const Project = ({
                         .includes(searchMembers.toString().toLowerCase())
                     )),
                     filteredListMembers.map((member) => (
-                      // <div className="profile bg-light">
-                      //   <div>
-                      //     <Link to={`/profile/${member._id}` }>
-                      //       {member.name}
-                      //     </Link>
-
-                      //     {project.user === auth.user._id && (
-                      //       <button
-                      //         onClick={() =>
-                      //           removeMember(project._id, member.id)
-                      //         }
-                      //         type="button"
-                      //         className="btn btn-danger"
-                      //       >
-                      //         Remove
-                      //       </button>
-                      //     )}
-                      //   </div>
-                      // </div>
-
+                 
                       <div className="profile bg-light">
                         <div>
                           <p>{member.name}</p>
