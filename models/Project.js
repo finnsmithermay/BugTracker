@@ -1,27 +1,22 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ProjectSchema = new Schema({
-
-  
-
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: "users",
   },
   text: {
     type: String,
   },
   avatar: {
-    type: String
+    type: String,
   },
   //not required so you can add them later
   members: [
     {
       user: {
         type: Schema.Types.ObjectId,
-        
-
       },
       name: {
         type: String,
@@ -29,97 +24,92 @@ const ProjectSchema = new Schema({
       },
       status: {
         type: String,
-      }, 
+      },
       skills: {
         type: [String],
       },
       id: {
         type: String,
-      }, 
-    
-    }
+      },
+    },
   ],
   projectName: {
     type: String,
-    required: true
-
-
+    required: true,
   },
 
   startDate: {
     type: Date,
   },
   endDate: {
-    type: Date
+    type: Date,
   },
 
   name: {
-    type: String
+    type: String,
   },
   avatar: {
-    type: String
+    type: String,
   },
   likes: [
     {
       user: {
-        type: Schema.Types.ObjectId
-      }
-    }
+        type: Schema.Types.ObjectId,
+      },
+    },
   ],
   tickets: [
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: "users",
       },
       text: {
         type: String,
       },
-      ticketName:{
+      ticketName: {
         type: String,
-        default: "add a name"
       },
       name: {
-        type: String
+        type: String,
       },
       date: {
         type: Date,
-        default: Date.now
+        default: Date.now,
       },
-      status:{
-        type: String
+      status: {
+        type: String,
       },
-      priority:{
-        type: String
+      priority: {
+        type: String,
       },
       comments: [
         {
           user: {
-            type: Schema.Types.ObjectId
+            type: Schema.Types.ObjectId,
           },
           text: {
             type: String,
-            required: true
+            required: true,
           },
           name: {
-            type: String
+            type: String,
           },
           avatar: {
-            type: String
+            type: String,
           },
           date: {
             type: Date,
-            default: Date.now
-          }
-        }
+            default: Date.now,
+          },
+        },
       ],
-
-    }
+    },
   ],
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-module.exports = mongoose.model('project', ProjectSchema); 
+module.exports = mongoose.model("project", ProjectSchema);

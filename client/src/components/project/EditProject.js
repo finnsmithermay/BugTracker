@@ -16,8 +16,8 @@ const EditProject = ({
   const [formData, setFormData] = useState({
     projectName: "",
     text: "",
-    startDate: "",
-    endDate: "",
+    startDate: " ",
+    endDate: " ",
   });
 
   useEffect(() => {
@@ -26,8 +26,8 @@ const EditProject = ({
     setFormData({
       projectName: loading || !project.projectName ? "" : project.projectName,
       text: loading || !project.text ? "" : project.text,
-      startDate: loading || !project.startDate ? "" : project.startDate,
-      endDate: loading || !project.endDate ? "" : project.endDate,
+      startDate: loading || !project.startDate ? " " : project.startDate,
+      endDate: loading || !project.endDate ? " " : project.endDate,
     });
   }, [loading]);
 
@@ -38,70 +38,144 @@ const EditProject = ({
 
   return (
     <Fragment>
-      <div className="pageWrapperMarginForNav">
-        <div className="pageWidth">
-          <h1 class="large text-primary">Edit project</h1>
-          <p class="lead">
-            <i class="fas fa-code-branch"></i> Create a new project
-          </p>
-          <small>* = required field</small>
+      {window.innerWidth > 1200 ? (
+        <div className="pageWrapperMarginForNav">
+          <div className="pageWidth">
+            <h1 class="large text-primary">Edit project</h1>
+            <p class="lead">
+              <i class="fas fa-code-branch"></i> Create a new project
+            </p>
+            <small>* = required field</small>
 
-          <form
-            class="form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              editProject(project._id, formData, history);
-              history.push(`/project/${project._id}`);
-            }}
-          >
-            <div class="form-group">
-              <input
-                type="text"
-                placeholder="* Project Name"
-                name="projectName"
-                value={projectName}
-                onChange={(e) => onChange(e)}
-                required
-              />
-            </div>
+            <form
+              class="form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                console.log(project._id);
+                console.log(formData);
+                console.log(history);
 
-            <div class="form-group">
-              <h4>Start Date</h4>
-              <input
-                type="date"
-                name="startDate"
-                value={startDate}
-                onChange={(e) => onChange(e)}
-              />
-            </div>
+                editProject(project._id, formData, history);
+                history.push(`/project/${project._id}`);
+              }}
+            >
+              <div class="form-group">
+                <input
+                  type="text"
+                  placeholder="* Project Name"
+                  name="projectName"
+                  value={projectName}
+                  onChange={(e) => onChange(e)}
+                  required
+                />
+              </div>
 
-            <div class="form-group">
-              <h4>Deadline</h4>
-              <input
-                type="date"
-                name="endDate"
-                value={endDate}
-                onChange={(e) => onChange(e)}
-              />
-            </div>
+              <div class="form-group">
+                <h4>Start Date</h4>
+                <input
+                  type="date"
+                  name="startDate"
+                  value={startDate}
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
 
-            <div class="form-group">
-              <textarea
-                name="text"
-                cols="30"
-                rows="5"
-                placeholder="Programm Description"
-                value={text}
-                onChange={(e) => onChange(e)}
-              ></textarea>
-            </div>
-            <input type="submit" class="btn btn-primary my-1" />
-            <a class="btn btn-light my-1" href="/dashboard">
-              Go Back
-            </a>
-          </form>
+              <div class="form-group">
+                <h4>Deadline</h4>
+                <input
+                  type="date"
+                  name="endDate"
+                  value={endDate}
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
+
+              <div class="form-group">
+                <textarea
+                  name="text"
+                  cols="30"
+                  rows="5"
+                  placeholder="Programm Description"
+                  value={text}
+                  onChange={(e) => onChange(e)}
+                ></textarea>
+              </div>
+              <input type="submit" class="btn btn-primary my-1" />
+              <a class="btn btn-light my-1" href="/dashboard">
+                Go Back
+              </a>
+            </form>
+          </div>
         </div>
-      </div>
+      ) : (
+        // ==================  mobile view  ========================
+
+        <div className="projectWrapperMobile">
+          <div>
+            <h1 class="large text-primary">Edit project</h1>
+            <p class="lead">
+              <i class="fas fa-code-branch"></i> Create a new project
+            </p>
+            <small>* = required field</small>
+
+            <form
+              class="form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                editProject(project._id, formData, history);
+                history.push(`/project/${project._id}`);
+              }}
+            >
+              <div class="form-group">
+                <input
+                  type="text"
+                  placeholder="* Project Name"
+                  name="projectName"
+                  value={projectName}
+                  onChange={(e) => onChange(e)}
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <h4>Start Date</h4>
+                <input
+                  type="date"
+                  name="startDate"
+                  value={startDate}
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
+
+              <div class="form-group">
+                <h4>Deadline</h4>
+                <input
+                  type="date"
+                  name="endDate"
+                  value={endDate}
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
+
+              <div class="form-group">
+                <textarea
+                  name="text"
+                  cols="30"
+                  rows="5"
+                  placeholder="Programm Description"
+                  value={text}
+                  onChange={(e) => onChange(e)}
+                ></textarea>
+              </div>
+              <input type="submit" class="btn btn-primary my-1" />
+
+              <a class="btn btn-light my-1" href={`/project/${_id}`}>
+                Go Back
+              </a>
+            </form>
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };

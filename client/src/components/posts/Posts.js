@@ -13,21 +13,44 @@ const Posts = ({ getPosts, post: { posts } }) => {
 
   return (
     <Fragment>
-      <h1 className="largePostsTitle">Community Posts</h1>
+      {window.innerWidth > 1200 ? (
+        <div>
+          <h1 className="largePostsTitle">Community Posts</h1>
 
-      {/* <p className="lead">
+          {/* <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
       </p> */}
 
-      <PostForm />
+          <PostForm />
 
-      <div className="posts">
-        <div style={{ overflowY: "auto", height: "41rem" }}>
-          {posts.map((post) => (
-            <PostItem key={post._id} post={post} />
-          ))}
+          <div className="posts">
+            <div style={{ overflowY: "auto", height: "41rem" }}>
+              {posts.map((post) => (
+                <PostItem key={post._id} post={post} />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        // ==================  mobile view  ========================
+        <div className="pageWidthMobile">
+          <h1 className="largePostsTitleMobile">Community Posts</h1>
+
+          {/* <p className="lead">
+          <i className="fas fa-user" /> Welcome to the community
+        </p> */}
+
+          <PostForm />
+
+          <div className="postsMobile">
+            <div style={{ overflowY: "auto", height: "41rem" }}>
+              {posts.map((post) => (
+                <PostItem key={post._id} post={post} />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };

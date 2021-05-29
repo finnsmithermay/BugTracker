@@ -16,25 +16,44 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
     <Spinner />
   ) : (
     <Fragment>
-      {/* <Link to="/posts" className="btn">
-        Back to posts{" "}
-      </Link> */}
-
-      <div className="posts">
-        <PostItem post={post} showActions={false} />
-      </div>
-      <CommentForm postId={post._id} />
-      <div className="posts">
-        <div style={{ overflowY: "auto", height: "20rem" }}>
-          {post.comments.map((comment) => (
-            <CommentItem
-              key={comment._id}
-              comment={comment}
-              postId={post._id}
-            />
-          ))}
+      {window.innerWidth > 1200 ? (
+        <div>
+          <div className="posts">
+            <PostItem post={post} showActions={false} />
+          </div>
+          <CommentForm postId={post._id} />
+          <div className="posts">
+            <div style={{ overflowY: "auto", height: "20rem" }}>
+              {post.comments.map((comment) => (
+                <CommentItem
+                  key={comment._id}
+                  comment={comment}
+                  postId={post._id}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        // ==================  mobile view  ========================
+        <div className="pageWidthMobile">
+          <div className="postsMobile">
+            <PostItem post={post} showActions={false} />
+          </div>
+          <CommentForm postId={post._id} />
+          <div className="postsMobile">
+            <div style={{ overflowY: "auto", height: "20rem" }}>
+              {post.comments.map((comment) => (
+                <CommentItem
+                  key={comment._id}
+                  comment={comment}
+                  postId={post._id}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };

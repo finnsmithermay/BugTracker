@@ -83,3 +83,39 @@
 /* span {
   margin-left: 16px;
 } */
+
+/* MOBILE STUFF HERE */
+.navbarMobile {
+  background-color: var(--navColor);
+  margin-top: 14%;
+  display: flex;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  top: 0;
+}
+
+.ProjectnavbarMobile {
+  background-color: var(--navColor);
+  margin-top: 25%;
+  display: flex;
+  position: fixed;
+  z-index: 100;
+  width: 90%;
+  top: 0;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+.navLogoutMobile {
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
+  margin-right: 10%;
+  background-color: #264653;
+  border: none;
+}
+.navLinksMobile {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

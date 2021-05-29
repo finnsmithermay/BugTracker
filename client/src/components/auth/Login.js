@@ -30,42 +30,83 @@ export const Login = ({ login, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <div className="outer">
-        <div className="inner">
-          <h1 className="largeSignIn text-primary">Sign In</h1>
-          <p className="lead">
-            <i className="fas fa-user"></i> Sign in to your account
-          </p>
-          <form className="form" onSubmit={(e) => onSubmit(e)}>
-            <div className="form-group">
-              <input
-                type="email"
-                placeholder="Email Address"
-                name="email"
-                onChange={(e) => onChange(e)}
-                value={email}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                minLength="6"
-                onChange={(e) => onChange(e)}
-                value={password}
-                required
-              />
-            </div>
+      {window.innerWidth > 1200 ? (
+        <div className="outer">
+          <div className="inner">
+            <h1 className="largeSignIn text-primary">Sign In</h1>
+            <p className="lead">
+              <i className="fas fa-user"></i> Sign in to your account
+            </p>
+            <form className="form" onSubmit={(e) => onSubmit(e)}>
+              <div className="form-group">
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  name="email"
+                  onChange={(e) => onChange(e)}
+                  value={email}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  minLength="6"
+                  onChange={(e) => onChange(e)}
+                  value={password}
+                  required
+                />
+              </div>
 
-            <input type="submit" className="btn btn-primary" value="Login" />
-          </form>
-          <p className="my-1">
-            Dont have an account? <Link to="/register">Sign up</Link>
-          </p>
+              <input type="submit" className="btn btn-primary" value="Login" />
+            </form>
+            <p className="my-1">
+              Dont have an account? <Link to="/register">Sign up</Link>
+            </p>
+          </div>
         </div>
-      </div>
+      ) : (
+        // ==================  mobile view  ========================
+
+        <div className="outer">
+          <div className="innerMobile">
+            <h1 className="largeSignInMobile text-primary">Sign In</h1>
+            <p className="lead">
+              <i className="fas fa-user"></i> Sign in to your account
+            </p>
+            <form className="form" onSubmit={(e) => onSubmit(e)}>
+              <div className="form-group">
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  name="email"
+                  onChange={(e) => onChange(e)}
+                  value={email}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  minLength="6"
+                  onChange={(e) => onChange(e)}
+                  value={password}
+                  required
+                />
+              </div>
+
+              <input type="submit" className="btn btn-primary" value="Login" />
+            </form>
+            <p className="my-1">
+              Dont have an account? <Link to="/register">Sign up</Link>
+            </p>
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };

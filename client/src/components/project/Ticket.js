@@ -56,16 +56,14 @@ const Ticket = ({
       {/* <p>{project.name}</p> */}
       {/* {ticket = project.tickets.find(ticket => ticket.id === "6066a67ffb221d58e6d750d6")} */}
 
-      <div className="pageWrapperMarginForNav">
+      <div className="pageWrapperMarginForNavTicket">
         <div className="rowC">
           {/* NOTE SHOW MEMBERS STARTS HERE */}
 
           <div className="projectWrapperTicket">
             <div className="ticketTitle">
-              <p className="lead2">{ticket.ticketName}</p>
+              <p className="lead3">{ticket.ticketName}</p>
             </div>
-
-            <div className="my-2"></div>
 
             <div className="tickets2">
               <p className="ticketText">Created by {ticket.name}</p>
@@ -73,11 +71,14 @@ const Ticket = ({
               <p className="ticketText">Priority: {ticket.priority}</p>
               <p className="ticketText">Decription:{ticket.text}</p>
             </div>
-            <Link to={`/edit-ticket/${ticket._id}`} className="btn btn-light">
-              <i className="fab fa-black-tie text-primary"></i> Edit Task
+            <Link
+              to={`/edit-ticket/${ticket._id}`}
+              className="btn btn-light my-1 my-left"
+            >
+              Edit Task
             </Link>
-            <Link to={`/project/${project._id}`} className="btn btn-light">
-              <i className="fab fa-black-tie text-primary"></i> Back to Project
+            <Link to={`/project/${project._id}`} className="btn btn-light my-1">
+              Back to Project
             </Link>
           </div>
 

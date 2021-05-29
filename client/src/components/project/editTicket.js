@@ -31,7 +31,7 @@ const EditTicket = ({
   });
 
   useEffect(() => {
-    getTicket(project._id, match.params.id);
+    getTicket(project._id, ticket_id);
 
     setFormData({
       name: loading || !ticket.name ? "" : ticket.name,
@@ -47,6 +47,7 @@ const EditTicket = ({
 
   return (
     <Fragment>
+      {(console.log(text), console.log(priority), console.log(status))}
       <div className="pageWrapperMarginForNav">
         <div className="pageWidth">
           <h1 className="large text-primary">Edit ticket</h1>
@@ -74,7 +75,19 @@ const EditTicket = ({
 
             <div className="form-group">
               <p>Change Task status or mark it as complete</p>
-
+              <div className="form-group">
+                <select
+                  name="priority"
+                  value={priority}
+                  onChange={(e) => onChange(e)}
+                >
+                  <option value="0">* Select Ticket Priority</option>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                  <option value="Urgent">Urgent</option>
+                </select>
+              </div>
               <select
                 name="status"
                 value={status}
@@ -87,20 +100,6 @@ const EditTicket = ({
                 <option value="Testing">Testing</option>
                 <option value="Implemented">Implemented</option>
                 <option value="Complete">Mark as Complete</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <select
-                name="priority"
-                value={priority}
-                onChange={(e) => onChange(e)}
-              >
-                <option value="0">* Select Ticket Priority</option>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-                <option value="Urgent">Urgent</option>
               </select>
             </div>
 

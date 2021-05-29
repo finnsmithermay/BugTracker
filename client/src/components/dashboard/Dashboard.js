@@ -15,6 +15,8 @@ import Moment from "react-moment";
 import { Line } from "react-chartjs-2";
 import { Doughnut } from "react-chartjs-2";
 import { Bar } from "react-chartjs-2";
+import { useMediaQuery } from "react-responsive";
+import MediaQuery from "react-responsive";
 
 const Dashboard = ({
   deleteProject,
@@ -22,7 +24,7 @@ const Dashboard = ({
   getCurrentProfile,
   deleteAccount,
   getProjects,
-  auth: { user },
+  auth: { user, isAuthenticated },
   profile: { profile, loading },
   project: { projects, name, avatar },
 }) => {
@@ -109,64 +111,104 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment className="pageWrapper">
-      <div className="pageWrapperMarginForNav">
-        {/* //chnage to just projects this user it part of */}
+      {window.innerWidth > 1200 ? (
+        <div className="pageWrapperMarginForNav">
+          {/* //chnage to just projects this user it part of */}
 
-        <div className="dashHeading">
-          <h1 className="largeDash text-primary">Dashboard</h1>
-          <p className="lead">
-            <i className="fas fa-user" /> Welcome {user && user.name}
-          </p>
-        </div>
+          <div className="dashHeading">
+            <h1 className="largeDash text-primary">Dashboard</h1>
+            <p className="lead">
+              <i className="fas fa-user" /> Welcome {user && user.name}
+            </p>
+          </div>
 
-        {profile != null ? (
-          <Fragment>
-            <div className="graphs">
-              <div className="graph">
-                {getVals()}
-                {total === 0 ? (
-                  <h1>Looks Like you havent started any projects yet</h1>
-                ) : (
-                  <Doughnut
-                    data={chartData}
+          {profile != null ? (
+            <Fragment>
+              <div className="graphs">
+                <div className="graph">
+                  {getVals()}
+                  {total === 0 ? (
+                    <h1>Looks Like you havent started any projects yet</h1>
+                  ) : (
+                    <Doughnut
+                      data={chartData}
+                      options={{
+                        responsive: true,
+                        title: { text: "Proportion Of Tickets", display: true },
+                        scales: {
+                          yAxes: [],
+                        },
+                      }}
+                    />
+                  )}
+                </div>
+
+                <div className="barGraph">
+                  <Bar
+                    data={barChartData}
                     options={{
-                      responsive: true,
-                      title: { text: "Proportion Of Tickets", display: true },
+                      title: { text: "Tickets Per Project", display: true },
+
                       scales: {
-                        yAxes: [],
+                        xAxes: [
+                          {
+                            barPercentage: 0.6,
+                          },
+                        ],
                       },
                     }}
                   />
-                )}
+                </div>
               </div>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <p>You have not yet setup a profile, please add some info</p>
+              <Link to="/create-profile" className="btn btn-primary my-1">
+                Create Profile
+              </Link>
+            </Fragment>
+          )}
+        </div>
+      ) : (
+        //mobile view
+        <div>
+          <div className="dashHeading">
+            <h1 className="largeDashMobile text-primary">Dashboard</h1>
+            <p className="lead">
+              <i className="fas fa-user" /> Signed in as {user && user.name}
+            </p>
+          </div>
+          {getVals()}
 
-              <div className="barGraph">
-                <Bar
-                  data={barChartData}
-                  options={{
-                    title: { text: "Tickets Per Project", display: true },
+          <div className="barGraphMobile">
+            <Bar
+              data={barChartData}
+              options={{
+                legend: {
+                  display: false,
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                title: { text: "Tickets Per Project", display: true },
 
-                    scales: {
-                      xAxes: [
-                        {
-                          barPercentage: 0.6,
-                        },
-                      ],
+                scales: {
+                  xAxes: [
+                    {
+                      barPercentage: 0.6,
                     },
-                  }}
-                />
-              </div>
-            </div>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <p>You have not yet setup a profile, please add some info</p>
-            <Link to="/create-profile" className="btn btn-primary my-1">
-              Create Profile
-            </Link>
-          </Fragment>
-        )}
-      </div>
+                  ],
+                  yAxes: [
+                    {
+                      display: false, //this will remove all the x-axis grid lines
+                    },
+                  ],
+                },
+              }}
+            />
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };

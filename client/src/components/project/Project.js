@@ -54,6 +54,9 @@ const Project = ({
 
   const [showCurrentTickets, setshowCurrentTickets] = useState(true);
 
+  // const [mobileProjectNav, setMobileProjectNav] = useState(true);
+  const [mobileProjectNav, setMobileProjectNav] = useState("Tickets");
+
   const [search, setSearch] = useState("");
   const [searchMembers, setSearchMembers] = useState("");
   const [searchTickets, setsearchTickets] = useState("");
@@ -117,7 +120,7 @@ const Project = ({
 
   return members === null || user === null || project === null ? (
     <Spinner />
-  ) : (
+  ) : window.innerWidth > 1200 ? (
     <Fragment>
       {getVals()}
       <div className="pageWrapperMarginForNav">
@@ -156,16 +159,16 @@ const Project = ({
                 <p className="lead">View and edit project members</p>
               </div>
 
-              <div className="my-2">
+              <div>
                 <button
-                  className="btnDashTickets"
+                  className="btnDashTicketsMobile"
                   onClick={() => setShow(true)}
                 >
                   View Members
                 </button>
 
                 <button
-                  className="btnDashTickets"
+                  className="btnDashTicketsMobile"
                   onClick={() => setShow(false)}
                 >
                   Add Members
@@ -294,16 +297,19 @@ const Project = ({
                     {loading || tickets == null ? (
                       <Spinner />
                     ) : (
-                      ((filteredTickets = project.tickets.filter(
-                        (item) =>
-                          item.ticketName
-                            .toString()
-                            .toLowerCase()
-                            .includes(searchTickets.toString().toLowerCase()) ||
-                          item.priority
-                            .toString()
-                            .toLowerCase()
-                            .includes(searchTickets.toString().toLowerCase())
+                      ((filteredTickets = project.tickets.filter((item) =>
+                        item.ticketName != null
+                          ? item.ticketName
+                              .toString()
+                              .toLowerCase()
+                              .includes(
+                                searchTickets.toString().toLowerCase()
+                              ) ||
+                            item.priority
+                              .toString()
+                              .toLowerCase()
+                              .includes(searchTickets.toString().toLowerCase())
+                          : null
                       )),
                       filteredTickets.map((ticket) =>
                         // tickets
@@ -505,21 +511,437 @@ const Project = ({
             </div>
             {/* <div className="pie"> */}
             {getVals()}
-            {/* 
-            <Doughnut
-              width="10rem"
-              data={chartData}
-              options={{
-                responsive: true,
-                title: { text: "Proportion Of Tickets", display: true },
-                scales: {
-                  yAxes: [],
-                },
-              }}
-            /> */}
           </div>
           // </div>
         )}
+      </div>
+    </Fragment>
+  ) : (
+    // ==================  mobile view  ========================
+    // ==================  mobile view  ========================
+    // ==================  mobile view  ========================
+    // ==================  mobile view  ========================
+
+    <Fragment>
+      {getVals()}
+      {/* <div className="pageWrapperMarginForNav"> */}
+      {project.projectName === null ? (
+        <Spinner />
+      ) : (
+        <h1 className="large text-primary"></h1>
+      )}
+
+      <div className="outerProjectTitle">
+        <div className="ProjectnavbarMobile">
+          <ul className="navLinksMobile">
+            <li>
+              <button
+                className="navLogoutMobile"
+                onClick={() => setMobileProjectNav("Members")}
+              >
+                <i className="fas fa-clipboard-list" />{" "}
+              </button>
+            </li>
+          </ul>
+          <ul className="navLinksMobile">
+            <li>
+              <button
+                className="navLogoutMobile"
+                onClick={() => {
+                  setMobileProjectNav("Tickets");
+                }}
+              >
+                <i className="fas fa-clipboard-list" />{" "}
+              </button>
+            </li>
+          </ul>
+          <ul className="navLinksMobile">
+            <li>
+              <Link
+                to={`/edit-project/${project._id}`}
+                className="navLogoutMobile"
+              >
+                <i className="fas fa-clipboard-list" />{" "}
+              </Link>
+            </li>
+          </ul>
+
+          <ul className="navLinksMobile">
+            <li>
+              <button
+                className="navLogoutMobile"
+                onClick={() => {
+                  setMobileProjectNav("Outline");
+                }}
+              >
+                <i className="fas fa-clipboard-list" />{" "}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="rowC">
+        {/* NOTE SHOW MEMBERS STARTS HERE */}
+
+        {mobileProjectNav == "Members" ? (
+          <div className="projectWrapperMobile">
+            <div>{/* project description */}</div>
+
+            <div className="dash-buttons">
+              <button
+                className="btnDashTicketsMobile my-1"
+                onClick={() => setShow(true)}
+              >
+                View Members
+              </button>
+
+              <button
+                className="btnDashTicketsMobile my-1"
+                onClick={() => setShow(false)}
+              >
+                Add Members
+              </button>
+            </div>
+
+            {show ? (
+              <div style={{ overflowY: "auto", height: "38rem" }}>
+                <div className="searchBar">
+                  <input
+                    className="searchBarInput"
+                    type="text"
+                    placeholder="Search Project Members"
+                    name="text"
+                    value={searchMembers}
+                    onChange={(e) => setSearchMembers(e.target.value)}
+                    required
+                  />
+                </div>
+
+                {loading || project.members === null
+                  ? ((<Spinner />), getMembers())
+                  : ((filteredListMembers = project.members.filter((item) =>
+                      item.name
+                        .toString()
+                        .toLowerCase()
+                        .includes(searchMembers.toString().toLowerCase())
+                    )),
+                    filteredListMembers.map((member) => (
+                      <div className="profile bg-light">
+                        <div>
+                          <p>{member.name}</p>
+                          <Link
+                            to={`/profile/${member.id}`}
+                            className="btn btn-primary"
+                          >
+                            View Profile
+                          </Link>
+
+                          {project.user === auth.user._id && (
+                            <button
+                              onClick={() =>
+                                removeMember(project._id, member.id)
+                              }
+                              type="button"
+                              className="btn btn-danger"
+                            >
+                              Remove
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    )))}
+              </div>
+            ) : null}
+
+            {/* show all users */}
+            {!show ? (
+              <div style={{ overflowY: "auto", height: "38rem" }}>
+                <div className="searchBar">
+                  <input
+                    className="searchBarInput"
+                    type="text"
+                    placeholder="Search Member"
+                    name="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    required
+                  />
+                </div>
+
+                {profiles.length > 0 ? (
+                  filteredList.map((profile) => (
+                    <ProfileProjectItem key={profile._id} profile={profile} />
+                  ))
+                ) : (
+                  <h1> None found</h1>
+                )}
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+
+        {mobileProjectNav == "Tickets" ? (
+          <div className="projectWrapperTicketsMobile">
+            {/* <div className="dash-buttons my-a"> */}
+
+            <div className="dash-buttons">
+              <button
+                className="btnDashTicketsMobile"
+                onClick={() => setshowCurrentTickets(true)}
+              >
+                Current Tasks
+              </button>
+
+              <button
+                className="btnDashTicketsMobile my-1"
+                onClick={() => setshowCurrentTickets(false)}
+              >
+                Finished Tasks
+              </button>
+            </div>
+
+            {/* //tickets show here */}
+
+            {showCurrentTickets ? (
+              <div>
+                <Link
+                  to={`/add-ticket/${project._id}`}
+                  className="linkDashTicketsMobile "
+                >
+                  Add ticket
+                </Link>
+
+                {/* </div> */}
+                <div className="searchBar">
+                  <input
+                    className="searchBarInput"
+                    type="text"
+                    placeholder="Search Tasks"
+                    name="text"
+                    value={searchTickets}
+                    onChange={(e) => setsearchTickets(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div style={{ overflowY: "auto", height: "  20rem" }}>
+                  {loading || tickets == null ? (
+                    <Spinner />
+                  ) : (
+                    ((filteredTickets = project.tickets.filter((item) =>
+                      item.ticketName != null
+                        ? item.ticketName
+                            .toString()
+                            .toLowerCase()
+                            .includes(searchTickets.toString().toLowerCase()) ||
+                          item.priority
+                            .toString()
+                            .toLowerCase()
+                            .includes(searchTickets.toString().toLowerCase())
+                        : null
+                    )),
+                    filteredTickets.map((ticket) =>
+                      // tickets
+                      ticket.status !== "Complete"
+                        ? (ticket.priority === "Low"
+                            ? (color = "#2cdd58")
+                            : ticket.priority === "Medium"
+                            ? (color = "orange")
+                            : ticket.priority === "High"
+                            ? (color = "orange")
+                            : ticket.priority === "Urgent"
+                            ? (color = "#f84040")
+                            : (color = "white"),
+                          (
+                            // className="projectsHeading"
+                            <div className="projectTcikets bg-white my-5">
+                              <div
+                                style={{
+                                  backgroundColor: color,
+                                }}
+                              >
+                                <p className="mediumtextMobile">
+                                  {ticket.ticketName}
+                                </p>
+                              </div>
+
+                              {/* grid here */}
+                              <div className="projectManager">
+                                {/* <Link to={`/profile/${project.user}`}> */}
+                                <p>Author: {ticket.name}</p>
+                                {/* </Link> */}
+                              </div>
+                              {/* dates */}
+                              <div>
+                                <div className="project-edu"></div>
+
+                                {/* members and tickets */}
+
+                                <div className="project-expTickets">
+                                  <p className="post-date">
+                                    Created on{" "}
+                                    <Moment format="YYYY/MM/DD">
+                                      {ticket.date}
+                                    </Moment>
+                                  </p>
+                                  <p>Status: {ticket.status}</p>
+                                  <p> Priority: {ticket.priority}</p>
+                                  <Link
+                                    to={`/ticket/${ticket._id}`}
+                                    className="btn btn-light"
+                                  >
+                                    View ticket
+                                  </Link>
+                                </div>
+
+                                {/* buttons */}
+                                <div className="project-btn">
+                                  {/* <div className="projectsButtonsLayout"> */}
+                                  {/* <div className="dash-buttons"> */}
+
+                                  {user._id === project.user && (
+                                    <button
+                                      onClick={() =>
+                                        removeTicket(project._id, ticket._id)
+                                      }
+                                      className="btn btn-light"
+                                    >
+                                      Delete Ticket
+                                    </button>
+                                  )}
+                                  {/* </div> */}
+                                  {/* </div> */}
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                        : null
+                    ))
+                  )}
+                </div>
+              </div>
+            ) : null}
+            {/* // else show the competed tasks */}
+
+            {!showCurrentTickets ? (
+              <div>
+                {/* </div> */}
+                <div style={{ overflowY: "auto", height: "35rem" }}>
+                  <div className="searchBar">
+                    <input
+                      className="searchBarInput"
+                      type="text"
+                      placeholder="Search Tasks"
+                      name="text"
+                      value={searchTickets}
+                      onChange={(e) => setsearchTickets(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  {loading || tickets == null ? (
+                    <Spinner />
+                  ) : (
+                    ((filteredTickets = project.tickets.filter((item) =>
+                      item.ticketName != null
+                        ? item.ticketName
+                            .toString()
+                            .toLowerCase()
+                            .includes(searchTickets.toString().toLowerCase()) ||
+                          item.priority
+                            .toString()
+                            .toLowerCase()
+                            .includes(searchTickets.toString().toLowerCase())
+                        : null
+                    )),
+                    filteredTickets.map(
+                      (ticket) =>
+                        // tickets
+                        ticket.status === "Complete" ? (
+                          <div className="projectTcikets bg-white my-5">
+                            <div
+                              style={{
+                                backgroundColor: completedColor,
+                              }}
+                            >
+                              <p className="medium">{ticket.ticketName}</p>
+                            </div>
+
+                            {/* grid here */}
+                            <div className="projectManager">
+                              {/* <Link to={`/profile/${project.user}`}> */}
+                              <p>Author: {ticket.name}</p>
+                              {/* </Link> */}
+                            </div>
+                            {/* dates */}
+                            <div className="project-grid">
+                              <div className="project-edu">
+                                <p className="post-date">
+                                  Created on{" "}
+                                  <Moment format="YYYY/MM/DD">
+                                    {ticket.date}
+                                  </Moment>
+                                </p>
+                              </div>
+
+                              {/* members and tickets */}
+
+                              <div className="project-expTickets">
+                                <div className="projectsIcons">
+                                  <p>Status: {ticket.status}</p>
+                                  <p> Priority: {ticket.priority}</p>
+                                </div>
+                              </div>
+
+                              {/* buttons */}
+                              <div className="project-btn">
+                                {/* <div className="projectsButtonsLayout"> */}
+                                {/* <div className="dash-buttons"> */}
+
+                                <Link
+                                  to={`/ticket/${ticket._id}`}
+                                  className="btn btn-light"
+                                >
+                                  View ticket
+                                </Link>
+                                {user._id === project.user && (
+                                  <button
+                                    onClick={() =>
+                                      removeTicket(project._id, ticket._id)
+                                    }
+                                    className="btn btn-light"
+                                  >
+                                    Delete Ticket
+                                  </button>
+                                )}
+                                {/* </div> */}
+                                {/* </div> */}
+                              </div>
+                            </div>
+                          </div>
+                        ) : null
+
+                      // className="projectsHeading"
+                    ))
+                  )}
+                </div>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+
+        <div>
+          {mobileProjectNav == "Outline" ? (
+            //show poject decription
+            // className="projectDescription"
+            <div className="projectDescription">
+              <div>
+                <p className="projectDescriptionText">{project.text}</p>
+              </div>
+            </div>
+          ) : null}
+        </div>
       </div>
     </Fragment>
   );

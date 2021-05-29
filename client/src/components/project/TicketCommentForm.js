@@ -14,7 +14,7 @@ const TicketCommentForm = ({ projectId, ticketId, addComment }) => {
   return (
     <div className="textAreaSize">
       <div className="bg-primary p">
-        <h3>Leave a Comment</h3>
+        <h3>Add a comment to this ticket</h3>
       </div>
       <form
         className="textAreaSizeTicket"
@@ -29,12 +29,12 @@ const TicketCommentForm = ({ projectId, ticketId, addComment }) => {
           name="text"
           cols="30"
           rows="5"
-          placeholder="Create a post"
+          placeholder="Add comment here"
           value={text}
           onChange={(e) => setText(e.target.value)}
           required
         ></textarea>
-        <input type="submit" className="btn btn-dark my-1" value="Submit" />
+        <input type="submit" className="btn btn-light my-1" value="Submit" />
       </form>
     </div>
   );

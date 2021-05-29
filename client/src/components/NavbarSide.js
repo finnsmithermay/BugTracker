@@ -59,6 +59,67 @@ export const NavbarSide = ({
     </div>
   );
 
+  const topMobile = (
+    <div>
+      <div className="navbar">
+        <ul>
+          <Link to="/" className="menuButtonsLarge">
+            <i className="fas fa-code"></i> Bug Tracker
+          </Link>
+        </ul>
+        {/* <ul>
+        {user.name === null || user === null || !isAuthenticated ? (
+          <li></li>
+        ) : (
+          <li className="dashLoggedInAs">Logged in as {user.name}</li>
+        )}/profile/me
+      </ul> */}
+
+        <ul className="navLinks">
+          <li>
+            <a onClick={logout} href="/" className="navLogout">
+              <i className="fas fa-sign-out-alt" />{" "}
+              <span className="hide-sm">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div className="navbarMobile">
+        <ul className="navLinksMobile">
+          <li>
+            <Link to="/projects" className="navLogoutMobile">
+              <i className="fas fa-clipboard-list" />{" "}
+            </Link>
+          </li>
+        </ul>
+        <ul className="navLinksMobile">
+          <li>
+            <Link to="add-project" className="navLogoutMobile">
+              <i className="fas fa-plus" />{" "}
+            </Link>
+          </li>
+        </ul>
+        <ul className="navLinksMobile">
+          <li>
+            <Link to="/posts" className="navLogoutMobile">
+              <i className="fas fa-comments" />{" "}
+            </Link>
+          </li>
+        </ul>
+
+        {user == null || user === null
+          ? null
+          : !loading &&
+            (isAuthenticated ? (
+              <Link to={`/profile/${user._id}`} className="navLogoutMobile">
+                <i className="fas fa-user-alt" />{" "}
+              </Link>
+            ) : null)}
+      </div>
+    </div>
+  );
+
   const side = (
     <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
       <ul className="nav-menu-items">
@@ -98,9 +159,16 @@ export const NavbarSide = ({
 
   return (
     <>
-      {top}
+      {console.log(window.innerWidth)}
+      {window.innerWidth > 750 && !loading && isAuthenticated ? top : null}
+      {window.innerWidth > 750 && !loading && isAuthenticated ? side : null}
+      {window.innerWidth < 750 && !loading && isAuthenticated
+        ? topMobile
+        : null}
 
-      {!loading && (isAuthenticated ? side : null)}
+      {/* {top}
+
+      {!loading && (isAuthenticated ? side : null)} */}
     </>
   );
 };
