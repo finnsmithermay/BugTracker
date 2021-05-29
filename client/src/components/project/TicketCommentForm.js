@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addComment } from "../../actions/project";
 import { getProject, getTicket } from "../../actions/project";
+import { Fragment } from "react";
 
 const TicketCommentForm = ({ projectId, ticketId, addComment }) => {
   useEffect(() => {
@@ -12,31 +13,73 @@ const TicketCommentForm = ({ projectId, ticketId, addComment }) => {
 
   const [text, setText] = useState("");
   return (
-    <div className="textAreaSize">
-      <div className="bg-primary p">
-        <h3>Add a comment to this ticket</h3>
-      </div>
-      <form
-        className="textAreaSizeTicket"
-        onSubmit={(e) => {
-          e.preventDefault();
+    <Fragment>
+      {window.innerWidth > 1200 ? (
+        <div className="post-form">
+          <div class="bg-primary p">
+            <h3>Leave a Comment</h3>
+          </div>
+          <form
+            class="form my-1"
+            onSubmit={(e) => {
+              e.preventDefault();
+              addComment(projectId, ticketId, { text });
+              setText("");
+            }}
+          >
+            <div className="inline">
+              <textarea
+                className="textAreaSize"
+                name="text"
+                cols="30"
+                rows="5"
+                placeholder="Leave a Comment"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                required
+              ></textarea>
+              <input type="submit" class="btn btn-dark my-1" value="Submit" />
+            </div>
+          </form>
+        </div>
+      ) : (
+        // ==================  mobile view  ========================
 
-          addComment(projectId, ticketId, { text });
-          setText("");
-        }}
-      >
-        <textarea
-          name="text"
-          cols="30"
-          rows="5"
-          placeholder="Add comment here"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          required
-        ></textarea>
-        <input type="submit" className="btn btn-light my-1" value="Submit" />
-      </form>
-    </div>
+        <div class="post-formMobile">
+          <div class="bg-primary p">
+            <h3>Leave a Comment</h3>
+          </div>
+          <form
+            class="form my-1"
+            onSubmit={(e) => {
+              e.preventDefault();
+              addComment(projectId, ticketId, { text });
+              setText("");
+            }}
+          >
+            <div className="inlineMobile">
+              <textarea
+                className="textAreaSizeMobile"
+                name="text"
+                cols="20"
+                rows="5"
+                placeholder="Leave a Comment"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                required
+              ></textarea>
+              <div className="submitPostMobile">
+                <input
+                  type="submit"
+                  className="btnSubmitMobile"
+                  value="Submit"
+                />
+              </div>{" "}
+            </div>
+          </form>
+        </div>
+      )}
+    </Fragment>
   );
 };
 

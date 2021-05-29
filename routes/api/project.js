@@ -280,14 +280,17 @@ router.put("/tickets/:id/:ticket_id", auth, async (req, res) => {
       (ticket) => ticket.id === req.params.ticket_id
     );
     const updateIndex = project.tickets
-      .map((ticket) => ticket.user.toString())
-      .indexOf(req.user.id);
+      .map((ticket) => ticket.id)
+      .indexOf(req.params.ticket_id);
 
     //make sure comment exists
-
+    console.log("*****************************");
+    console.log(updateIndex);
     if (req.body.text) project.tickets[updateIndex].text = req.body.text;
     if (req.body.name) project.tickets[updateIndex].name = req.body.name;
     if (req.body.status) project.tickets[updateIndex].status = req.body.status;
+    if (req.body.priority)
+      project.tickets[updateIndex].priority = req.body.priority;
 
     await project.save();
 

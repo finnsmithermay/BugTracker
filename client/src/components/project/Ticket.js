@@ -55,21 +55,83 @@ const Ticket = ({
     <Fragment>
       {/* <p>{project.name}</p> */}
       {/* {ticket = project.tickets.find(ticket => ticket.id === "6066a67ffb221d58e6d750d6")} */}
+      {window.innerWidth > 1200 ? (
+        <div className="pageWrapperMarginForNavTicket">
+          <div className="rowC">
+            {/* NOTE SHOW MEMBERS STARTS HERE */}
 
-      <div className="pageWrapperMarginForNavTicket">
-        <div className="rowC">
-          {/* NOTE SHOW MEMBERS STARTS HERE */}
+            <div className="projectWrapperTicket">
+              <div className="ticketTitle">
+                <p className="lead3">{ticket.ticketName}</p>
+              </div>
 
-          <div className="projectWrapperTicket">
+              <div className="tickets2">
+                <h3 className="">Ticket Author:</h3>
+                <p className="">{ticket.name}</p>
+
+                <h3 className="ticketdecription">Ticket Status:</h3>
+                <p className="">{ticket.status}</p>
+
+                <h3 className="ticketdecription">Ticket Priority:</h3>
+                <p className="">{ticket.priority}</p>
+                <p className=""></p>
+                <h3 className="ticketdecription">Ticket Decription:</h3>
+                <p className="">{ticket.text}</p>
+              </div>
+              <Link
+                to={`/edit-ticket/${ticket._id}`}
+                className="btn btn-light my-1 my-left"
+              >
+                Edit Task
+              </Link>
+              <Link
+                to={`/project/${project._id}`}
+                className="btn btn-light my-1"
+              >
+                Back to Project
+              </Link>
+            </div>
+
+            <div className="marginTicket">
+              <TicketCommentForm
+                projectId={project._id}
+                ticketId={ticket._id}
+              />
+              <div className="comments">
+                <div style={{ overflowY: "auto", height: "41rem" }}>
+                  {ticket.comments.map((comment) => (
+                    <TicketCommentItem
+                      key={comment._id}
+                      comment={comment}
+                      ticketId={ticket._id}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        // ==================  mobile view  ========================
+
+        <div className="pageWidthMobile">
+          <div className="postsMobile">
             <div className="ticketTitle">
               <p className="lead3">{ticket.ticketName}</p>
             </div>
 
             <div className="tickets2">
-              <p className="ticketText">Created by {ticket.name}</p>
-              <p className="ticketText">Status: {ticket.status}</p>
-              <p className="ticketText">Priority: {ticket.priority}</p>
-              <p className="ticketText">Decription:{ticket.text}</p>
+              <h3 className="">Ticket Author:</h3>
+              <p className="">{ticket.name}</p>
+
+              <h3 className="ticketdecription">Ticket Status:</h3>
+              <p className="">{ticket.status}</p>
+
+              <h3 className="ticketdecription">Ticket Priority:</h3>
+              <p className="">{ticket.priority}</p>
+              <p className=""></p>
+              <h3 className="ticketdecription">Ticket Decription:</h3>
+              <p className="">{ticket.text}</p>
             </div>
             <Link
               to={`/edit-ticket/${ticket._id}`}
@@ -81,23 +143,20 @@ const Ticket = ({
               Back to Project
             </Link>
           </div>
-
-          <div className="marginTicket">
-            <TicketCommentForm projectId={project._id} ticketId={ticket._id} />
-            <div className="comments">
-              <div style={{ overflowY: "auto", height: "41rem" }}>
-                {ticket.comments.map((comment) => (
-                  <TicketCommentItem
-                    key={comment._id}
-                    comment={comment}
-                    ticketId={ticket._id}
-                  />
-                ))}
-              </div>
+          <TicketCommentForm projectId={project._id} ticketId={ticket._id} />
+          <div className="postsMobile">
+            <div style={{ overflowY: "auto", height: "41rem" }}>
+              {ticket.comments.map((comment) => (
+                <TicketCommentItem
+                  key={comment._id}
+                  comment={comment}
+                  ticketId={ticket._id}
+                />
+              ))}
             </div>
           </div>
         </div>
-      </div>
+      )}
     </Fragment>
   );
 };

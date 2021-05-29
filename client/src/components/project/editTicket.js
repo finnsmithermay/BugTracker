@@ -31,7 +31,7 @@ const EditTicket = ({
   });
 
   useEffect(() => {
-    getTicket(project._id, ticket_id);
+    getTicket(project._id, match.params.id);
 
     setFormData({
       name: loading || !ticket.name ? "" : ticket.name,
@@ -47,22 +47,22 @@ const EditTicket = ({
 
   return (
     <Fragment>
-      {(console.log(text), console.log(priority), console.log(status))}
-      <div className="pageWrapperMarginForNav">
-        <div className="pageWidth">
-          <h1 className="large text-primary">Edit ticket</h1>
-          <h1>{ticket.name}</h1>
+      {window.innerWidth > 1200 ? (
+        <div className="pageWrapperMarginForNav">
+          <div className="pageWidth">
+            <h1 className="large text-primary">Edit ticket</h1>
+            <h1>{ticket.name}</h1>
 
-          <small>* = required field</small>
+            <small>* = required field</small>
 
-          <form
-            class="form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              editTicket(project._id, ticket._id, formData, history);
-            }}
-          >
-            {/* <div class="form-group">
+            <form
+              class="form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                editTicket(project._id, ticket._id, formData, history);
+              }}
+            >
+              {/* <div class="form-group">
               <input
                 type="text"
                 placeholder="Ticket name Name"
@@ -73,8 +73,24 @@ const EditTicket = ({
               />
             </div> */}
 
-            <div className="form-group">
-              <p>Change Task status or mark it as complete</p>
+              <div className="form-group">
+                <p>Change Task status or mark it as complete</p>
+
+                <select
+                  name="status"
+                  value={status}
+                  onChange={(e) => onChange(e)}
+                >
+                  <option value="0">* Select Ticket Status</option>
+                  <option value="Not Started">Not started</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Facing Issues">Facing Issues</option>
+                  <option value="Testing">Testing</option>
+                  <option value="Implemented">Implemented</option>
+                  <option value="Complete">Mark as Complete</option>
+                </select>
+              </div>
+
               <div className="form-group">
                 <select
                   name="priority"
@@ -88,45 +104,109 @@ const EditTicket = ({
                   <option value="Urgent">Urgent</option>
                 </select>
               </div>
-              <select
-                name="status"
-                value={status}
-                onChange={(e) => onChange(e)}
-              >
-                <option value="0">* Select Ticket Status</option>
-                <option value="Not Started">Not started</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Facing Issues">Facing Issues</option>
-                <option value="Testing">Testing</option>
-                <option value="Implemented">Implemented</option>
-                <option value="Complete">Mark as Complete</option>
-              </select>
-            </div>
 
-            <div class="form-group">
-              <textarea
-                name="text"
-                cols="30"
-                rows="5"
-                placeholder="Ticket Description"
-                value={text}
-                onChange={(e) => onChange(e)}
-              ></textarea>
-            </div>
+              <div class="form-group">
+                <textarea
+                  name="text"
+                  cols="30"
+                  rows="5"
+                  placeholder="Ticket Description"
+                  value={text}
+                  onChange={(e) => onChange(e)}
+                ></textarea>
+              </div>
 
-            <input type="submit" class="btn btn-primary my-1" />
-            <a class="btn btn-light my-1" href={`/ticket/${ticket._id}`}>
-              Back to ticket (Not working)
-            </a>
+              <input type="submit" class="btn btn-primary my-1" />
 
-            <a class="btn btn-light my-1" href={`/project/${project._id}`}>
-              Back to project
-            </a>
-            {/* <Link to={`/project/${project._id}`} className="btn btn-light"
+              <a class="btn btn-light my-1" href={`/project/${project._id}`}>
+                Back to project
+              </a>
+              {/* <Link to={`/project/${project._id}`} className="btn btn-light"
     ><i className="fab fa-black-tie text-primary"></i> Back to Project</Link> */}
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
+      ) : (
+        // ==================  mobile view  ========================
+        <div className="pageWidthMobile">
+          <div className="postsMobile">
+            <h1 className="large text-primary">Edit ticket</h1>
+            <h1>{ticket.name}</h1>
+
+            <small>* = required field</small>
+
+            <form
+              class="form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                editTicket(project._id, ticket._id, formData, history);
+              }}
+            >
+              {/* <div class="form-group">
+        <input
+          type="text"
+          placeholder="Ticket name Name"
+          name="name"
+          value={name}
+          onChange={(e) => onChange(e)}
+          required
+        />
+      </div> */}
+
+              <div className="form-group">
+                <p>Change Task status or mark it as complete</p>
+
+                <select
+                  name="status"
+                  value={status}
+                  onChange={(e) => onChange(e)}
+                >
+                  <option value="0">* Select Ticket Status</option>
+                  <option value="Not Started">Not started</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Facing Issues">Facing Issues</option>
+                  <option value="Testing">Testing</option>
+                  <option value="Implemented">Implemented</option>
+                  <option value="Complete">Mark as Complete</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <select
+                  name="priority"
+                  value={priority}
+                  onChange={(e) => onChange(e)}
+                >
+                  <option value="0">* Select Ticket Priority</option>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                  <option value="Urgent">Urgent</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <textarea
+                  name="text"
+                  cols="30"
+                  rows="5"
+                  placeholder="Ticket Description"
+                  value={text}
+                  onChange={(e) => onChange(e)}
+                ></textarea>
+              </div>
+
+              <input type="submit" class="btn btn-primary my-1" />
+
+              <a class="btn btn-light my-1" href={`/project/${project._id}`}>
+                Back to project
+              </a>
+              {/* <Link to={`/project/${project._id}`} className="btn btn-light"
+><i className="fab fa-black-tie text-primary"></i> Back to Project</Link> */}
+            </form>
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };
