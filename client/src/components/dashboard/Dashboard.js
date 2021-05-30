@@ -150,6 +150,13 @@ const Dashboard = ({
                       title: { text: "Tickets Per Project", display: true },
 
                       scales: {
+                        yAxes: [
+                          {
+                            ticks: {
+                              beginAtZero: true,
+                            },
+                          },
+                        ],
                         xAxes: [
                           {
                             barPercentage: 0.6,
@@ -193,14 +200,16 @@ const Dashboard = ({
                 title: { text: "Tickets Per Project", display: true },
 
                 scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        beginAtZero: true,
+                      },
+                    },
+                  ],
                   xAxes: [
                     {
                       barPercentage: 0.6,
-                    },
-                  ],
-                  yAxes: [
-                    {
-                      display: false, //this will remove all the x-axis grid lines
                     },
                   ],
                 },

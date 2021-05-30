@@ -3,13 +3,14 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
-import { deleteComment } from "../../actions/post";
+import { deleteTicketComment } from "../../actions/project";
 
 const TicketCommentItem = ({
   ticketId,
   comment: { _id, text, name, avatar, user, date },
   auth,
   deleteComment,
+  project,
 }) => {
   return (
     <Fragment>
@@ -29,7 +30,7 @@ const TicketCommentItem = ({
 
             {!auth.loading && user === auth.user._id && (
               <button
-                onClick={(e) => deleteComment(ticketId, _id)}
+                onClick={(e) => deleteTicketComment(project._id, ticketId, _id)}
                 type="button"
                 className="btn btn-danger"
               >
@@ -74,9 +75,11 @@ TicketCommentItem.propTypes = {
   comment: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   deleteComment: PropTypes.func.isRequired,
+  project: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  project: state.project,
 });
 
 export default connect(mapStateToProps, null)(TicketCommentItem);

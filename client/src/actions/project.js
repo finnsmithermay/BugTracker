@@ -317,3 +317,26 @@ export const addComment = (postId, ticketId, formData) => async (dispatch) => {
     });
   }
 };
+
+// remove Comment
+export const deleteTicketComment =
+  (projectID, ticketID, commentId) => async (dispatch) => {
+    try {
+      console.log("here deleteTicketComment");
+      const res = await axios.delete(
+        `/api/project/tickets/comment/${projectID}/${ticketID}/${commentId}`
+      );
+
+      dispatch({
+        type: REMOVE_TICKET_COMMENT,
+        payload: commentId,
+      });
+
+      dispatch(setAlert("Comment removed", "success"));
+    } catch (err) {
+      dispatch({
+        type: POST_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  };

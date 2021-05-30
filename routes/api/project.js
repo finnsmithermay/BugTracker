@@ -375,4 +375,44 @@ router.post(
 
 //delete comment from ticket
 
+router.delete(
+  "/tickets/comment/:id/:ticket_id/:comment_id",
+  auth,
+  async (req, res) => {
+    try {
+      //get post by id
+      const project = await Project.findById(req.params.id);
+
+      const ticket = project.tickets.find(
+        (ticket) => ticket.id === req.params.ticket_id
+      );
+
+      //pull out comment from post
+      const comment = ticket.comments.find(
+        (comment) => comment.id === req.params.comment_id
+      );
+
+      //make sure comment exists
+      if (!comment) {
+        return res.status(404).json({ msg: "Comment does not exist" });
+      }
+      //make sure user deleting the comment is the user that made it
+      if (comment.user.toString() !== req.user.id) {
+        return res.status(401).json({ msg: "User not authorized" });
+      }
+
+      const removeIndex = ticket.comments
+        .map((comment) => comment.id)
+        .indexOf(req.params.comment_id);
+
+      post.comments.splice(removeIndex, 1);
+      await post.save();
+
+      res.json(post.comments);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
 module.exports = router;

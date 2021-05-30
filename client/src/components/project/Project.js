@@ -539,7 +539,7 @@ const Project = ({
                 className="navLogoutMobile"
                 onClick={() => setMobileProjectNav("Members")}
               >
-                <i className="fas fa-clipboard-list" />{" "}
+                <i className="fas fa-user-friends" />{" "}
               </button>
             </li>
           </ul>
@@ -551,7 +551,7 @@ const Project = ({
                   setMobileProjectNav("Tickets");
                 }}
               >
-                <i className="fas fa-clipboard-list" />{" "}
+                <i className="fas fa-th-list" />{" "}
               </button>
             </li>
           </ul>
@@ -561,7 +561,7 @@ const Project = ({
                 to={`/edit-project/${project._id}`}
                 className="navLogoutMobile"
               >
-                <i className="fas fa-clipboard-list" />{" "}
+                <i className="fas fa-edit" />{" "}
               </Link>
             </li>
           </ul>
@@ -574,7 +574,7 @@ const Project = ({
                   setMobileProjectNav("Outline");
                 }}
               >
-                <i className="fas fa-clipboard-list" />{" "}
+                <i className="fas fa-book" />{" "}
               </button>
             </li>
           </ul>
@@ -629,12 +629,12 @@ const Project = ({
                     filteredListMembers.map((member) => (
                       <div className="profile bg-light">
                         <div>
-                          <p>{member.name}</p>
+                          <h2>{member.name}</h2>
                           <Link
                             to={`/profile/${member.id}`}
                             className="btn btn-primary"
                           >
-                            View Profile
+                            View
                           </Link>
 
                           {project.user === auth.user._id && (
@@ -778,7 +778,7 @@ const Project = ({
 
                                 {/* members and tickets */}
 
-                                <div className="project-expTickets">
+                                <div className="profile">
                                   <p className="post-date">
                                     Created on{" "}
                                     <Moment format="YYYY/MM/DD">
@@ -789,14 +789,12 @@ const Project = ({
                                   <p> Priority: {ticket.priority}</p>
                                   <Link
                                     to={`/ticket/${ticket._id}`}
-                                    className="btn btn-light"
+                                    className="btn btn-primary"
                                   >
-                                    View ticket
+                                    View Ticket
                                   </Link>
-                                </div>
 
-                                {/* buttons */}
-                                <div className="project-btn">
+                                  {/* buttons */}
                                   {/* <div className="projectsButtonsLayout"> */}
                                   {/* <div className="dash-buttons"> */}
 
@@ -805,9 +803,9 @@ const Project = ({
                                       onClick={() =>
                                         removeTicket(project._id, ticket._id)
                                       }
-                                      className="btn btn-light"
+                                      className="btn btn-danger"
                                     >
-                                      Delete Ticket
+                                      Delete
                                     </button>
                                   )}
                                   {/* </div> */}

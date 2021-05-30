@@ -15,6 +15,7 @@ import {
   GET_TICKET,
   ADD_TICKET_COMMENT,
   EDIT_PROJECT,
+  REMOVE_TICKET_COMMENT,
 } from "../actions/types";
 
 const initialState = {
@@ -106,6 +107,18 @@ export default function (state = initialState, action) {
         ...state,
         ticket: { ...state.ticket, comments: payload },
         loading: false,
+      };
+
+    case REMOVE_TICKET_COMMENT:
+      return {
+        ...state,
+        ticket: {
+          ...state.project,
+          ticket: state.ticket.comments.filter(
+            (comment) => comment._id !== payload
+          ),
+          loading: false,
+        },
       };
 
     case CLEAR_MEMBERS:
