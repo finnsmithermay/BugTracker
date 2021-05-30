@@ -17,6 +17,7 @@ import {
   EDIT_TICKET,
   GET_TICKET,
   ADD_TICKET_COMMENT,
+  REMOVE_TICKET_COMMENT,
 } from "./types";
 
 //get projects
@@ -335,7 +336,7 @@ export const deleteTicketComment =
       dispatch(setAlert("Comment removed", "success"));
     } catch (err) {
       dispatch({
-        type: POST_ERROR,
+        type: PROJECT_ERROR,
         payload: { msg: err.response.statusText, status: err.response.status },
       });
     }
