@@ -1264,9 +1264,9 @@ button {
   display: block;
 }
 
-.comments {
+/* .comments {
   max-width: 100%;
-}
+} */
 
 .marginTicket {
   position: absolute;
@@ -1312,10 +1312,12 @@ button {
 
 .postTicket {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 2fr 4fr;
   grid-gap: 1rem;
   align-items: center;
-  max-width: 80%;
+  max-width: 100%;
+  margin-right: 20%;
+  margin-left: 20%;
 }
 
 .inline {

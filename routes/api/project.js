@@ -405,10 +405,10 @@ router.delete(
         .map((comment) => comment.id)
         .indexOf(req.params.comment_id);
 
-      post.comments.splice(removeIndex, 1);
-      await post.save();
+      ticket.comments.splice(removeIndex, 1);
+      await project.save();
 
-      res.json(post.comments);
+      res.json(ticket.comments);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");

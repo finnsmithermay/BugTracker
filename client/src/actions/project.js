@@ -322,8 +322,9 @@ export const addComment = (postId, ticketId, formData) => async (dispatch) => {
 // remove Comment
 export const deleteTicketComment =
   (projectID, ticketID, commentId) => async (dispatch) => {
+    console.log("here deleteTicketComment");
+
     try {
-      console.log("here deleteTicketComment");
       const res = await axios.delete(
         `/api/project/tickets/comment/${projectID}/${ticketID}/${commentId}`
       );

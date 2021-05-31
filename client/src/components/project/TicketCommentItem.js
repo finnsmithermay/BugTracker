@@ -9,8 +9,8 @@ const TicketCommentItem = ({
   ticketId,
   comment: { _id, text, name, avatar, user, date },
   auth,
-  deleteComment,
-  project,
+  deleteTicketComment,
+  project: { project },
 }) => {
   return (
     <Fragment>
@@ -56,7 +56,7 @@ const TicketCommentItem = ({
 
             {!auth.loading && user === auth.user._id && (
               <button
-                onClick={(e) => deleteComment(ticketId, _id)}
+                onClick={(e) => deleteTicketComment(project._id, ticketId, _id)}
                 type="button"
                 className="btn btn-danger"
               >
@@ -74,12 +74,14 @@ TicketCommentItem.propTypes = {
   postId: PropTypes.number.isRequired,
   comment: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  deleteComment: PropTypes.func.isRequired,
   project: PropTypes.object.isRequired,
+  deleteTicketComment: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
   project: state.project,
 });
 
-export default connect(mapStateToProps, null)(TicketCommentItem);
+export default connect(mapStateToProps, { deleteTicketComment })(
+  TicketCommentItem
+);
