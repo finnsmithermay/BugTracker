@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteAccount, getCurrentProfile } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Experience from "./Experience";
 import Education from "./Education";
 import ProjectForm from "../project/ProjectForm";
@@ -28,18 +28,41 @@ const Dashboard = ({
   profile: { profile, loading },
   project: { projects, name, avatar },
 }) => {
+  const [chartData, setChartData] = useState({});
+
+  const [barChartData, setBarChartData] = useState({});
+
   useEffect(() => {
     getProjects();
 
     getCurrentProfile();
 
-    chart();
-    barChart();
-  }, []);
+    setChartData({
+      labels: ["low", "medium", "high", "urgent"],
 
-  const [chartData, setChartData] = useState({});
+      datasets: [
+        {
+          label: "label",
+          data: [low, medium, high, urgent],
+          backgroundColor: ["#0a6ef0", "#0af021", "#fc8c03", "#fc0303"],
+          borderWidth: 4,
+        },
+      ],
+    });
 
-  const [barChartData, setBarChartData] = useState({});
+    setBarChartData({
+      labels: projectNames,
+
+      datasets: [
+        {
+          label: "label",
+          data: barData,
+          backgroundColor: ["#0a6ef0", "#0af021", "#fc8c03", "#fc0303"],
+          borderWidth: 4,
+        },
+      ],
+    });
+  }, [loading, getCurrentProfile]);
 
   var low = 0;
   var medium = 0;
@@ -77,35 +100,9 @@ const Dashboard = ({
         );
   };
 
-  const chart = () => {
-    setChartData({
-      labels: ["low", "medium", "high", "urgent"],
+  const chart = () => {};
 
-      datasets: [
-        {
-          label: "label",
-          data: [low, medium, high, urgent],
-          backgroundColor: ["#0a6ef0", "#0af021", "#fc8c03", "#fc0303"],
-          borderWidth: 4,
-        },
-      ],
-    });
-  };
-
-  const barChart = () => {
-    setBarChartData({
-      labels: projectNames,
-
-      datasets: [
-        {
-          label: "label",
-          data: barData,
-          backgroundColor: ["#0a6ef0", "#0af021", "#fc8c03", "#fc0303"],
-          borderWidth: 4,
-        },
-      ],
-    });
-  };
+  const barChart = () => {};
 
   return loading && profile === null ? (
     <Spinner />
@@ -241,4 +238,4 @@ export default connect(mapStateToProps, {
   deleteAccount,
   getProjects,
   deleteProject,
-})(Dashboard);
+})(withRouter(Dashboard));

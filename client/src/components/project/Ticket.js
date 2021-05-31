@@ -99,13 +99,15 @@ const Ticket = ({
               />
               <div className="comments">
                 <div style={{ overflowY: "auto", height: "41rem" }}>
-                  {ticket.comments.map((comment) => (
-                    <TicketCommentItem
-                      key={comment._id}
-                      comment={comment}
-                      ticketId={ticket._id}
-                    />
-                  ))}
+                  {ticket.comments != null
+                    ? ticket.comments.map((comment) => (
+                        <TicketCommentItem
+                          key={comment._id}
+                          comment={comment}
+                          ticketId={ticket._id}
+                        />
+                      ))
+                    : null}
                 </div>
               </div>
             </div>
@@ -146,13 +148,15 @@ const Ticket = ({
           <TicketCommentForm projectId={project._id} ticketId={ticket._id} />
           <div className="postsMobile">
             <div style={{ overflowY: "auto", height: "41rem" }}>
-              {ticket.comments.map((comment) => (
-                <TicketCommentItem
-                  key={comment._id}
-                  comment={comment}
-                  ticketId={ticket._id}
-                />
-              ))}
+              {ticket.comments != null
+                ? ticket.comments.map((comment) => (
+                    <TicketCommentItem
+                      key={comment._id}
+                      comment={comment}
+                      ticketId={ticket._id}
+                    />
+                  ))
+                : null}
             </div>
           </div>
         </div>

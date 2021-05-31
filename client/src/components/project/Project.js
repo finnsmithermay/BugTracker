@@ -189,7 +189,7 @@ const Project = ({
                     />
                   </div>
 
-                  {loading || project.members === null
+                  {loading || project.members == null
                     ? ((<Spinner />), getMembers())
                     : ((filteredListMembers = project.members.filter((item) =>
                         item.name
