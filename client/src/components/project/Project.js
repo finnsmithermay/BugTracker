@@ -175,7 +175,7 @@ const Project = ({
                 </button>
               </div>
 
-              {show ? (
+              {/* {show ? (
                 <div style={{ overflowY: "auto", height: "38rem" }}>
                   <div className="searchBar">
                     <input
@@ -189,10 +189,8 @@ const Project = ({
                     />
                   </div>
 
-                  {loading || !project.members
+                  {loading || project.members == null
                     ? ((<Spinner />), getMembers())
-                    : !project.members
-                    ? console.log("project members empty")
                     : ((filteredListMembers = project.members.filter((item) =>
                         item.name
                           .toString()
@@ -225,7 +223,7 @@ const Project = ({
                         </div>
                       )))}
                 </div>
-              ) : null}
+              ) : null} */}
 
               {/* show all users */}
               {!show ? (
