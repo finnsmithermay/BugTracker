@@ -196,33 +196,35 @@ const Project = ({
                           .includes(searchMembers.toString().toLowerCase())
                       )) */}
 
-                  {loading || project.members == null
-                    ? ((<Spinner />), getMembers())
-                    : project.members.map((member) => (
-                        <div className="profile bg-light">
-                          <div>
-                            <p>{member.name}</p>
-                            <Link
-                              to={`/profile/${member.id}`}
-                              className="btn btn-primary"
-                            >
-                              View Profile test
-                            </Link>
-
-                            {project.user === auth.user._id && (
-                              <button
-                                onClick={() =>
-                                  removeMember(project._id, member.id)
-                                }
-                                type="button"
-                                className="btn btn-danger"
+                  {!project.members
+                    ? loading || project.members == null
+                      ? ((<Spinner />), getMembers())
+                      : project.members.map((member) => (
+                          <div className="profile bg-light">
+                            <div>
+                              <p>{member.name}</p>
+                              <Link
+                                to={`/profile/${member.id}`}
+                                className="btn btn-primary"
                               >
-                                Remove
-                              </button>
-                            )}
+                                View Profile test
+                              </Link>
+
+                              {project.user === auth.user._id && (
+                                <button
+                                  onClick={() =>
+                                    removeMember(project._id, member.id)
+                                  }
+                                  type="button"
+                                  className="btn btn-danger"
+                                >
+                                  Remove
+                                </button>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))
+                    : null}
                 </div>
               ) : null}
 
