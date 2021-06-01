@@ -205,7 +205,7 @@ const Project = ({
                         .toLowerCase()
                         .includes(searchMembers.toString().toLowerCase())
                     )),
-                    project.members.map((member) => (
+                    members.map((member) => (
                       <div className="profile bg-light">
                         <div>
                           <p>{member.name}</p>
