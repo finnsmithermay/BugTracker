@@ -246,7 +246,7 @@ const Projects = ({
                       to={`/project/${project._id}`}
                       className="btnDashProjectsMobile"
                     >
-                      View Project
+                      View
                     </Link>
 
                     {user._id === project.user && (
@@ -254,7 +254,7 @@ const Projects = ({
                         onClick={(e) => deleteProject(project._id)}
                         className="btnDashProjectsMobile"
                       >
-                        Delete Project
+                        Delete
                       </button>
                     )}
                     {/* </div> */}
@@ -311,15 +311,15 @@ const Projects = ({
                           to={`/project/${project._id}`}
                           className="btnDashProjectsMobile"
                         >
-                          View Project
+                          View
                         </Link>
 
                         {user._id === project.user && (
                           <button
                             onClick={(e) => deleteProject(project._id)}
-                            className="btnDashProjects"
+                            className="btnDashProjectsMobile"
                           >
-                            Delete Project
+                            Delete
                           </button>
                         )}
                         {/* </div> */}

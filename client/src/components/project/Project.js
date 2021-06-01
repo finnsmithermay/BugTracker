@@ -189,8 +189,10 @@ const Project = ({
                     />
                   </div>
 
-                  {loading || project.members == null
+                  {loading || !project.members
                     ? ((<Spinner />), getMembers())
+                    : !project.members
+                    ? console.log("project members empty")
                     : ((filteredListMembers = project.members.filter((item) =>
                         item.name
                           .toString()
