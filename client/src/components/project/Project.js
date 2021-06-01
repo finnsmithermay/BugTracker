@@ -175,9 +175,7 @@ const Project = ({
                 </button>
               </div>
 
-              {/* casuing the add ticket error */}
-
-              {/* {show ? (
+              {show ? (
                 <div style={{ overflowY: "auto", height: "38rem" }}>
                   <div className="searchBar">
                     <input
@@ -191,15 +189,16 @@ const Project = ({
                     />
                   </div>
 
-                  {loading || project.members == null
-                    ? ((<Spinner />), getMembers())
-                    : ((filteredListMembers = project.members.filter((item) =>
+                  {/* (filteredListMembers = project.members.filter((item) =>
                         item.name
                           .toString()
                           .toLowerCase()
                           .includes(searchMembers.toString().toLowerCase())
-                      )),
-                      filteredListMembers.map((member) => (
+                      )) */}
+
+                  {loading || project.members == null
+                    ? ((<Spinner />), getMembers())
+                    : project.members.map((member) => (
                         <div className="profile bg-light">
                           <div>
                             <p>{member.name}</p>
@@ -223,57 +222,7 @@ const Project = ({
                             )}
                           </div>
                         </div>
-                      )))}
-                </div>
-              ) : null} */}
-
-              {show ? (
-                <div style={{ overflowY: "auto", height: "38rem" }}>
-                  <div className="searchBar">
-                    <input
-                      className="searchBarInput"
-                      type="text"
-                      placeholder="Search Project Members"
-                      name="text"
-                      value={searchMembers}
-                      onChange={(e) => setSearchMembers(e.target.value)}
-                      required
-                    />
-                  </div>
-
-                  {loading || project.members === null
-                    ? ((<Spinner />), getMembers())
-                    : ((filteredListMembers = project.members.filter((item) =>
-                        item.name
-                          .toString()
-                          .toLowerCase()
-                          .includes(searchMembers.toString().toLowerCase())
-                      )),
-                      filteredListMembers.map((member) => (
-                        <div className="profile bg-light">
-                          <div>
-                            <h2>{member.name}</h2>
-                            <Link
-                              to={`/profile/${member.id}`}
-                              className="btn btn-primary"
-                            >
-                              View
-                            </Link>
-
-                            {project.user === auth.user._id && (
-                              <button
-                                onClick={() =>
-                                  removeMember(project._id, member.id)
-                                }
-                                type="button"
-                                className="btn btn-danger"
-                              >
-                                Remove
-                              </button>
-                            )}
-                          </div>
-                        </div>
-                      )))}
+                      ))}
                 </div>
               ) : null}
 
