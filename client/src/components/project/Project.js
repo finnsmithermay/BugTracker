@@ -188,9 +188,9 @@ const Project = ({
                       required
                     />
                   </div>
-
+                  {/* (<Spinner />), getMembers() */}
                   {loading || project.members == null || !project.members
-                    ? ((<Spinner />), getMembers())
+                    ? null
                     : ((filteredListMembers = project.members.filter((item) =>
                         item.name
                           .toString()
