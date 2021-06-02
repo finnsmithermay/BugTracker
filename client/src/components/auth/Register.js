@@ -38,7 +38,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     <Fragment>
       {window.innerWidth > 1200 ? (
         <div className="outer">
-          <div className="inner">
+          <div className="innerReg">
             <h1 className="largeSignIn text-primary">Sign Up</h1>
             <p className="lead">
               <i className="fas fa-user" /> Create Your Account
@@ -68,7 +68,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                     value={status}
                     onChange={(e) => onChange(e)}
                   >
-                    <option value="0">Select Professional Status</option>
+                    <option value="0">Select Status</option>
                     <option value="Project Manager">Student</option>
                     <option value="Manager">Profectioal</option>
                   </select>
