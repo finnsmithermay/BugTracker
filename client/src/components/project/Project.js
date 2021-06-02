@@ -83,13 +83,6 @@ const Project = ({
       .includes(search.toString().toLowerCase())
   );
 
-  // filteredListMembers = members.filter((item) =>
-  //   item.name
-  //     .toString()
-  //     .toLowerCase()
-  //     .includes(searchMembers.toString().toLowerCase())
-  // );
-
   var low = 0;
   var medium = 0;
   var high = 0;
@@ -196,41 +189,39 @@ const Project = ({
                     />
                   </div>
 
-                  {loading || members == null ? (
-                    <Spinner />
-                  ) : (
-                    ((filteredListMembers = members.filter((item) =>
-                      item.name
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchMembers.toString().toLowerCase())
-                    )),
-                    members.map((member) => (
-                      <div className="profile bg-light">
-                        <div>
-                          <p>{member.name}</p>
-                          <Link
-                            to={`/profile/${member.id}`}
-                            className="btn btn-primary"
-                          >
-                            View Profile test
-                          </Link>
-
-                          {project.user === auth.user._id && (
-                            <button
-                              onClick={() =>
-                                removeMember(project._id, member.id)
-                              }
-                              type="button"
-                              className="btn btn-danger"
+                  {loading || project.members == null || !project.members
+                    ? ((<Spinner />), getMembers())
+                    : ((filteredListMembers = project.members.filter((item) =>
+                        item.name
+                          .toString()
+                          .toLowerCase()
+                          .includes(searchMembers.toString().toLowerCase())
+                      )),
+                      filteredListMembers.map((member) => (
+                        <div className="profile bg-light">
+                          <div>
+                            <p>{member.name}</p>
+                            <Link
+                              to={`/profile/${member.id}`}
+                              className="btn btn-primary"
                             >
-                              Remove
-                            </button>
-                          )}
+                              View Profile test
+                            </Link>
+
+                            {project.user === auth.user._id && (
+                              <button
+                                onClick={() =>
+                                  removeMember(project._id, member.id)
+                                }
+                                type="button"
+                                className="btn btn-danger"
+                              >
+                                Remove
+                              </button>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    )))
-                  )}
+                      )))}
                 </div>
               ) : null}
 
