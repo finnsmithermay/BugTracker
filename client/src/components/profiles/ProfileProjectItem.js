@@ -21,7 +21,7 @@ const ProfileProjectItem = ({
   return (
     <div className="profile bg-light">
       <div>
-        <h2>{name}</h2>
+        <p>{name}</p>
         <Link to={`/profile/${_id}`} className="btn btn-primary">
           View Profile
         </Link>

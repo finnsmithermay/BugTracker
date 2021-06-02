@@ -974,7 +974,7 @@ button {
   width: 100%;
 
   max-width: 100%;
-  padding: 1rem;
+  padding: 0.7rem;
   line-height: 1.8;
   margin-bottom: 1rem;
 }
@@ -1145,7 +1145,7 @@ button {
 .project-exp {
   grid-area: exp;
   margin-left: 30%;
-  font-size: 1.3rem;
+  font-size: 0.9rem;
 }
 
 .tickets-heading {
@@ -1155,7 +1155,7 @@ button {
 .project-expTickets {
   grid-area: exp;
   margin-left: 1rem;
-  font-size: 1.3rem;
+  font-size: 0.9rem;
 }
 
 .project-btn {
@@ -1163,12 +1163,12 @@ button {
   /* display: inline-block; */
 
   /* margin-left: 30%; */
-  font-size: 1.3rem;
+  font-size: 0.9rem;
 }
 
 .project-edu {
   grid-area: edu;
-  font-size: 1.3rem;
+  font-size: 0.9rem;
   padding-right: 20;
 }
 
@@ -1425,7 +1425,7 @@ button {
 }
 
 .mediumtext {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   /* font-weight: bold; */
   color: #000000;
   margin-left: 3rem;
@@ -1448,9 +1448,9 @@ button {
 
 .projectManager {
   padding-left: 1rem;
-  margin-left: 1rem;
-  font-size: 1.2rem;
-  color: #c94646;
+  /* margin-left: 1rem; */
+  /* font-size: 1rem; */
+  color: #000000;
 }
 .projectManager:hover {
   /* color: var(--primary-color); */

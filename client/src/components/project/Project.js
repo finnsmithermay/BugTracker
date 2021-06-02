@@ -205,7 +205,7 @@ const Project = ({
                               to={`/profile/${member.id}`}
                               className="btn btn-primary"
                             >
-                              View Profile test
+                              View Profile
                             </Link>
 
                             {project.user === auth.user._id && (
