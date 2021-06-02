@@ -115,8 +115,8 @@ img {
 }
 
 .inner {
-  height: 45rem;
-  width: 35rem;
+  height: 35rem;
+  width: 25rem;
   display: inline-block;
   background-color: #ffffff;
   border-width: 3rem;
@@ -295,8 +295,8 @@ img {
 .largeSignInMobile {
   font-size: 3rem;
   line-height: 1.2;
-  margin-bottom: 2rem;
-  margin-top: 3rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 .projectWrapperMobile {
@@ -392,8 +392,8 @@ img {
 .largeSignIn {
   font-size: 5rem;
   line-height: 1.2;
-  margin-bottom: 6rem;
-  margin-top: 3rem;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
 }
 
 .lead {
@@ -537,7 +537,7 @@ img {
 }
 
 .pageWrapperMarginForNav {
-  margin-left: 10%;
+  margin-left: 6%;
 }
 .pageWrapperMarginForNavTicket {
   margin-left: 20%;
