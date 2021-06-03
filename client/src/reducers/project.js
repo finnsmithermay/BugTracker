@@ -113,7 +113,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         ticket: {
-          ...state.project,
+          ...state.ticket,
           ticket: state.ticket.comments.filter(
             (comment) => comment._id !== payload
           ),

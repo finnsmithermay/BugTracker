@@ -322,8 +322,6 @@ export const addComment = (postId, ticketId, formData) => async (dispatch) => {
 // remove Comment
 export const deleteTicketComment =
   (projectID, ticketID, commentId) => async (dispatch) => {
-    console.log("here deleteTicketComment");
-
     try {
       const res = await axios.delete(
         `/api/project/tickets/comment/${projectID}/${ticketID}/${commentId}`
@@ -336,6 +334,7 @@ export const deleteTicketComment =
 
       dispatch(setAlert("Comment removed", "success"));
     } catch (err) {
+      console.log("deleteTicketComment error");
       dispatch({
         type: PROJECT_ERROR,
         payload: { msg: err.response.statusText, status: err.response.status },

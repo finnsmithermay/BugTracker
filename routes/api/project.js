@@ -402,8 +402,8 @@ router.delete(
       }
 
       const removeIndex = ticket.comments
-        .map((comment) => comment.id)
-        .indexOf(req.params.comment_id);
+        .map((c) => c.user.toString())
+        .indexOf(req.user.id);
 
       ticket.comments.splice(removeIndex, 1);
       await project.save();

@@ -155,20 +155,20 @@ const Project = ({
             <div className="projectWrapper">
               <div>{/* project description */}</div>
 
-              <div className="divHeading">
+              {/* <div className="divHeading">
                 <p className="lead">View and edit project members</p>
-              </div>
+              </div> */}
 
               <div>
                 <button
-                  className="btnDashTicketsMobile"
+                  className="btnDashTicketsMobileMargin"
                   onClick={() => setShow(true)}
                 >
                   View Members
                 </button>
 
                 <button
-                  className="btnDashTicketsMobile"
+                  className="btnDashTicketsMobileMargin"
                   onClick={() => setShow(false)}
                 >
                   Add Members
@@ -253,7 +253,7 @@ const Project = ({
 
             <div className="projectWrapperTickets">
               {/* <div className="dash-buttons my-a"> */}
-              <p className="lead">Tickets</p>
+              {/* <p className="lead">Tickets</p> */}
 
               <div className="dash-buttons">
                 <button

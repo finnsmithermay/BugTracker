@@ -360,6 +360,26 @@ img {
   outline: none;
 }
 
+.btnDashTicketsMobileMargin {
+  width: 100%;
+  display: inline-block;
+  background: var(--grey-color);
+  color: #333;
+  padding-top: 0.5rem;
+  padding: 0.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+  margin-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding: 0.2rem;
+  font-size: 1rem;
+}
+
 .linkDashTicketsMobile {
   width: 100%;
   display: inline-block;
@@ -634,6 +654,7 @@ img {
   margin-right: 1rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+  justify-content: center;
 }
 .btnDashTickets:hover {
   background-color: #b8b8b8; /* Green */
@@ -830,6 +851,10 @@ img {
 .round-img {
   border-radius: 50%;
 }
+.round-imgSmall {
+  max-width: 45%;
+  border-radius: 50%;
+}
 
 .line {
   height: 1px;
@@ -1002,7 +1027,7 @@ button {
 }
 
 .projectWrapper {
-  max-height: 55rem;
+  max-height: 52rem;
   width: 25rem;
   max-width: 100%;
   margin-left: 200px;
@@ -1324,8 +1349,8 @@ button {
   grid-gap: 1rem;
   align-items: center;
   max-width: 100%;
-  margin-right: 20%;
-  margin-left: 20%;
+  margin-right: 10%;
+  margin-left: 10%;
 }
 
 .inline {
