@@ -137,7 +137,12 @@ const Dashboard = ({
                 <div className="graph">
                   {getVals()}
                   {total === 0 ? (
-                    <h1>Looks Like you havent started any projects yet</h1>
+                    <div className="dashHeading my-l">
+                      <h1 className="my-l">
+                        Looks Like you havent started any projects yet, click
+                        create new project to get started.
+                      </h1>
+                    </div>
                   ) : (
                     <Doughnut
                       data={chartData}
@@ -152,37 +157,41 @@ const Dashboard = ({
                   )}
                 </div>
 
-                <div className="barGraph">
-                  <Bar
-                    data={barChartData}
-                    options={{
-                      title: { text: "Tickets Per Project", display: true },
+                {total === 0 ? null : (
+                  <div className="barGraph">
+                    <Bar
+                      data={barChartData}
+                      options={{
+                        title: { text: "Tickets Per Project", display: true },
 
-                      scales: {
-                        yAxes: [
-                          {
-                            ticks: {
-                              beginAtZero: true,
+                        scales: {
+                          yAxes: [
+                            {
+                              ticks: {
+                                beginAtZero: true,
+                              },
                             },
-                          },
-                        ],
-                        xAxes: [
-                          {
-                            barPercentage: 0.6,
-                          },
-                        ],
-                      },
-                    }}
-                  />
-                </div>
+                          ],
+                          xAxes: [
+                            {
+                              barPercentage: 0.6,
+                            },
+                          ],
+                        },
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </Fragment>
           ) : (
             <Fragment>
-              <p>You have not yet setup a profile, please add some info</p>
-              <Link to="/create-profile" className="btn btn-primary my-1">
-                Create Profile
-              </Link>
+              <div className="dashHeading">
+                <p>You have not yet setup a profile, please add some info</p>
+                <Link to="/create-profile" className="btn btn-primary my-1">
+                  Create Profile
+                </Link>
+              </div>
             </Fragment>
           )}
         </div>

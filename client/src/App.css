@@ -524,6 +524,9 @@ img {
 .my-5 {
   margin-bottom: 1rem;
 }
+.my-l {
+  margin-left: 10%;
+}
 .my {
   margin: 0.5rem 0;
 }
@@ -1094,7 +1097,7 @@ button {
 }
 
 .projectDescriptionLeft {
-  justify-content: left;
+  justify-content: center;
   margin-left: 0px;
 }
 
@@ -1105,10 +1108,10 @@ button {
 .projectDescription {
   padding: 2rem;
   text-align: left;
-  margin-right: 10%;
-  margin-left: 10%;
+  margin-right: 20%;
+  margin-left: 20%;
   margin-bottom: 10%;
-  margin-top: 20%;
+  /* margin-top: 20%; */
   display: flex;
   flex-direction: column;
   background-color: rgb(255, 255, 255);
