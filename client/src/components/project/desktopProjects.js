@@ -30,7 +30,7 @@ const desktopProjects = ({
     <Spinner />
   ) : (
     <Fragment>
-      {window.innerWidth > 1200 ? null : null}
+      {window.innerWidth > 900 ? null : null}
 
       <div className="outer">
         {/* <h1 className="large text-primary">Projects</h1> */}

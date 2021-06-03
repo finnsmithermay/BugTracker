@@ -13,7 +13,7 @@ const Posts = ({ getPosts, post: { posts } }) => {
 
   return (
     <Fragment>
-      {window.innerWidth > 1200 ? (
+      {window.innerWidth > 900 ? (
         <div>
           <h1 className="largePostsTitle">Community Posts</h1>
 

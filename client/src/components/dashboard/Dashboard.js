@@ -57,7 +57,19 @@ const Dashboard = ({
         {
           label: "label",
           data: barData,
-          backgroundColor: ["#0a6ef0", "#0af021", "#fc8c03", "#fc0303"],
+          backgroundColor: [
+            "#0E267E",
+            "#0E267E",
+            "#0E267E",
+            "#0E267E",
+            "#0E267E",
+            "#0E267E",
+            "#0E267E",
+            "#0E267E",
+            "#0E267E",
+            "#0E267E",
+            "#0E267E",
+          ],
           borderWidth: 4,
         },
       ],
@@ -113,9 +125,9 @@ const Dashboard = ({
           {/* //chnage to just projects this user it part of */}
 
           <div className="dashHeading">
-            <h1 className="largeDash text-primary">Dashboard</h1>
-            <p className="lead">
-              <i className="fas fa-user" /> Welcome {user && user.name}
+            <h1 className="largeDash text-projectTitle">Dashboard</h1>
+            <p className="lead2">
+              <i className="fas fa-user" /> Signed in as {user && user.name}
             </p>
           </div>
 

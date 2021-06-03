@@ -19,7 +19,7 @@ const AddProject = ({ addProject, history }) => {
 
   return (
     <Fragment>
-      {window.innerWidth > 1200 ? (
+      {window.innerWidth > 900 ? (
         <div className="pageWrapperMarginForNav">
           <div className="pageWidth">
             <h1 class="large text-primary">Create project</h1>

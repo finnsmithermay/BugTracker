@@ -120,7 +120,7 @@ const Project = ({
 
   return members === null || user === null || project === null ? (
     <Spinner />
-  ) : window.innerWidth > 1200 ? (
+  ) : window.innerWidth > 900 ? (
     <Fragment>
       {getVals()}
       <div className="pageWrapperMarginForNav">
@@ -131,7 +131,7 @@ const Project = ({
         )}
 
         <div className="outerProjectTitle">
-          <h1 className="large text-primary">{project.projectName}</h1>
+          <h1 className="large text-projectTitle">{project.projectName}</h1>
 
           <div className="dash-buttons">
             <button className="btnDash" onClick={() => setShowMembers(true)}>
@@ -275,7 +275,7 @@ const Project = ({
                 <div>
                   <Link
                     to={`/add-ticket/${project._id}`}
-                    className=" btnDashTickets my-2"
+                    className=" btnDashTickets my-1"
                   >
                     Add ticket
                   </Link>

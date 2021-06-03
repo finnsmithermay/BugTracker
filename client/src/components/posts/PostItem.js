@@ -15,7 +15,7 @@ const PostItem = ({
 }) => {
   return (
     <Fragment>
-      {window.innerWidth > 1200 ? (
+      {window.innerWidth > 900 ? (
         <div className="post bg-white p-1 my-1">
           <div>
             <Link to={`/profile/${user}`}>

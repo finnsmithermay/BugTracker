@@ -55,7 +55,7 @@ const Ticket = ({
     <Fragment>
       {/* <p>{project.name}</p> */}
       {/* {ticket = project.tickets.find(ticket => ticket.id === "6066a67ffb221d58e6d750d6")} */}
-      {window.innerWidth > 1200 ? (
+      {window.innerWidth > 900 ? (
         <div className="pageWrapperMarginForNavTicket">
           <div className="rowC">
             {/* NOTE SHOW MEMBERS STARTS HERE */}

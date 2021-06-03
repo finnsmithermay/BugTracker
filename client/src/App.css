@@ -1,12 +1,12 @@
 /* Global Styles */
 :root {
-  --primary-color: #e76f51;
+  --primary-color: #366476;
   --dark-color: #343a40;
   --light-color: #eeeeee;
   --grey-color: #dfdfdf;
   --danger-color: #dc3545;
   --success-color: #28a745;
-  --background-color: #e2e2e2ea;
+  --background-color: #ddddddea;
   --priority-color: #2cdd58;
   --navColor: #264653;
 
@@ -77,6 +77,26 @@ img {
   color: white;
   padding: 1.5rem;
   font-size: 1.5rem;
+}
+
+.btn-sec {
+  background-color: #8b8b8bea;
+}
+
+.spinner {
+  animation: spin infinite 5s linear;
+
+  /*You can increase or decrease the timer (5s) to 
+   increase or decrease the speed of the spinner*/
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .containerLoginRegister {
@@ -441,6 +461,9 @@ img {
 .text-primary {
   color: var(--primary-color);
 }
+.text-projectTitle {
+  color: #0e267e;
+}
 
 .text-primaryDash {
   color: var(--primary-color);
@@ -570,7 +593,7 @@ img {
 }
 
 .pageWrapperMarginForNav {
-  margin-left: 6%;
+  margin-left: 9%;
 }
 .pageWrapperMarginForNavTicket {
   margin-left: 20%;
@@ -654,7 +677,7 @@ img {
   margin-right: 1rem;
   transition: opacity 0.2s ease-in;
   outline: none;
-  justify-content: center;
+  text-align: center;
 }
 .btnDashTickets:hover {
   background-color: #b8b8b8; /* Green */
@@ -778,16 +801,17 @@ img {
 
 .alert {
   position: fixed;
-  align-self: center;
-  right: 0;
-  left: 0;
-  justify-content: center;
-  max-width: 50%;
+  top: 10%;
+  left: 40%;
+  width: 35rem;
+  max-width: 100%;
   padding: 0.8rem;
   opacity: 0.9;
   background: var(--light-color);
   color: #333;
-  border-radius: 5%;
+  /* border-radius: 5%; */
+  text-align: center;
+  font-size: 1.3rem;
 }
 
 .btn-primary,
@@ -1027,7 +1051,7 @@ button {
 }
 
 .projectWrapper {
-  max-height: 52rem;
+  max-height: 47rem;
   width: 25rem;
   max-width: 100%;
   margin-left: 200px;
@@ -1112,7 +1136,7 @@ button {
 
   margin-left: 5%;
   margin-right: 5%;
-  padding: 2rem;
+  padding: 1.2rem;
   background-color: #ffffff;
   /* box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8); */
   margin-bottom: 5rem;
@@ -1553,6 +1577,9 @@ button {
     font-size: 2rem;
   }
 
+  .ee {
+    color: #e05e12;
+  }
   .leadM {
     font-size: 1rem;
     margin-left: 20%;

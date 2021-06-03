@@ -30,7 +30,7 @@ const Profile = ({
 
   return (
     <Fragment>
-      {window.innerWidth > 1200 ? (
+      {window.innerWidth > 900 ? (
         <div className="pageWrapperMarginForNav">
           <div className="pageWidth">
             {profile === null ? (

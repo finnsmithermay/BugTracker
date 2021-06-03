@@ -16,7 +16,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
     <Spinner />
   ) : (
     <Fragment>
-      {window.innerWidth > 1200 ? (
+      {window.innerWidth > 900 ? (
         <div>
           <div className="posts">
             <PostItem post={post} showActions={false} />

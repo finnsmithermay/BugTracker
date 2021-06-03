@@ -73,7 +73,7 @@ const EditProfile = ({
 
   return (
     <Fragment>
-      {window.innerWidth > 1200 ? (
+      {window.innerWidth > 900 ? (
         <div className="pageWrapperMarginForNav">
           <div className="pageWidth">
             <h1 className="large text-primary">Edit Your Profile</h1>

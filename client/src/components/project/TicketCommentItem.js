@@ -14,7 +14,7 @@ const TicketCommentItem = ({
 }) => {
   return (
     <Fragment>
-      {window.innerWidth > 1200 ? (
+      {window.innerWidth > 900 ? (
         <div class="postTicket bg-white p-1 my-1">
           <div>
             <Link to={`/profile/${user}`}>

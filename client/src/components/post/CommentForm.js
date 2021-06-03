@@ -7,7 +7,7 @@ const CommentForm = ({ postId, addComment }) => {
   const [text, setText] = useState("");
   return (
     <div>
-      {window.innerWidth > 1200 ? (
+      {window.innerWidth > 900 ? (
         <div className="post-form">
           <div class="bg-primary p">
             <h3>Leave a Comment</h3>

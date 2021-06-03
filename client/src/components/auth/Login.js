@@ -30,7 +30,7 @@ export const Login = ({ login, isAuthenticated }) => {
 
   return (
     <Fragment>
-      {window.innerWidth > 1200 ? (
+      {window.innerWidth > 900 ? (
         <div className="outer">
           <div className="inner">
             <h1 className="largeSignIn text-primary">Sign In</h1>

@@ -9,7 +9,7 @@ const PostForm = ({ addPost }) => {
 
   return (
     <Fragment>
-      {window.innerWidth > 1200 ? (
+      {window.innerWidth > 900 ? (
         <div class="post-form">
           <div class="bg-primary p">
             <h3>Say Something...</h3>

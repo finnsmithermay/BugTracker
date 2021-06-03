@@ -36,7 +36,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   return (
     <Fragment>
-      {window.innerWidth > 1200 ? (
+      {window.innerWidth > 900 ? (
         <div className="outer">
           <div className="innerReg">
             <h1 className="largeSignIn text-primary">Sign Up</h1>

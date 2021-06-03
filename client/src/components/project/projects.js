@@ -27,7 +27,7 @@ const Projects = ({
 
   return loading && profile === null ? (
     <Spinner />
-  ) : window.innerWidth > 1200 ? (
+  ) : window.innerWidth > 900 ? (
     <Fragment>
       {profile != null ? (
         <Fragment>
