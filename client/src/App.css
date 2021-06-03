@@ -1052,9 +1052,9 @@ button {
 
 .projectWrapper {
   max-height: 47rem;
-  width: 25rem;
+  width: 20rem;
   max-width: 100%;
-  margin-left: 8%;
+  margin-left: 12%;
   padding: 1.2rem;
   background-color: #ffffff;
   /* box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8); */
