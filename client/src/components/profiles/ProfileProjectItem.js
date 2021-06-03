@@ -22,12 +22,12 @@ const ProfileProjectItem = ({
     <div className="profile bg-light">
       <div>
         <p>{name}</p>
-        <Link to={`/profile/${_id}`} className="btn btn-sec">
+        <Link to={`/profile/${_id}`} className="btn btn-primary">
           View Profile
         </Link>
 
         <button
-          className="btn btn-sec"
+          className="btn btn-primary"
           onClick={() => addMember(project._id, { profile })}
         >
           Add

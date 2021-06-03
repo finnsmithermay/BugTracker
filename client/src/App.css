@@ -45,7 +45,7 @@ img {
   /* margin-left: 10%; */
   /* padding-left: 25%; */
 
-  margin-top: 2%;
+  /* margin-top: 2%; */
   /* padding-right: 15%; */
   overflow: hidden;
   /* padding: 0 2rem; */
@@ -335,10 +335,10 @@ img {
 .projectWrapperMobile {
   max-height: 55rem;
   width: 90%;
-  max-width: 100%;
+  max-width: 90%;
   padding: 2rem;
   background-color: #ffffff;
-  margin-left: 5%;
+  margin-left: 3%;
   margin-right: 5%;
   margin-bottom: 10%;
   /* box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8); */
@@ -628,12 +628,12 @@ img {
 }
 
 .btnDash {
-  width: 16rem;
+  width: 14rem;
   display: inline-block;
   background: white;
   color: #333;
   padding: 0.4rem 0.9rem;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: bold;
   border: none;
   cursor: pointer;
@@ -1054,7 +1054,7 @@ button {
   max-height: 47rem;
   width: 25rem;
   max-width: 100%;
-  margin-left: 200px;
+  margin-left: 8%;
   padding: 1.2rem;
   background-color: #ffffff;
   /* box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8); */
