@@ -114,7 +114,7 @@ export default function (state = initialState, action) {
         ...state,
         ticket: {
           ...state.ticket,
-          ticket: state.ticket.comments.filter(
+          comments: state.ticket.comments.filter(
             (comment) => comment._id !== payload
           ),
           loading: false,
